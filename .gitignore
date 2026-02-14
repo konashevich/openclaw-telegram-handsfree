@@ -1,0 +1,71 @@
+# Kotlin / Android .gitignore
+# Purpose: ignore build artifacts, IDE files, local configs and secrets
+
+# --- Build / packaging / compiled files ---
+*.apk
+*.ap_
+*.aab
+*.dex
+*.class
+**/build/
+build/
+
+# Gradle
+.gradle/
+/.gradle/
+!gradle/wrapper/gradle-wrapper.jar
+/local.properties
+
+# Android Studio / IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+# keep inspection profiles if you want to share them:
+!.idea/inspectionProfiles
+
+# Android Studio captures and generated files
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Native / NDK
+obj/
+*.so
+
+# Signing / secrets
+*.jks
+*.keystore
+keystore.properties
+secret.properties
+.env
+
+# Firebase / Google services (contains credentials)
+google-services.json
+
+# Kotlin
+*.kotlin_module
+.gradle/kotlin-dsl/
+
+# Generated mapping / outputs
+mapping.txt
+outputs/**/mapping/
+
+# Misc OS files
+.DS_Store
+Thumbs.db
+
+# Logs, temporary files
+*.log
+*.tmp
+*.orig
+
+# JetBrains / IDE caches and local history
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+
+# Optional: uncomment to ignore Jetpack Compose preview files
+# .preview/
+
+# End of file
