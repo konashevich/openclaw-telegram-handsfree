@@ -1,0 +1,87 @@
+VOICE INTERACTION MANAGER (dumpsys voiceinteraction)
+  mEnableService: true
+  mTemporarilyDisabled: false
+  mCurUser: 0
+  mCurUserSupported: true
+  mIsHdsRequired: false
+  1 supported user: [0]
+  Enrolled KeyphraseSoundModels:
+    model_uuid: 4c269f7e-4cf9-4e28-8019-fed853816898
+    vendor_uuid: 7038ddc8-30f2-11e6-b0ac-40a8f03d3f15
+    keyphrase_id: 101
+    type: 0
+    data: data blob
+    recognition_modes: 1
+    locale: en-GB
+    hint_text: X Google
+    users: 0
+    model_version: 404863561
+
+  mUser=0
+  mComponent=com.google.android.googlequicksearchbox/com.google.android.voiceinteraction.GsaVoiceInteractionService
+  Session service=com.google.android.apps.gsa.nga.engine.viss.NgaVoiceInteractionSessionService
+  Service info:
+    name=com.google.android.voiceinteraction.GsaVoiceInteractionService
+    packageName=com.google.android.googlequicksearchbox
+    labelRes=0x7f151c4c nonLocalizedLabel=null icon=0x0 banner=0x0
+    processName=com.google.android.googlequicksearchbox:interactor
+    enabled=true exported=true directBootAware=false
+    permission=android.permission.BIND_VOICE_INTERACTION
+    flags=0x0
+    ApplicationInfo:
+      name=com.google.android.apps.gsa.binaries.velvet.app.VelvetMultiprocessRoot_Application
+      packageName=com.google.android.googlequicksearchbox
+      labelRes=0x7f150069 nonLocalizedLabel=null icon=0x7f11000c banner=0x0
+      className=com.google.android.apps.gsa.binaries.velvet.app.VelvetMultiprocessRoot_Application
+      processName=com.google.android.googlequicksearchbox
+      taskAffinity=null
+      uid=10271 flags=0xa0d8bec5 privateFlags=0x8c080518 theme=0x7f160d91
+      requiresSmallestWidthDp=0 compatibleWidthLimitDp=0 largestWidthLimitDp=0
+      sourceDir=/data/app/~~vilzGm2HTm8ayn7RchIfWg==/com.google.android.googlequicksearchbox-vvdG2FFa-XysBHb3_6LMVw==/base.apk
+      splitSourceDirs=[/data/app/~~vilzGm2HTm8ayn7RchIfWg==/com.google.android.googlequicksearchbox-vvdG2FFa-XysBHb3_6LMVw==/split_config.xxhdpi.apk, /data/app/~~vilzGm2HTm8ayn7RchIfWg==/com.google.android.googlequicksearchbox-vvdG2FFa-XysBHb3_6LMVw==/split_lens_ondevice_engine_play_ml_module.apk, /data/app/~~vilzGm2HTm8ayn7RchIfWg==/com.google.android.googlequicksearchbox-vvdG2FFa-XysBHb3_6LMVw==/split_tclib_native_feature_module.apk]
+      resourceDirs=[/product/overlay/NavigationBarModeGestural/NavigationBarModeGesturalOverlay.apk]
+      overlayPaths=[/product/overlay/NavigationBarModeGestural/NavigationBarModeGesturalOverlay.apk]
+      seinfo=default:privapp:targetSdkVersion=36:partition=product
+      seinfoUser=:complete
+      dataDir=/data/user/0/com.google.android.googlequicksearchbox
+      deviceProtectedDataDir=/data/user_de/0/com.google.android.googlequicksearchbox
+      credentialProtectedDataDir=/data/user/0/com.google.android.googlequicksearchbox
+      sharedLibraryFiles=[/system_ext/framework/com.android.extensions.appfunctions.jar, /system_ext/framework/androidx.window.extensions.jar, /system_ext/framework/androidx.window.sidecar.jar]
+      splitClassLoaderNames=[null, null, null]
+      enabled=true minSdkVersion=32 targetSdkVersion=36 versionCode=301693722 targetSandboxVersion=1
+      supportsRtl=true
+      fullBackupContent=true
+      dataExtractionRules=@xml/2132344852
+      crossProfile=true
+      networkSecurityConfigRes=0x7f1900f5
+      category=7
+      HiddenApiEnforcementPolicy=2
+      usesNonSdkApi=false
+      allowsPlaybackCapture=true
+      nativeHeapZeroInitialized=0
+      localeConfigRes=0x7f1900ee
+      enableOnBackInvokedCallback=true
+      allowCrossUidActivitySwitchFromBelow=true
+      mPageSizeAppCompatFlags=0
+      createTimestamp=190316901
+  Recognition service=com.google.android.voicesearch.serviceapi.GoogleRecognitionService
+  Hotword detection service=com.google.android.apps.gsa.hotword.hotworddetectionservice.GsaHotwordDetectionService
+  Settings activity=null
+  Supports assist=true
+  Supports launch from keyguard=true
+  mBound=true mService=android.service.voice.IVoiceInteractionService$Stub$Proxy@669bf3e
+  Hotword detection connection:
+    mReStartPeriodSeconds=0
+    bound for HotwordDetectionService=true
+    bound for VisualQueryDetectionService=false
+    mRestartCount=0
+    mLastRestartInstant=2026-02-15T10:30:39.795934Z
+    DetectorSession(s):
+    Num of DetectorSession(s)=1
+    mCallback=com.android.internal.app.IHotwordRecognitionStatusCallback$Stub$Proxy@b3f819f
+    mUpdateStateAfterStartFinished=true
+    mInitialized=true
+    mDestroyed=false
+    DetectorType=trusted_hotword_dsp
+    mPerformingExternalSourceHotwordDetection=false
+    mValidatingDspTrigger=false

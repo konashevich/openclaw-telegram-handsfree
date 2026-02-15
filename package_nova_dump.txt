@@ -1,0 +1,305 @@
+Activity Resolver Table:
+  Non-Data Actions:
+      android.intent.action.MAIN:
+        481cc44 io.openclaw.telegramhandsfree/.MainActivity filter 818e12d
+          Action: "android.intent.action.MAIN"
+          Category: "android.intent.category.LAUNCHER"
+
+Receiver Resolver Table:
+  Non-Data Actions:
+      androidx.profileinstaller.action.SAVE_PROFILE:
+        8f168b0 io.openclaw.telegramhandsfree/androidx.profileinstaller.ProfileInstallReceiver filter 846c4f
+          Action: "androidx.profileinstaller.action.SAVE_PROFILE"
+      androidx.profileinstaller.action.INSTALL_PROFILE:
+        8f168b0 io.openclaw.telegramhandsfree/androidx.profileinstaller.ProfileInstallReceiver filter 4cf6329
+          Action: "androidx.profileinstaller.action.INSTALL_PROFILE"
+      androidx.profileinstaller.action.SKIP_FILE:
+        8f168b0 io.openclaw.telegramhandsfree/androidx.profileinstaller.ProfileInstallReceiver filter 739e6ae
+          Action: "androidx.profileinstaller.action.SKIP_FILE"
+      androidx.profileinstaller.action.BENCHMARK_OPERATION:
+        8f168b0 io.openclaw.telegramhandsfree/androidx.profileinstaller.ProfileInstallReceiver filter 57c5fdc
+          Action: "androidx.profileinstaller.action.BENCHMARK_OPERATION"
+      android.intent.action.MEDIA_BUTTON:
+        d01c662 io.openclaw.telegramhandsfree/.voice.MediaButtonReceiver filter 5ff83f3
+          Action: "android.intent.action.MEDIA_BUTTON"
+
+Service Resolver Table:
+  Non-Data Actions:
+      android.service.voice.VoiceInteractionService:
+        b5208e5 io.openclaw.telegramhandsfree/.voice.NovaVoiceInteractionService filter 6c1bfba permission android.permission.BIND_VOICE_INTERACTION
+          Action: "android.service.voice.VoiceInteractionService"
+
+Domain verification status:
+
+Permissions:
+  Permission [io.openclaw.telegramhandsfree.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION] (90cdc05):
+    sourcePackage=io.openclaw.telegramhandsfree
+    uid=10538 gids=[] type=0 prot=signature
+    perm=PermissionInfo{d206368 io.openclaw.telegramhandsfree.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION}
+    flags=0x0
+
+Registered ContentProviders:
+  io.openclaw.telegramhandsfree/androidx.startup.InitializationProvider:
+    Provider{f843381 io.openclaw.telegramhandsfree/androidx.startup.InitializationProvider}
+
+ContentProvider Authorities:
+  [io.openclaw.telegramhandsfree.androidx-startup]:
+    Provider{f843381 io.openclaw.telegramhandsfree/androidx.startup.InitializationProvider}
+      applicationInfo=ApplicationInfo{9c16c26 io.openclaw.telegramhandsfree}
+
+Key Set Manager:
+  [io.openclaw.telegramhandsfree]
+      Signing KeySets: 243
+
+Packages:
+  Package [io.openclaw.telegramhandsfree] (1b2d067):
+    appId=10538
+    pkg=Package{b4c4e14 io.openclaw.telegramhandsfree}
+    codePath=/data/app/~~vmsyaguYEwlhQjdL4JKxtQ==/io.openclaw.telegramhandsfree-ylZ_J_tV_oZVXKZKZ2y8QQ==
+    resourcePath=/data/app/~~vmsyaguYEwlhQjdL4JKxtQ==/io.openclaw.telegramhandsfree-ylZ_J_tV_oZVXKZKZ2y8QQ==
+    legacyNativeLibraryDir=/data/app/~~vmsyaguYEwlhQjdL4JKxtQ==/io.openclaw.telegramhandsfree-ylZ_J_tV_oZVXKZKZ2y8QQ==/lib
+    extractNativeLibs=false
+    primaryCpuAbi=arm64-v8a
+    secondaryCpuAbi=null
+    cpuAbiOverride=null
+    versionCode=1 minSdk=29 targetSdk=35
+    minExtensionVersions=[]
+    versionName=0.1.0
+    hiddenApiEnforcementPolicy=2
+    usesNonSdkApi=false
+    splits=[base]
+    apkSigningVersion=2
+    flags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ALLOW_BACKUP ]
+    privateFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION ALLOW_AUDIO_PLAYBACK_CAPTURE PRIVATE_FLAG_ALLOW_NATIVE_HEAP_POINTER_TAGGING ]
+    forceQueryable=false
+    pageSizeCompat=0
+    scannedAsStoppedSystemApp=false
+    supportsScreens=[small, medium, large, xlarge, resizeable, anyDensity]
+    timeStamp=2026-02-15 21:30:51
+    lastUpdateTime=2026-02-15 21:30:52
+    installerPackageName=null
+    installerPackageUid=-1
+    initiatingPackageName=com.android.shell
+    originatingPackageName=null
+    category=manifest: -1, override: -1, by user: -1
+    packageSource=1
+    appMetadataFilePath=null
+    appMetadataSource=0
+    signatures=PackageSignatures{6bf86bd version:2, signatures:[24c0c5b2], past signatures:[]}
+    installPermissionsFixed=false
+    pkgFlags=[ DEBUGGABLE HAS_CODE ALLOW_CLEAR_USER_DATA ALLOW_BACKUP ]
+    privatePkgFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION ALLOW_AUDIO_PLAYBACK_CAPTURE PRIVATE_FLAG_ALLOW_NATIVE_HEAP_POINTER_TAGGING ]
+    apexModuleName=null
+    componentsDeclared=7
+    declared permissions:
+      io.openclaw.telegramhandsfree.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION: prot=signature
+    requested permissions:
+      android.permission.POST_NOTIFICATIONS
+      android.permission.MODIFY_AUDIO_SETTINGS
+      android.permission.FOREGROUND_SERVICE
+      android.permission.BLUETOOTH_CONNECT
+      android.permission.INTERNET
+      io.openclaw.telegramhandsfree.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+      android.permission.FOREGROUND_SERVICE_MICROPHONE
+      android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK
+      android.permission.RECORD_AUDIO
+      android.permission.WAKE_LOCK
+    install permissions:
+      android.permission.MODIFY_AUDIO_SETTINGS: granted=true
+      android.permission.FOREGROUND_SERVICE: granted=true
+      android.permission.INTERNET: granted=true
+      io.openclaw.telegramhandsfree.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION: granted=true
+      android.permission.FOREGROUND_SERVICE_MICROPHONE: granted=true
+      android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK: granted=true
+      android.permission.WAKE_LOCK: granted=true
+    User 0: ceDataInode=244262 deDataInode=196466 installed=true hidden=false suspended=false distractionFlags=0 stopped=false notLaunched=false enabled=0 instant=false virtual=false quarantined=false
+      installReason=0
+      dataDir=/data/user/0/io.openclaw.telegramhandsfree
+      firstInstallTime=2026-02-15 21:30:52
+      uninstallReason=0
+      overlay paths:
+        /product/overlay/NavigationBarModeGestural/NavigationBarModeGesturalOverlay.apk
+      legacy overlay paths:
+        /product/overlay/NavigationBarModeGestural/NavigationBarModeGesturalOverlay.apk
+      gids=[3003]
+      runtime permissions:
+        android.permission.POST_NOTIFICATIONS: granted=true, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.BLUETOOTH_CONNECT: granted=true, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.RECORD_AUDIO: granted=true, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+
+Queries:
+  system apps queryable: false
+  queries via forceQueryable:
+  queries via package name:
+  queries via component:
+    com.samsung.android.bixby.agent:
+      io.openclaw.telegramhandsfree
+    com.android.settings.intelligence:
+      io.openclaw.telegramhandsfree
+    com.google.android.apps.accessibility.voiceaccess:
+      io.openclaw.telegramhandsfree
+    com.google.android.as:
+      io.openclaw.telegramhandsfree
+    com.google.android.as.oss:
+      io.openclaw.telegramhandsfree
+    com.facebook.katana:
+      io.openclaw.telegramhandsfree
+    com.whatsapp:
+      io.openclaw.telegramhandsfree
+    com.facebook.orca:
+      io.openclaw.telegramhandsfree
+    com.xiaomi.wearable:
+      io.openclaw.telegramhandsfree
+    au.gov.digitalhealth.myhealth:
+      io.openclaw.telegramhandsfree
+    com.mxtech.videoplayer.ad:
+      io.openclaw.telegramhandsfree
+    com.renogy.dchome:
+      io.openclaw.telegramhandsfree
+    com.amazon.mShop.android.shopping:
+      io.openclaw.telegramhandsfree
+    com.iherb:
+      io.openclaw.telegramhandsfree
+    us.zoom.videomeetings:
+      io.openclaw.telegramhandsfree
+    com.binance.dev:
+      io.openclaw.telegramhandsfree
+    com.xiaomi.smarthome:
+      io.openclaw.telegramhandsfree
+    com.camerasideas.trimmer:
+      io.openclaw.telegramhandsfree
+    com.coles.android.shopmate:
+      io.openclaw.telegramhandsfree
+    com.wakdev.wdnfc:
+      io.openclaw.telegramhandsfree
+  queryable via interaction:
+    User 0:
+      [com.sec.imsservice,com.samsung.gpuwatchapp,com.samsung.android.knox.attestation,com.samsung.android.bixby.wakeup,com.samsung.android.dqagent,com.sec.android.app.quicktool,com.skms.android.agent,com.android.keychain,com.android.localtransport,com.samsung.android.globalpostprocmgr,com.samsung.android.camerasdkservice,com.samsung.android.smartswitchassistant,com.samsung.android.bbc.bbcagent,com.android.location.fused,com.sec.usbsettings,com.samsung.android.fmm,com.samsung.android.vexfwk.service,com.samsung.android.emergency,com.samsung.android.app.dressroom,com.samsung.android.svcagent,android,com.samsung.android.motionphoto.app,com.sec.android.app.personalization,com.samsung.sait.sohservice,com.samsung.android.photoremasterservice,com.samsung.android.dck.timesync,com.android.inputdevices,com.samsung.euicc,com.sec.android.app.parser,com.samsung.accessibility,com.samsung.android.smartface,com.sec.android.app.RilPhoneNumberService,com.samsung.android.mdecservice,com.sec.android.sdhms,com.samsung.android.forest,com.sec.imslogger,com.android.server.telecom,com.samsung.android.knox.zt.framework,com.android.settings,com.sec.sve,com.samsung.android.brightnessbackupservice,com.sec.android.diagmonagent,com.sec.android.app.factorykeystring,com.samsung.android.da.daagent,com.samsung.android.biometrics.app.setting,com.sec.android.smartfpsadjuster,com.samsung.android.wifi.ai,com.sec.android.app.servicemodeapp,com.android.dynsystem,com.samsung.android.ese,com.samsung.android.themecenter,com.samsung.android.knox.pushmanager,com.samsung.android.lool,com.sec.facatfunction,com.samsung.android.hdmapp,com.samsung.android.stickercenter,com.samsung.android.app.omcagent,com.sec.android.app.SecSetupWizard,com.samsung.android.vtcamerasettings,com.sec.android.emergencylauncher,com.sec.automation,com.sec.android.app.hwmoduletest,com.sec.mhs.smarttethering,com.sec.android.soagent,com.sec.modem.settings,com.samsung.oda.service,com.samsung.android.cameraxservice,com.qti.snapdragon.qdcm_ff,com.samsung.SMT,com.samsung.android.providers.factory,com.android.providers.settings,com.sec.android.app.desktoplauncher,com.samsung.android.knox.mpos,com.samsung.android.provider.filterprovider,com.samsung.aasaservice,com.sec.bcservice,com.sec.android.app.uwbtest,com.wssyncmldm,com.qualcomm.qti.services.systemhelper,com.sec.epdg,com.sec.android.iaft,com.sec.android.app.wlantest,com.sem.factoryapp,com.samsung.android.aircommandmanager,com.samsung.android.app.esimkeystring,com.sec.factory.camera,com.sec.android.CcInfo,com.samsung.android.simagent,com.sec.app.RilErrorNotifier]:
+        io.openclaw.telegramhandsfree
+      [com.sec.android.cover.ledcover,com.android.systemui,com.samsung.android.app.routines,com.samsung.android.app.routineplus,com.samsung.android.app.aodservice]:
+        io.openclaw.telegramhandsfree
+      com.samsung.android.audiomirroring:
+        io.openclaw.telegramhandsfree
+      com.microsoft.appmanager:
+        io.openclaw.telegramhandsfree
+      com.sec.android.app.launcher:
+        io.openclaw.telegramhandsfree
+      com.samsung.android.honeyboard:
+        io.openclaw.telegramhandsfree
+      com.google.android.as:
+        io.openclaw.telegramhandsfree
+      com.google.android.gms:
+        io.openclaw.telegramhandsfree
+      com.google.android.ext.services:
+        io.openclaw.telegramhandsfree
+      com.google.android.permissioncontroller:
+        io.openclaw.telegramhandsfree
+  queryable via uses-library:
+
+Dexopt state:
+  [io.openclaw.telegramhandsfree]
+    path: /data/app/~~vmsyaguYEwlhQjdL4JKxtQ==/io.openclaw.telegramhandsfree-ylZ_J_tV_oZVXKZKZ2y8QQ==/base.apk
+      arm64: [status=run-from-apk] [reason=unknown] [primary-abi]
+        [location is error]
+
+SPEG state:
+
+Profile utilization state:
+  Current state:
+    Version: 2.1.1
+    Start reason: boot-no-update
+    Start time: not started
+    Finish time: not finished
+    PU_StatusWatcher:
+      Initial thermal status: 0
+      Thermal status: 0
+      Screen off: false
+      Low battery: true
+    PU_DexoptTrigger:
+      Dexopt concurrency: 4
+      Dexopting: false
+    PU_Storage:
+      Stored apps:
+        app.revanced.android.youtube 36
+        com.viber.voip 55
+        com.sec.android.easyMover 64
+        com.google.android.googlequicksearchbox 65
+        com.whatsapp 70
+        com.google.android.gm 73
+        com.sec.android.app.camera 79
+        com.google.android.apps.messaging 84
+        com.samsung.android.dialer 86
+        radiotime.player 90
+        com.facebook.orca 95
+        com.google.android.apps.photos 95
+        com.android.settings 96
+        com.brave.browser 97
+        com.samsung.android.samsungpass 102
+        com.samsung.android.messaging 106
+        com.google.android.calendar 108
+        com.samsung.android.app.routineplus 112
+        com.samsung.android.app.notes 116
+        com.samsung.android.app.contacts 120
+        com.android.vending 126
+        com.google.android.apps.tachyon 130
+        ak.alizandro.smartaudiobookplayer 136
+        com.coles.android.flybuys.release 140
+        com.coinmarketcap.android 144
+    Stored PU state:
+      Service:
+        Version: 2.1.1
+        Start reason: boot-after-ota
+        Start time: Wed Feb 04 22:24:36 GMT+11:00 2026 ts=1770204276269
+        Finish time: Wed Feb 04 22:29:04 GMT+11:00 2026 ts=1770204544203
+        Took time 267sec
+      Watcher:
+        Initial thermal status: 0
+        Thermal status: 0
+        Screen off: true
+        Low battery: false
+      Metrics:
+        Predicted and launched apps: 0
+        Predicted apps: 20
+        Launched apps: 0
+        Best f1Score: 0.0, prefixCount: 0, precision: 0.0, recall: 0.0
+      Trigger:
+        Dexopt concurrency: 4
+        Dexopting: false
+        Hot apps list:
+          app.revanced.android.youtube, w=36, s=OPTIMIZED, optTimeMs=1770204394393, cancelCount=1, dexopt=PERFORMED, [primaryDex=true, reason=profile-utilization, dex2oatTimeMs=19965, filter=speed-profile]
+          com.viber.voip, w=55, s=OPTIMIZED, optTimeMs=1770204400414, cancelCount=1, dexopt=PERFORMED, [primaryDex=true, reason=profile-utilization, dex2oatTimeMs=24473, filter=speed-profile], [primaryDex=true, reason=profile-utilization, dex2oatTimeMs=929, filter=speed-profile]
+          com.sec.android.easyMover, w=64, s=OPTIMIZED, optTimeMs=1770204292911, cancelCount=1, dexopt=PERFORMED, [primaryDex=true, reason=profile-utilization, dex2oatTimeMs=2945, filter=speed-profile]
+          com.google.android.googlequicksearchbox, w=65, s=OPTIMIZED, optTimeMs=1770204490112, cancelCount=1, dexopt=PERFORMED, [dex2oatTimeMs=24338, filter=speed-profile], [dex2oatTimeMs=16802, filter=speed-profile]
+          com.whatsapp, w=70, s=OPTIMIZED, optTimeMs=1770204396741, cancelCount=0, dexopt=PERFORMED, [primaryDex=true, reason=profile-utilization, dex2oatTimeMs=19203, filter=speed-profile]
+          com.google.android.gm, w=73, s=OPTIMIZED, optTimeMs=1770204481645, cancelCount=0, dexopt=PERFORMED, [primaryDex=true, reason=profile-utilization, dex2oatTimeMs=15072, filter=speed-profile]
+          com.sec.android.app.camera, w=79, s=OPTIMIZED, optTimeMs=1770204396817, cancelCount=0, dexopt=SKIPPED, [primaryDex=true, reason=prebuilt-prep, dex2oatTimeMs=0, filter=speed-profile]
+          com.google.android.apps.messaging, w=84, s=OPTIMIZED, optTimeMs=1770204484032, cancelCount=0, dexopt=PERFORMED, [primaryDex=true, reason=profile-utilization, dex2oatTimeMs=15075, filter=speed-profile]
+          com.samsung.android.dialer, w=86, s=OPTIMIZED, optTimeMs=1770204400450, cancelCount=0, dexopt=SKIPPED, [primaryDex=true, reason=prebuilt-prep, dex2oatTimeMs=0, filter=speed-profile]
+          radiotime.player, w=90, s=OPTIMIZED, optTimeMs=1770204467670, cancelCount=0, dexopt=PERFORMED, [primaryDex=true, reason=profile-utilization, dex2oatTimeMs=8843, filter=speed-profile]
+          com.facebook.orca, w=95, s=OPTIMIZED, optTimeMs=1770204543028, cancelCount=0, dexopt=PERFORMED, [primaryDex=true, reason=profile-utilization, dex2oatTimeMs=14828, filter=speed-profile]
+          com.google.android.apps.photos, w=95, s=OPTIMIZED, optTimeMs=1770204527092, cancelCount=0, dexopt=PERFORMED, [primaryDex=true, reason=profile-utilization, dex2oatTimeMs=12213, filter=speed-profile]
+          com.android.settings, w=96, s=OPTIMIZED, optTimeMs=1770204484101, cancelCount=0, dexopt=SKIPPED, [primaryDex=true, reason=prebuilt, dex2oatTimeMs=0, filter=verify]
+          com.brave.browser, w=97, s=OPTIMIZED, optTimeMs=1770204489891, cancelCount=0, dexopt=PERFORMED, [primaryDex=true, reason=profile-utilization, dex2oatTimeMs=655, filter=speed-profile], [primaryDex=true, reason=profile-utilization, dex2oatTimeMs=2522, filter=speed-profile], [primaryDex=true, reason=vdex, dex2oatTimeMs=0, filter=verify]
+          com.samsung.android.samsungpass, w=102, s=OPTIMIZED, optTimeMs=1770204524506, cancelCount=0, dexopt=PERFORMED, [primaryDex=true, reason=profile-utilization, dex2oatTimeMs=3801, filter=speed-profile]
+          com.samsung.android.messaging, w=106, s=OPTIMIZED, optTimeMs=1770204490170, cancelCount=0, dexopt=SKIPPED, [primaryDex=true, reason=prebuilt-prep, dex2oatTimeMs=0, filter=speed-profile]
+          com.google.android.calendar, w=108, s=OPTIMIZED, optTimeMs=1770204526161, cancelCount=0, dexopt=PERFORMED, [primaryDex=true, reason=profile-utilization, dex2oatTimeMs=5184, filter=speed-profile]
+          com.samsung.android.app.routineplus, w=112, s=OPTIMIZED, optTimeMs=1770204526234, cancelCount=0, dexopt=PERFORMED, [primaryDex=true, reason=profile-utilization, dex2oatTimeMs=1625, filter=speed-profile]
+          com.samsung.android.app.notes, w=116, s=OPTIMIZED, optTimeMs=1770204544202, cancelCount=0, dexopt=PERFORMED, [primaryDex=true, reason=profile-utilization, dex2oatTimeMs=4289, filter=speed-profile]
+          com.samsung.android.app.contacts, w=120, s=OPTIMIZED, optTimeMs=1770204526357, cancelCount=0, dexopt=SKIPPED, [primaryDex=true, reason=prebuilt-prep, dex2oatTimeMs=0, filter=speed-profile]
+    Stored SCPM state:
+      packages-9a07:
+        [                                            ]
+      disable-2bb4:
+        [                                            ]
+
+Compiler stats:
+  [io.openclaw.telegramhandsfree]
+    (No recorded stats)
+
+HeimdAllFS state:
+  [io.openclaw.telegramhandsfree]
+    path: /data/app/~~vmsyaguYEwlhQjdL4JKxtQ==/io.openclaw.telegramhandsfree-ylZ_J_tV_oZVXKZKZ2y8QQ==/base.apk
+    Compressed? False
+  [ Summary ]
+    # of packages: 1 / # of packages in DATA: 1 (1)
+    Compressed apks info - sum of orig size: 27035 / sum of compr size : 27035
