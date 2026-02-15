@@ -6,7 +6,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import androidx.core.content.ContextCompat
-import io.openclaw.telegramhandsfree.voice.NovaForegroundService
+import io.openclaw.telegramhandsfree.voice.ClawsfreeForegroundService
 
 /**
  * Invisible activity that handles ASSIST / VOICE_COMMAND intents.
@@ -27,14 +27,14 @@ class AssistActivity : Activity() {
         // microphone foreground-service promotion.
         ContextCompat.startForegroundService(
             this,
-            NovaForegroundService.createIntent(this, NovaForegroundService.ACTION_ENSURE_RUNNING)
+            ClawsfreeForegroundService.createIntent(this, ClawsfreeForegroundService.ACTION_ENSURE_RUNNING)
         )
 
         mainHandler.postDelayed(
             {
                 ContextCompat.startForegroundService(
                     this,
-                    NovaForegroundService.createIntent(this, NovaForegroundService.ACTION_TOGGLE_RECORDING)
+                    ClawsfreeForegroundService.createIntent(this, ClawsfreeForegroundService.ACTION_TOGGLE_RECORDING)
                 )
             },
             900L

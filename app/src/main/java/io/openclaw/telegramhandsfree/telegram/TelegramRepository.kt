@@ -1,6 +1,6 @@
 package io.openclaw.telegramhandsfree.telegram
 
-import io.openclaw.telegramhandsfree.config.NovaConfig
+import io.openclaw.telegramhandsfree.config.ClawsfreeConfig
 import kotlinx.coroutines.flow.StateFlow
 import java.io.File
 
@@ -13,7 +13,7 @@ class TelegramRepository(
     fun startMonitoring(onVoiceResponseReady: suspend (IncomingVoiceMessage) -> Unit) {
         tdLibClient.initialize()
         tdLibClient.subscribeToIncomingVoiceFromGroup(
-            groupId = NovaConfig.TELEGRAM_GROUP_ID,
+            groupId = ClawsfreeConfig.TELEGRAM_GROUP_ID,
             onVoiceMessageReady = onVoiceResponseReady
         )
     }
@@ -28,7 +28,7 @@ class TelegramRepository(
 
     suspend fun sendVoiceMessage(file: File) {
         tdLibClient.sendGroupVoiceMessage(
-            groupId = NovaConfig.TELEGRAM_GROUP_ID,
+            groupId = ClawsfreeConfig.TELEGRAM_GROUP_ID,
             file = file
         )
     }

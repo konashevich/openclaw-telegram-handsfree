@@ -2,7 +2,7 @@ package io.openclaw.telegramhandsfree.telegram
 
 import android.os.Build
 import android.util.Log
-import io.openclaw.telegramhandsfree.config.NovaConfig
+import io.openclaw.telegramhandsfree.config.ClawsfreeConfig
 import java.io.File
 import java.lang.reflect.Constructor
 import java.lang.reflect.InvocationHandler
@@ -75,7 +75,7 @@ class TdLibReflectiveBridge(
 
             val sendMessage = newTdApiObject("SendMessage")
             setFieldAny(sendMessage, chatId, "chatId", "chat_id")
-            setFieldAny(sendMessage, NovaConfig.TELEGRAM_TOPIC_ID, "messageThreadId", "message_thread_id")
+            setFieldAny(sendMessage, ClawsfreeConfig.TELEGRAM_TOPIC_ID, "messageThreadId", "message_thread_id")
             setFieldAny(sendMessage, null, "replyTo", "reply_to")
             setFieldAny(sendMessage, null, "options")
             setFieldAny(sendMessage, null, "replyMarkup", "reply_markup")
@@ -133,8 +133,8 @@ class TdLibReflectiveBridge(
             setFieldAny(params, true, "useChatInfoDatabase", "use_chat_info_database")
             setFieldAny(params, true, "useMessageDatabase", "use_message_database")
             setFieldAny(params, false, "useSecretChats", "use_secret_chats")
-            setFieldAny(params, NovaConfig.TELEGRAM_API_ID, "apiId", "api_id")
-            setFieldAny(params, NovaConfig.TELEGRAM_API_HASH, "apiHash", "api_hash")
+            setFieldAny(params, ClawsfreeConfig.TELEGRAM_API_ID, "apiId", "api_id")
+            setFieldAny(params, ClawsfreeConfig.TELEGRAM_API_HASH, "apiHash", "api_hash")
             setFieldAny(params, "en", "systemLanguageCode", "system_language_code")
             setFieldAny(params, Build.MODEL ?: "Android", "deviceModel", "device_model")
             setFieldAny(params, Build.VERSION.RELEASE ?: "Android", "systemVersion", "system_version")
@@ -152,7 +152,7 @@ class TdLibReflectiveBridge(
 
     private fun sendPhoneNumberOrFail() {
         val client = clientInstance ?: return
-        val phone = NovaConfig.TELEGRAM_PHONE_NUMBER
+        val phone = ClawsfreeConfig.TELEGRAM_PHONE_NUMBER
         if (phone.isBlank()) {
             onError("Authorization needs phone number. Enter it in Settings.")
             return
@@ -178,7 +178,7 @@ class TdLibReflectiveBridge(
 
     private fun sendAuthCodeOrFail() {
         val client = clientInstance ?: return
-        val code = NovaConfig.TELEGRAM_AUTH_CODE
+        val code = ClawsfreeConfig.TELEGRAM_AUTH_CODE
         if (code.isBlank()) {
             onWaitingCode()
             return
@@ -198,7 +198,7 @@ class TdLibReflectiveBridge(
 
     private fun sendPasswordOrFail() {
         val client = clientInstance ?: return
-        val password = NovaConfig.TELEGRAM_2FA_PASSWORD
+        val password = ClawsfreeConfig.TELEGRAM_2FA_PASSWORD
         if (password.isBlank()) {
             onWaitingPassword()
             return
@@ -235,7 +235,7 @@ class TdLibReflectiveBridge(
                     }
                 }
                 // Also explicitly open the target chat
-                val targetChatId = NovaConfig.TELEGRAM_GROUP_ID
+                val targetChatId = ClawsfreeConfig.TELEGRAM_GROUP_ID
                 if (targetChatId != 0L) {
                     openChat(targetChatId)
                 }
@@ -264,7 +264,7 @@ class TdLibReflectiveBridge(
     private fun handleNewMessage(update: Any) {
         val message = getFieldValueAny(update, "message") ?: return
         val chatId = ((getFieldValueAny(message, "chatId", "chat_id") as? Number)?.toLong()) ?: return
-        if (chatId != NovaConfig.TELEGRAM_GROUP_ID) return
+        if (chatId != ClawsfreeConfig.TELEGRAM_GROUP_ID) return
 
         // Skip messages sent by this app (our own outgoing voice notes)
         val isOutgoing = (getFieldValueAny(message, "isOutgoing", "is_outgoing") as? Boolean) == true

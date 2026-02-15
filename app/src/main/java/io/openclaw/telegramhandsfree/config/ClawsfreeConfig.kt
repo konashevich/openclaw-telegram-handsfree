@@ -3,8 +3,8 @@ package io.openclaw.telegramhandsfree.config
 import android.content.Context
 import android.content.SharedPreferences
 
-object NovaConfig {
-    private const val PREFS_NAME = "nova_config"
+object ClawsfreeConfig {
+    private const val PREFS_NAME = "clawsfree_config"
     private lateinit var prefs: SharedPreferences
 
     fun init(context: Context) {

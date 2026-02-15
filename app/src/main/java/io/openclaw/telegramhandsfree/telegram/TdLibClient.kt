@@ -2,7 +2,7 @@ package io.openclaw.telegramhandsfree.telegram
 
 import android.content.Context
 import android.util.Log
-import io.openclaw.telegramhandsfree.config.NovaConfig
+import io.openclaw.telegramhandsfree.config.ClawsfreeConfig
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -27,7 +27,7 @@ class TdLibClient(
     fun initialize() {
         _status.value = TelegramStatus.Initializing
 
-        if (NovaConfig.TELEGRAM_API_ID <= 0 || NovaConfig.TELEGRAM_API_HASH.isBlank()) {
+        if (ClawsfreeConfig.TELEGRAM_API_ID <= 0 || ClawsfreeConfig.TELEGRAM_API_HASH.isBlank()) {
             val reason = "TDLib not configured. Fill API ID and API Hash in Settings."
             _status.value = TelegramStatus.NeedsConfiguration(reason)
             Log.w(TAG, reason)
@@ -72,7 +72,7 @@ class TdLibClient(
             onReady = {
                 _status.value = TelegramStatus.Ready
                 Log.i(TAG, "TDLib authorization ready")
-                flushOutboxIfReady(NovaConfig.TELEGRAM_GROUP_ID)
+                flushOutboxIfReady(ClawsfreeConfig.TELEGRAM_GROUP_ID)
             },
             onStatus = { message ->
                 Log.i(TAG, message)

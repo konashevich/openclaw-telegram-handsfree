@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.speech.RecognitionService
 import android.speech.SpeechRecognizer
 
-class NovaRecognitionService : RecognitionService() {
+class ClawsfreeRecognitionService : RecognitionService() {
     override fun onStartListening(recognizerIntent: Intent?, callback: Callback?) {
         callback ?: return
         callback.readyForSpeech(Bundle())

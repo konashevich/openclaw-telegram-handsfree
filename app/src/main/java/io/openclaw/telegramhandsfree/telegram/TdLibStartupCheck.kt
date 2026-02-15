@@ -1,6 +1,6 @@
 package io.openclaw.telegramhandsfree.telegram
 
-import io.openclaw.telegramhandsfree.config.NovaConfig
+import io.openclaw.telegramhandsfree.config.ClawsfreeConfig
 
 data class StartupCheckResult(
     val isReady: Boolean,
@@ -11,13 +11,13 @@ object TdLibStartupCheck {
     fun run(): StartupCheckResult {
         val messages = mutableListOf<String>()
 
-        if (NovaConfig.TELEGRAM_API_ID <= 0) {
+        if (ClawsfreeConfig.TELEGRAM_API_ID <= 0) {
             messages += "Set API ID in Settings"
         }
-        if (NovaConfig.TELEGRAM_API_HASH.isBlank()) {
+        if (ClawsfreeConfig.TELEGRAM_API_HASH.isBlank()) {
             messages += "Set API Hash in Settings"
         }
-        if (NovaConfig.TELEGRAM_GROUP_ID == 0L) {
+        if (ClawsfreeConfig.TELEGRAM_GROUP_ID == 0L) {
             messages += "Set Group ID in Settings"
         }
 

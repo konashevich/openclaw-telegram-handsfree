@@ -20,7 +20,7 @@ class MediaButtonReceiver : BroadcastReceiver() {
 
         ContextCompat.startForegroundService(
             context,
-            NovaForegroundService.createIntent(context, action)
+            ClawsfreeForegroundService.createIntent(context, action)
         )
     }
 
@@ -53,7 +53,7 @@ class MediaButtonReceiver : BroadcastReceiver() {
 
             if (!longPressTriggered && event.eventTime - downAtMs >= LONG_PRESS_MS) {
                 longPressTriggered = true
-                return debounced(NovaForegroundService.ACTION_START_RECORDING)
+                return debounced(ClawsfreeForegroundService.ACTION_START_RECORDING)
             }
             return null
         }
@@ -64,11 +64,11 @@ class MediaButtonReceiver : BroadcastReceiver() {
 
             if (longPressTriggered || pressDuration >= LONG_PRESS_MS) {
                 longPressTriggered = false
-                return debounced(NovaForegroundService.ACTION_START_RECORDING)
+                return debounced(ClawsfreeForegroundService.ACTION_START_RECORDING)
             }
 
             longPressTriggered = false
-            return debounced(NovaForegroundService.ACTION_STOP_IF_RECORDING)
+            return debounced(ClawsfreeForegroundService.ACTION_STOP_IF_RECORDING)
         }
 
         private fun debounced(action: String): String? {

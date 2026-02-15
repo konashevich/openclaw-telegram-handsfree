@@ -25,6 +25,6 @@
 
 ## TDLib integration reminder
 
-- API credentials are currently in `NovaConfig` placeholders.
+- API credentials are currently in `ClawsfreeConfig` placeholders.
 - Group id is hardcoded per project spec.
 - For release safety, move credentials to local-only config during development and inject in CI.

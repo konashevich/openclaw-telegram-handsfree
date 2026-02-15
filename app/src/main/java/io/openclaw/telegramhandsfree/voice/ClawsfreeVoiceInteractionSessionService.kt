@@ -7,26 +7,26 @@ import android.service.voice.VoiceInteractionSession
 import android.service.voice.VoiceInteractionSessionService
 import androidx.core.content.ContextCompat
 
-class NovaVoiceInteractionSessionService : VoiceInteractionSessionService() {
+class ClawsfreeVoiceInteractionSessionService : VoiceInteractionSessionService() {
     override fun onNewSession(args: Bundle?): VoiceInteractionSession {
-        return NovaVoiceInteractionSession(this)
+        return ClawsfreeVoiceInteractionSession(this)
     }
 }
 
-private class NovaVoiceInteractionSession(context: Context) : VoiceInteractionSession(context) {
+private class ClawsfreeVoiceInteractionSession(context: Context) : VoiceInteractionSession(context) {
     override fun onShow(args: Bundle?, showFlags: Int) {
         super.onShow(args, showFlags)
         ContextCompat.startForegroundService(
             context,
-            NovaForegroundService.createIntent(context, NovaForegroundService.ACTION_START_RECORDING)
+            ClawsfreeForegroundService.createIntent(context, ClawsfreeForegroundService.ACTION_START_RECORDING)
         )
     }
 
     override fun onHide() {
         super.onHide()
         context.startService(
-            Intent(context, NovaForegroundService::class.java).apply {
-                action = NovaForegroundService.ACTION_STOP_IF_RECORDING
+            Intent(context, ClawsfreeForegroundService::class.java).apply {
+                action = ClawsfreeForegroundService.ACTION_STOP_IF_RECORDING
             }
         )
     }

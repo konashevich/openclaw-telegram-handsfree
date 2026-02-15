@@ -58,13 +58,13 @@ Install the APK, open the app. The settings screen lets you enter all Telegram c
 
 ## Project structure
 
-- `config/NovaConfig` — SharedPreferences-backed settings (editable from the UI)
+- `config/ClawsfreeConfig` — SharedPreferences-backed settings (editable from the UI)
 - `telegram/TdLibReflectiveBridge` — reflection-based TDLib API bridge (auth, send, receive)
 - `telegram/TdLibClient` — status state machine + outbox queue
 - `telegram/TelegramRepository` — thin facade for the service layer
-- `voice/NovaForegroundService` — recording, playback, Telegram monitoring
+- `voice/ClawsfreeForegroundService` — recording, playback, Telegram monitoring
 - `voice/MediaButtonReceiver` — Bluetooth/steering media button handler
-- `voice/NovaVoiceInteractionService` — Digital Assistant slot entry point
+- `voice/ClawsfreeVoiceInteractionService` — Digital Assistant slot entry point
 - `audio/AudioRecorder` — OGG/Opus recording with silence timeout
 - `audio/AudioPlaybackManager` — MediaPlayer with audio focus
 

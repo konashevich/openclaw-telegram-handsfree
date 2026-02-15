@@ -4,7 +4,7 @@ import android.content.Context
 import android.media.MediaRecorder
 import android.os.Handler
 import android.os.Looper
-import io.openclaw.telegramhandsfree.config.NovaConfig
+import io.openclaw.telegramhandsfree.config.ClawsfreeConfig
 import java.io.File
 
 class AudioRecorder(
@@ -33,14 +33,14 @@ class AudioRecorder(
             }
 
             val silentFor = System.currentTimeMillis() - lastSpeechTimestamp
-            if (silentFor >= NovaConfig.SILENCE_TIMEOUT_MS) {
+            if (silentFor >= ClawsfreeConfig.SILENCE_TIMEOUT_MS) {
                 onSilenceTimeout.invoke()
                 return
             }
 
             // Hard cap: stop recording after MAX_RECORDING_MS regardless of noise
             val recordingDuration = System.currentTimeMillis() - recordingStartTimestamp
-            if (recordingDuration >= NovaConfig.MAX_RECORDING_MS) {
+            if (recordingDuration >= ClawsfreeConfig.MAX_RECORDING_MS) {
                 onSilenceTimeout.invoke()
                 return
             }
@@ -57,7 +57,7 @@ class AudioRecorder(
             return outputFile ?: throw IllegalStateException("Recorder output file missing")
         }
 
-        outputFile = File(context.cacheDir, "nova_${System.currentTimeMillis()}.ogg")
+        outputFile = File(context.cacheDir, "clawsfree_${System.currentTimeMillis()}.ogg")
         lastSpeechTimestamp = System.currentTimeMillis()
         recordingStartTimestamp = System.currentTimeMillis()
 

@@ -30,7 +30,7 @@ import androidx.core.app.NotificationCompat
 import io.openclaw.telegramhandsfree.R
 import io.openclaw.telegramhandsfree.audio.AudioPlaybackManager
 import io.openclaw.telegramhandsfree.audio.AudioRecorder
-import io.openclaw.telegramhandsfree.config.NovaConfig
+import io.openclaw.telegramhandsfree.config.ClawsfreeConfig
 import io.openclaw.telegramhandsfree.telegram.TdLibClient
 import io.openclaw.telegramhandsfree.telegram.TelegramStatus
 import io.openclaw.telegramhandsfree.telegram.TelegramRepository
@@ -41,7 +41,7 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class NovaForegroundService : Service() {
+class ClawsfreeForegroundService : Service() {
     private val serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
     private lateinit var recorder: AudioRecorder
     private lateinit var playbackManager: AudioPlaybackManager
@@ -89,7 +89,7 @@ class NovaForegroundService : Service() {
             .apply { acquire() }
 
         repository.startMonitoring { incomingVoice ->
-            if (incomingVoice.chatId == NovaConfig.TELEGRAM_GROUP_ID) {
+            if (incomingVoice.chatId == ClawsfreeConfig.TELEGRAM_GROUP_ID) {
                 playbackManager.playFile(incomingVoice.file)
             }
         }
@@ -165,7 +165,7 @@ class NovaForegroundService : Service() {
             return
         }
 
-        val useBt = NovaConfig.USE_BLUETOOTH_MIC
+        val useBt = ClawsfreeConfig.USE_BLUETOOTH_MIC
         recorder.useBluetoothSource = useBt
         if (useBt) startBluetoothSco()
         requestAudioFocus()
@@ -250,7 +250,7 @@ class NovaForegroundService : Service() {
         registerMediaButtonReceiver()
 
         val mediaButtonIntent = Intent(Intent.ACTION_MEDIA_BUTTON).apply {
-            setClass(this@NovaForegroundService, MediaButtonReceiver::class.java)
+            setClass(this@ClawsfreeForegroundService, MediaButtonReceiver::class.java)
             setPackage(packageName)
         }
         val mediaButtonPendingIntent = PendingIntent.getBroadcast(
@@ -260,7 +260,7 @@ class NovaForegroundService : Service() {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        mediaSession = MediaSession(this, "NovaWalkieTalkie").apply {
+        mediaSession = MediaSession(this, "ClawsfreeHandsfree").apply {
             setFlags(
                 MediaSession.FLAG_HANDLES_MEDIA_BUTTONS or
                     MediaSession.FLAG_HANDLES_TRANSPORT_CONTROLS
@@ -514,7 +514,7 @@ class NovaForegroundService : Service() {
     }
 
     companion object {
-        private const val TAG = "NovaForegroundService"
+        private const val TAG = "ClawsfreeForegroundService"
 
         const val ACTION_START_RECORDING = "io.openclaw.telegramhandsfree.action.START_RECORDING"
         const val ACTION_STOP_IF_RECORDING = "io.openclaw.telegramhandsfree.action.STOP_IF_RECORDING"
@@ -526,14 +526,14 @@ class NovaForegroundService : Service() {
         const val EXTRA_STATUS = "status"
         const val EXTRA_ACTIVITY = "activity"
 
-        private const val CHANNEL_ID = "nova_handsfree"
+        private const val CHANNEL_ID = "clawsfree_handsfree"
         private const val NOTIFICATION_ID = 1001
-        const val PREFS_NAME = "nova_service_status"
+        const val PREFS_NAME = "clawsfree_service_status"
         const val KEY_LAST_STATUS = "last_status"
         const val KEY_LAST_ACTIVITY = "last_activity"
 
         fun createIntent(context: Context, action: String): Intent {
-            return Intent(context, NovaForegroundService::class.java).apply {
+            return Intent(context, ClawsfreeForegroundService::class.java).apply {
                 this.action = action
             }
         }

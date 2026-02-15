@@ -21,8 +21,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.google.android.material.textfield.TextInputEditText
-import io.openclaw.telegramhandsfree.config.NovaConfig
-import io.openclaw.telegramhandsfree.voice.NovaForegroundService
+import io.openclaw.telegramhandsfree.config.ClawsfreeConfig
+import io.openclaw.telegramhandsfree.voice.ClawsfreeForegroundService
 
 class MainActivity : AppCompatActivity() {
 
@@ -70,12 +70,12 @@ class MainActivity : AppCompatActivity() {
     private val statusReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             when (intent.action) {
-                NovaForegroundService.ACTION_STATUS_UPDATE -> {
-                    val status = intent.getStringExtra(NovaForegroundService.EXTRA_STATUS) ?: return
+                ClawsfreeForegroundService.ACTION_STATUS_UPDATE -> {
+                    val status = intent.getStringExtra(ClawsfreeForegroundService.EXTRA_STATUS) ?: return
                     runOnUiThread { handleServiceStatus(status) }
                 }
-                NovaForegroundService.ACTION_ACTIVITY_UPDATE -> {
-                    val activity = intent.getStringExtra(NovaForegroundService.EXTRA_ACTIVITY) ?: return
+                ClawsfreeForegroundService.ACTION_ACTIVITY_UPDATE -> {
+                    val activity = intent.getStringExtra(ClawsfreeForegroundService.EXTRA_ACTIVITY) ?: return
                     runOnUiThread { handleActivityState(activity) }
                 }
             }
@@ -107,8 +107,8 @@ class MainActivity : AppCompatActivity() {
         btnRecordToggle = findViewById(R.id.btn_record_toggle)
         btnRecordToggle.visibility = View.VISIBLE
         btnRecordToggle.setOnClickListener {
-            val intent = Intent(this, NovaForegroundService::class.java).apply {
-                action = NovaForegroundService.ACTION_TOGGLE_RECORDING
+            val intent = Intent(this, ClawsfreeForegroundService::class.java).apply {
+                action = ClawsfreeForegroundService.ACTION_TOGGLE_RECORDING
             }
             startService(intent)
         }
@@ -116,9 +116,9 @@ class MainActivity : AppCompatActivity() {
 
         loadSettingsIntoFields()
 
-        switchBluetoothMic.isChecked = NovaConfig.USE_BLUETOOTH_MIC
+        switchBluetoothMic.isChecked = ClawsfreeConfig.USE_BLUETOOTH_MIC
         switchBluetoothMic.setOnCheckedChangeListener { _, isChecked ->
-            NovaConfig.setBluetoothMic(isChecked)
+            ClawsfreeConfig.setBluetoothMic(isChecked)
         }
 
         connectButton.setOnClickListener { onConnectTapped() }
@@ -129,8 +129,8 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         val statusFilter = IntentFilter().apply {
-            addAction(NovaForegroundService.ACTION_STATUS_UPDATE)
-            addAction(NovaForegroundService.ACTION_ACTIVITY_UPDATE)
+            addAction(ClawsfreeForegroundService.ACTION_STATUS_UPDATE)
+            addAction(ClawsfreeForegroundService.ACTION_ACTIVITY_UPDATE)
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             registerReceiver(statusReceiver, statusFilter, RECEIVER_NOT_EXPORTED)
@@ -138,11 +138,11 @@ class MainActivity : AppCompatActivity() {
             registerReceiver(statusReceiver, statusFilter)
         }
         // Read last persisted status in case broadcasts were missed (e.g. during permission dialog)
-        val prefs = getSharedPreferences(NovaForegroundService.PREFS_NAME, MODE_PRIVATE)
-        prefs.getString(NovaForegroundService.KEY_LAST_STATUS, null)?.let {
+        val prefs = getSharedPreferences(ClawsfreeForegroundService.PREFS_NAME, MODE_PRIVATE)
+        prefs.getString(ClawsfreeForegroundService.KEY_LAST_STATUS, null)?.let {
             handleServiceStatus(it)
         }
-        prefs.getString(NovaForegroundService.KEY_LAST_ACTIVITY, null)?.let {
+        prefs.getString(ClawsfreeForegroundService.KEY_LAST_ACTIVITY, null)?.let {
             handleActivityState(it)
         }
         // Refresh assistant button state (user may have just returned from settings)
@@ -155,16 +155,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadSettingsIntoFields() {
-        val apiId = NovaConfig.TELEGRAM_API_ID
+        val apiId = ClawsfreeConfig.TELEGRAM_API_ID
         if (apiId > 0) inputApiId.setText(apiId.toString())
-        inputApiHash.setText(NovaConfig.TELEGRAM_API_HASH)
-        inputPhone.setText(NovaConfig.TELEGRAM_PHONE_NUMBER)
-        val groupId = NovaConfig.TELEGRAM_GROUP_ID
+        inputApiHash.setText(ClawsfreeConfig.TELEGRAM_API_HASH)
+        inputPhone.setText(ClawsfreeConfig.TELEGRAM_PHONE_NUMBER)
+        val groupId = ClawsfreeConfig.TELEGRAM_GROUP_ID
         if (groupId != 0L) inputGroupId.setText(groupId.toString())
-        val topicId = NovaConfig.TELEGRAM_TOPIC_ID
+        val topicId = ClawsfreeConfig.TELEGRAM_TOPIC_ID
         if (topicId != 0L) inputTopicId.setText(topicId.toString())
-        inputAuthCode.setText(NovaConfig.TELEGRAM_AUTH_CODE)
-        input2faPassword.setText(NovaConfig.TELEGRAM_2FA_PASSWORD)
+        inputAuthCode.setText(ClawsfreeConfig.TELEGRAM_AUTH_CODE)
+        input2faPassword.setText(ClawsfreeConfig.TELEGRAM_2FA_PASSWORD)
     }
 
     private fun handleServiceStatus(status: String) {
@@ -278,8 +278,8 @@ class MainActivity : AppCompatActivity() {
     private fun onConnectTapped() {
         saveConnectionSettings()
         // Clear stale persisted status so old errors don't flash on resume
-        getSharedPreferences(NovaForegroundService.PREFS_NAME, MODE_PRIVATE)
-            .edit().remove(NovaForegroundService.KEY_LAST_STATUS).apply()
+        getSharedPreferences(ClawsfreeForegroundService.PREFS_NAME, MODE_PRIVATE)
+            .edit().remove(ClawsfreeForegroundService.KEY_LAST_STATUS).apply()
 
         val missing = requiredPermissions().filter {
             ActivityCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED
@@ -303,8 +303,8 @@ class MainActivity : AppCompatActivity() {
         saveAllSettings()
         statusText.text = getString(R.string.status_connecting)
         // Don't restart service — tell the running TDLib client to submit the code
-        val intent = Intent(this, NovaForegroundService::class.java).apply {
-            action = NovaForegroundService.ACTION_SUBMIT_AUTH
+        val intent = Intent(this, ClawsfreeForegroundService::class.java).apply {
+            action = ClawsfreeForegroundService.ACTION_SUBMIT_AUTH
         }
         startService(intent)
     }
@@ -321,7 +321,7 @@ class MainActivity : AppCompatActivity() {
         val groupId = inputGroupId.text.toString().toLongOrNull() ?: 0L
         val topicId = inputTopicId.text.toString().toLongOrNull() ?: 0L
 
-        NovaConfig.save(
+        ClawsfreeConfig.save(
             apiId = apiId,
             apiHash = apiHash,
             phoneNumber = phone,
@@ -341,7 +341,7 @@ class MainActivity : AppCompatActivity() {
         val authCode = inputAuthCode.text.toString().trim()
         val twoFa = input2faPassword.text.toString()
 
-        NovaConfig.save(
+        ClawsfreeConfig.save(
             apiId = apiId,
             apiHash = apiHash,
             phoneNumber = phone,
@@ -364,8 +364,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun ensureForegroundServiceRunning() {
-        val intent = Intent(this, NovaForegroundService::class.java).apply {
-            action = NovaForegroundService.ACTION_ENSURE_RUNNING
+        val intent = Intent(this, ClawsfreeForegroundService::class.java).apply {
+            action = ClawsfreeForegroundService.ACTION_ENSURE_RUNNING
         }
         ContextCompat.startForegroundService(this, intent)
     }
