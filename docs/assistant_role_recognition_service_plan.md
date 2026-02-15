@@ -1,36 +1,72 @@
-# Assistant Role: RecognitionService Development Plan
+# Assistant Default + Chooser Recovery Plan (Android 16+)
 
 Status: pending (not decided yet)
 
-## Goal
-Make the app requestable/eligible for Android `ROLE_ASSISTANT` on Samsung/Android builds where a full VoiceInteraction stack is required.
+## Objective
+Fix assistant integration end-to-end for Android 16+ so that:
+1) Nova is requestable/grantable for `ROLE_ASSISTANT`, and
+2) Nova is visible again in the system "Complete action using" assistant chooser.
 
-## Scope
-- Add a minimal but valid `RecognitionService` implementation.
-- Wire it into `voice_interaction_service.xml` (`android:recognitionService`).
-- Register recognition service in `AndroidManifest.xml` with proper permission and intent filter.
-- Keep existing recording UX intact.
+## Current Known State
+- Role request currently fails with: `Role is not requestable: android.app.role.ASSISTANT`.
+- Nova disappeared from chooser after removing `AssistActivity` assist intent filters during troubleshooting.
+- Assistant holder remains Google in dumpsys (`android.app.role.ASSISTANT`).
 
-## Pending Tasks
-- [ ] Create `NovaRecognitionService` (minimal lifecycle-safe implementation).
-- [ ] Implement required recognition callbacks (`startListening`, `stopListening`, `cancel`) with safe no-op/error responses.
-- [ ] Add manifest service entry:
-  - `android.permission.BIND_SPEECH_RECOGNITION_SERVICE`
-  - `android.speech.RecognitionService` intent filter.
-- [ ] Update `res/xml/voice_interaction_service.xml` with the recognition service class name.
-- [ ] Verify app compiles and build debug APK.
-- [ ] Device validation:
-  - Tap “Set as Default Assistant”.
-  - Confirm role request UI appears.
-  - Confirm holder with `adb shell cmd role get-role-holders android.app.role.ASSISTANT`.
-- [ ] If still rejected, collect focused logs and iterate.
+## Target Behavior (Android 16+)
+- In-app button requests `ROLE_ASSISTANT` via `RoleManager`.
+- If role is granted, app UI reflects active assistant state.
+- Long-press assistant invocation can resolve Nova (chooser path) when role is not yet granted.
+- Once role is granted, invocation routes consistently through Nova assistant stack.
+
+## Development Plan
+
+### Phase 1 — Restore Chooser Visibility (Non-destructive)
+- [ ] Re-introduce `AssistActivity` intent filters for:
+  - `android.intent.action.ASSIST`
+  - `android.intent.action.VOICE_COMMAND`
+  - `android.intent.action.SEARCH_LONG_PRESS`
+- [ ] Confirm Nova appears in "Complete action using" list.
+- [ ] Confirm selecting Nova still starts recording path.
+
+### Phase 2 — Make Role Requestable on Android 16+
+- [ ] Add `NovaRecognitionService` (minimal valid implementation).
+- [ ] Implement required callbacks safely:
+  - `onStartListening`
+  - `onStopListening`
+  - `onCancel`
+- [ ] Register recognition service in manifest with:
+  - permission `android.permission.BIND_SPEECH_RECOGNITION_SERVICE`
+  - intent action `android.speech.RecognitionService`
+- [ ] Wire recognition service into `res/xml/voice_interaction_service.xml` using `android:recognitionService`.
+- [ ] Keep `VoiceInteractionService` and `VoiceInteractionSessionService` declarations valid.
+
+### Phase 3 — Role Flow Hardening
+- [ ] Keep `RoleManager.ROLE_ASSISTANT` as primary in-app setup path.
+- [ ] Improve result handling messages:
+  - granted
+  - denied/rejected
+  - not requestable
+- [ ] Keep fallback settings navigation only as secondary path.
+
+### Phase 4 — Invocation Consistency Check
+- [ ] Validate long-press start and short-press stop/send behavior after assistant changes.
+- [ ] Confirm no regression in software `Record / Stop & Send` button behavior.
+- [ ] Capture focused logs for media events if intermittent stop issue persists.
+
+## Verification Matrix
+- [ ] `adb shell cmd role get-role-holders android.app.role.ASSISTANT` shows `io.openclaw.telegramhandsfree` after grant.
+- [ ] `dumpsys role` no longer reports only Google as holder after successful grant.
+- [ ] No `Role is not requestable` error in logcat during request.
+- [ ] Nova appears in chooser list when no default assistant is fixed.
+- [ ] End-user flow works without requiring repeated manual chooser selection.
 
 ## Risks / Notes
-- OEM-specific role checks may require stricter behavior than AOSP.
-- A stub recognizer must still respond correctly to avoid service rejection/crashes.
-- Keep this change isolated from Telegram/auth flows.
+- Samsung/OEM role requirements can be stricter than AOSP baseline.
+- Recognition service must be valid enough for role candidacy even if not used for rich ASR.
+- Supporting both chooser path and role path is intentional for setup reliability.
 
 ## Exit Criteria
-- `RequestRoleActivity` no longer logs `Role is not requestable: android.app.role.ASSISTANT`.
-- `ROLE_ASSISTANT` can be granted to `io.openclaw.telegramhandsfree`.
-- App button state updates to “✅ Default Assistant” after successful grant.
+- `ROLE_ASSISTANT` can be granted to `io.openclaw.telegramhandsfree` on target Android 16+ device.
+- In-app button transitions to active assistant state after grant.
+- Nova is visible in chooser when role is not yet fixed.
+- Assistant invocation path is predictable and testable.

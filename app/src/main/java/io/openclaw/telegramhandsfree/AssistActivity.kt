@@ -2,6 +2,9 @@ package io.openclaw.telegramhandsfree
 
 import android.app.Activity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Log
 import androidx.core.content.ContextCompat
 import io.openclaw.telegramhandsfree.voice.NovaForegroundService
 
@@ -12,18 +15,38 @@ import io.openclaw.telegramhandsfree.voice.NovaForegroundService
  * starts recording via the foreground service and finishes itself.
  */
 class AssistActivity : Activity() {
+    private val mainHandler = Handler(Looper.getMainLooper())
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Ensure the foreground service is running, then toggle recording.
-        // Two intents: first ENSURE_RUNNING (creates service if needed),
-        // then START_RECORDING (actual action).
+        Log.i(TAG, "AssistActivity launched with action=${intent?.action}")
+
+        // Keep this top activity alive briefly while recording starts so Android
+        // still considers the app in an eligible foreground state for
+        // microphone foreground-service promotion.
         ContextCompat.startForegroundService(
             this,
-            NovaForegroundService.createIntent(this, NovaForegroundService.ACTION_START_RECORDING)
+            NovaForegroundService.createIntent(this, NovaForegroundService.ACTION_ENSURE_RUNNING)
         )
 
-        // This activity has no UI — finish immediately
-        finish()
+        mainHandler.postDelayed(
+            {
+                ContextCompat.startForegroundService(
+                    this,
+                    NovaForegroundService.createIntent(this, NovaForegroundService.ACTION_TOGGLE_RECORDING)
+                )
+            },
+            900L
+        )
+
+        mainHandler.postDelayed(
+            { finish() },
+            2600L
+        )
+    }
+
+    companion object {
+        private const val TAG = "AssistActivity"
     }
 }

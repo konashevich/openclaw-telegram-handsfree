@@ -3,12 +3,18 @@ package io.openclaw.telegramhandsfree.voice
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.app.Service
+import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.media.AudioAttributes
+import android.media.AudioFocusRequest
+import android.media.AudioFormat
 import android.media.session.MediaSession
 import android.media.session.PlaybackState
+import android.media.AudioTrack
 import android.os.SystemClock
 import android.media.AudioManager
 import android.util.Log
@@ -44,30 +50,17 @@ class NovaForegroundService : Service() {
     private var wakeLock: PowerManager.WakeLock? = null
     private var audioManager: AudioManager? = null
     private var bluetoothScoActive = false
+    private var coreReady = false
+    private var audioFocusRequest: AudioFocusRequest? = null
+    private var hasAudioFocus = false
+    private var mediaButtonReceiverRegistered = false
+    private var mediaKeyKeepAliveTrack: AudioTrack? = null
     private val mainHandler = Handler(Looper.getMainLooper())
+    private var lastHandledMediaKeyAtMs: Long = 0L
 
     override fun onCreate() {
         super.onCreate()
         createNotificationChannel()
-
-        // startForeground MUST be called immediately or Android kills the service.
-        // On Android 14+ we must pass foregroundServiceType flags explicitly.
-        try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-                startForeground(
-                    NOTIFICATION_ID,
-                    buildNotification(isRecording = false),
-                    ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK or
-                        ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE
-                )
-            } else {
-                startForeground(NOTIFICATION_ID, buildNotification(isRecording = false))
-            }
-        } catch (e: Exception) {
-            Log.e(TAG, "startForeground failed: ${e.message}")
-            stopSelf()
-            return
-        }
 
         audioManager = getSystemService(Context.AUDIO_SERVICE) as AudioManager
 
@@ -76,6 +69,17 @@ class NovaForegroundService : Service() {
         }
         playbackManager = AudioPlaybackManager(this)
         repository = TelegramRepository(TdLibClient(applicationContext))
+        coreReady = true
+
+        // startForeground MUST be called immediately or Android kills the service.
+        // Use mediaPlayback while idle; microphone type is requested only while recording.
+        try {
+            startInForeground(isRecording = false)
+        } catch (e: Exception) {
+            Log.e(TAG, "startForeground failed: ${e.message}")
+            stopSelf()
+            return
+        }
 
         setupMediaSession()
 
@@ -109,6 +113,11 @@ class NovaForegroundService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        if (!coreReady) {
+            Log.w(TAG, "Ignoring action ${intent?.action} because service core is not ready")
+            return START_NOT_STICKY
+        }
+
         when (intent?.action) {
             ACTION_START_RECORDING -> startRecording()
             ACTION_STOP_IF_RECORDING -> stopRecordingAndSend()
@@ -127,34 +136,61 @@ class NovaForegroundService : Service() {
     override fun onBind(intent: Intent?): IBinder? = null
 
     override fun onDestroy() {
+        unregisterMediaButtonReceiver()
+        stopMediaKeyKeepAlivePlayback()
+        abandonAudioFocus()
         stopBluetoothSco()
         wakeLock?.let { if (it.isHeld) it.release() }
         wakeLock = null
         mediaSession?.release()
         mediaSession = null
-        recorder.release()
-        playbackManager.stop()
+        if (::recorder.isInitialized) recorder.release()
+        if (::playbackManager.isInitialized) playbackManager.stop()
         serviceScope.cancel()
+        coreReady = false
         super.onDestroy()
     }
 
     private fun startRecording() {
+        if (!coreReady) return
         if (recorder.isRecording) return
+
+        try {
+            startInForeground(isRecording = true)
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to promote service to microphone foreground mode: ${e.message}")
+            updatePlaybackState(isRecording = false)
+            updateNotification(isRecording = false)
+            broadcastActivity("idle")
+            return
+        }
 
         val useBt = NovaConfig.USE_BLUETOOTH_MIC
         recorder.useBluetoothSource = useBt
         if (useBt) startBluetoothSco()
+        requestAudioFocus()
+        startMediaKeyKeepAlivePlayback()
 
         beepStartRecording()
         recorder.start()
+        updatePlaybackState(isRecording = true)
         updateNotification(isRecording = true)
         broadcastActivity("recording")
     }
 
     private fun stopRecordingAndSend() {
+        if (!coreReady) return
         val recordingFile = recorder.stop() ?: return
+        stopMediaKeyKeepAlivePlayback()
+        abandonAudioFocus()
         beepStopRecording()
         stopBluetoothSco()
+        try {
+            startInForeground(isRecording = false)
+        } catch (e: Exception) {
+            Log.w(TAG, "Failed to switch service back to idle foreground mode: ${e.message}")
+        }
+        updatePlaybackState(isRecording = false)
         updateNotification(isRecording = false)
         broadcastActivity("sending")
 
@@ -211,7 +247,26 @@ class NovaForegroundService : Service() {
      * Long press is intercepted by the OS and triggers the assistant slot.
      */
     private fun setupMediaSession() {
+        registerMediaButtonReceiver()
+
+        val mediaButtonIntent = Intent(Intent.ACTION_MEDIA_BUTTON).apply {
+            setClass(this@NovaForegroundService, MediaButtonReceiver::class.java)
+            setPackage(packageName)
+        }
+        val mediaButtonPendingIntent = PendingIntent.getBroadcast(
+            this,
+            1,
+            mediaButtonIntent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+
         mediaSession = MediaSession(this, "NovaWalkieTalkie").apply {
+            setFlags(
+                MediaSession.FLAG_HANDLES_MEDIA_BUTTONS or
+                    MediaSession.FLAG_HANDLES_TRANSPORT_CONTROLS
+            )
+            setMediaButtonReceiver(mediaButtonPendingIntent)
+
             setCallback(object : MediaSession.Callback() {
 
                 override fun onMediaButtonEvent(mediaButtonIntent: Intent): Boolean {
@@ -222,14 +277,22 @@ class NovaForegroundService : Service() {
 
                     if (!isMediaButtonKey(event)) return super.onMediaButtonEvent(mediaButtonIntent)
 
+                    if (event.action != KeyEvent.ACTION_UP) return true
+
+                    val now = SystemClock.elapsedRealtime()
+                    if (now - lastHandledMediaKeyAtMs < 200L) {
+                        return true
+                    }
+                    lastHandledMediaKeyAtMs = now
+
                     // Any media button press while recording → stop and send
-                    if (event.action == KeyEvent.ACTION_UP && recorder.isRecording) {
+                    if (recorder.isRecording) {
                         Log.i(TAG, "MediaButton UP while recording → stop+send")
                         stopRecordingAndSend()
                         return true
                     }
                     // Any media button press while idle → start recording
-                    if (event.action == KeyEvent.ACTION_UP && !recorder.isRecording) {
+                    if (!recorder.isRecording) {
                         Log.i(TAG, "MediaButton UP while idle → start recording")
                         startRecording()
                         return true
@@ -264,16 +327,39 @@ class NovaForegroundService : Service() {
             })
 
             // Must be active + have a playback state to receive media button events
-            val state = PlaybackState.Builder()
-                .setActions(
-                    PlaybackState.ACTION_PLAY or PlaybackState.ACTION_PAUSE or
-                    PlaybackState.ACTION_PLAY_PAUSE or PlaybackState.ACTION_STOP
-                )
-                .setState(PlaybackState.STATE_PLAYING, 0, 1f, SystemClock.elapsedRealtime())
-                .build()
-            setPlaybackState(state)
+            updatePlaybackState(isRecording = false)
             isActive = true
         }
+    }
+
+    private fun registerMediaButtonReceiver() {
+        val am = audioManager ?: return
+        if (mediaButtonReceiverRegistered) return
+        @Suppress("DEPRECATION")
+        am.registerMediaButtonEventReceiver(ComponentName(this, MediaButtonReceiver::class.java))
+        mediaButtonReceiverRegistered = true
+        Log.i(TAG, "Media button receiver registered")
+    }
+
+    private fun unregisterMediaButtonReceiver() {
+        val am = audioManager ?: return
+        if (!mediaButtonReceiverRegistered) return
+        @Suppress("DEPRECATION")
+        am.unregisterMediaButtonEventReceiver(ComponentName(this, MediaButtonReceiver::class.java))
+        mediaButtonReceiverRegistered = false
+        Log.i(TAG, "Media button receiver unregistered")
+    }
+
+    private fun updatePlaybackState(isRecording: Boolean) {
+        val stateValue = if (isRecording) PlaybackState.STATE_PLAYING else PlaybackState.STATE_PAUSED
+        val state = PlaybackState.Builder()
+            .setActions(
+                PlaybackState.ACTION_PLAY or PlaybackState.ACTION_PAUSE or
+                    PlaybackState.ACTION_PLAY_PAUSE or PlaybackState.ACTION_STOP
+            )
+            .setState(stateValue, 0, 1f, SystemClock.elapsedRealtime())
+            .build()
+        mediaSession?.setPlaybackState(state)
     }
 
     private fun buildNotification(isRecording: Boolean): Notification {
@@ -292,6 +378,104 @@ class NovaForegroundService : Service() {
     private fun updateNotification(isRecording: Boolean) {
         val manager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         manager.notify(NOTIFICATION_ID, buildNotification(isRecording))
+    }
+
+    private fun startInForeground(isRecording: Boolean) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            val serviceType = if (isRecording) {
+                ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK or
+                    ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE
+            } else {
+                ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK
+            }
+            startForeground(NOTIFICATION_ID, buildNotification(isRecording), serviceType)
+        } else {
+            startForeground(NOTIFICATION_ID, buildNotification(isRecording))
+        }
+    }
+
+    private fun requestAudioFocus() {
+        val am = audioManager ?: return
+        if (hasAudioFocus) return
+
+        val focusResult = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val request = AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT)
+                .setAudioAttributes(
+                    AudioAttributes.Builder()
+                        .setUsage(AudioAttributes.USAGE_MEDIA)
+                        .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH)
+                        .build()
+                )
+                .setOnAudioFocusChangeListener { }
+                .build()
+            audioFocusRequest = request
+            am.requestAudioFocus(request)
+        } else {
+            @Suppress("DEPRECATION")
+            am.requestAudioFocus(null, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT)
+        }
+
+        hasAudioFocus = focusResult == AudioManager.AUDIOFOCUS_REQUEST_GRANTED
+        Log.i(TAG, "Audio focus granted=$hasAudioFocus")
+    }
+
+    private fun abandonAudioFocus() {
+        val am = audioManager ?: return
+        if (!hasAudioFocus) return
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            audioFocusRequest?.let { am.abandonAudioFocusRequest(it) }
+            audioFocusRequest = null
+        } else {
+            @Suppress("DEPRECATION")
+            am.abandonAudioFocus(null)
+        }
+        hasAudioFocus = false
+    }
+
+    private fun startMediaKeyKeepAlivePlayback() {
+        if (mediaKeyKeepAliveTrack != null) return
+
+        val sampleRate = 8_000
+        val frameCount = sampleRate // 1 second mono PCM16
+        val bufferSizeBytes = frameCount * 2
+
+        val track = AudioTrack.Builder()
+            .setAudioAttributes(
+                AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_MEDIA)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                    .build()
+            )
+            .setAudioFormat(
+                AudioFormat.Builder()
+                    .setSampleRate(sampleRate)
+                    .setEncoding(AudioFormat.ENCODING_PCM_16BIT)
+                    .setChannelMask(AudioFormat.CHANNEL_OUT_MONO)
+                    .build()
+            )
+            .setTransferMode(AudioTrack.MODE_STATIC)
+            .setBufferSizeInBytes(bufferSizeBytes)
+            .build()
+
+        val silence = ByteArray(bufferSizeBytes)
+        track.write(silence, 0, silence.size)
+        track.setLoopPoints(0, frameCount, -1)
+        track.setVolume(0f)
+        track.play()
+
+        mediaKeyKeepAliveTrack = track
+        Log.i(TAG, "Started silent keep-alive playback for media key routing")
+    }
+
+    private fun stopMediaKeyKeepAlivePlayback() {
+        val track = mediaKeyKeepAliveTrack ?: return
+        runCatching { track.pause() }
+        runCatching { track.flush() }
+        runCatching { track.stop() }
+        runCatching { track.release() }
+        mediaKeyKeepAliveTrack = null
+        Log.i(TAG, "Stopped silent keep-alive playback")
     }
 
     private fun createNotificationChannel() {

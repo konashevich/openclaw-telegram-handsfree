@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.os.SystemClock
+import android.util.Log
 import android.view.KeyEvent
 import androidx.core.content.ContextCompat
 
@@ -15,6 +16,7 @@ class MediaButtonReceiver : BroadcastReceiver() {
         if (!event.isPlayPauseLike()) return
 
         val action = pressState.resolveAction(event) ?: return
+        Log.i(TAG, "MediaButtonReceiver dispatching action=$action keyCode=${event.keyCode} keyAction=${event.action}")
 
         ContextCompat.startForegroundService(
             context,
@@ -88,6 +90,7 @@ class MediaButtonReceiver : BroadcastReceiver() {
     }
 
     companion object {
+        private const val TAG = "MediaButtonReceiver"
         private val pressState = PressState()
     }
 }

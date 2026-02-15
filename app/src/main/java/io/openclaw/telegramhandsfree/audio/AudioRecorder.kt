@@ -11,7 +11,7 @@ class AudioRecorder(
     private val context: Context,
     private val onSilenceTimeout: () -> Unit
 ) {
-    /** When true, use VOICE_COMMUNICATION (routes through SCO). Else VOICE_RECOGNITION. */
+    /** When true, use VOICE_COMMUNICATION (routes through SCO). Else MIC. */
     var useBluetoothSource: Boolean = false
     private var mediaRecorder: MediaRecorder? = null
     private var outputFile: File? = null
@@ -61,10 +61,11 @@ class AudioRecorder(
         lastSpeechTimestamp = System.currentTimeMillis()
         recordingStartTimestamp = System.currentTimeMillis()
 
-        val audioSource = if (useBluetoothSource)
+        val audioSource = if (useBluetoothSource) {
             MediaRecorder.AudioSource.VOICE_COMMUNICATION
-        else
-            MediaRecorder.AudioSource.VOICE_RECOGNITION
+        } else {
+            MediaRecorder.AudioSource.MIC
+        }
 
         mediaRecorder = MediaRecorder(context).apply {
             setAudioSource(audioSource)

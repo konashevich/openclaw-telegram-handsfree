@@ -1,0 +1,1045 @@
+Activity Resolver Table:
+  Full MIME Types:
+      image/jpeg:
+        ad7ce34 com.microsoft.copilot/com.microsoft.copilotn.features.share.ShareToCopilotActivity filter eeed45d
+          Action: "android.intent.action.SEND"
+          Category: "android.intent.category.DEFAULT"
+          StaticType: "text/plain"
+          StaticType: "text/csv"
+          StaticType: "text/markdown"
+          StaticType: "image/jpeg"
+          StaticType: "image/jpg"
+          StaticType: "image/png"
+          StaticType: "application/txt"
+          StaticType: "application/json"
+          StaticType: "application/pdf"
+          StaticType: "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+          StaticType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          StaticType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      application/pdf:
+        ad7ce34 com.microsoft.copilot/com.microsoft.copilotn.features.share.ShareToCopilotActivity filter eeed45d
+          Action: "android.intent.action.SEND"
+          Category: "android.intent.category.DEFAULT"
+          StaticType: "text/plain"
+          StaticType: "text/csv"
+          StaticType: "text/markdown"
+          StaticType: "image/jpeg"
+          StaticType: "image/jpg"
+          StaticType: "image/png"
+          StaticType: "application/txt"
+          StaticType: "application/json"
+          StaticType: "application/pdf"
+          StaticType: "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+          StaticType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          StaticType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      application/txt:
+        ad7ce34 com.microsoft.copilot/com.microsoft.copilotn.features.share.ShareToCopilotActivity filter eeed45d
+          Action: "android.intent.action.SEND"
+          Category: "android.intent.category.DEFAULT"
+          StaticType: "text/plain"
+          StaticType: "text/csv"
+          StaticType: "text/markdown"
+          StaticType: "image/jpeg"
+          StaticType: "image/jpg"
+          StaticType: "image/png"
+          StaticType: "application/txt"
+          StaticType: "application/json"
+          StaticType: "application/pdf"
+          StaticType: "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+          StaticType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          StaticType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      application/vnd.openxmlformats-officedocument.presentationml.presentation:
+        ad7ce34 com.microsoft.copilot/com.microsoft.copilotn.features.share.ShareToCopilotActivity filter eeed45d
+          Action: "android.intent.action.SEND"
+          Category: "android.intent.category.DEFAULT"
+          StaticType: "text/plain"
+          StaticType: "text/csv"
+          StaticType: "text/markdown"
+          StaticType: "image/jpeg"
+          StaticType: "image/jpg"
+          StaticType: "image/png"
+          StaticType: "application/txt"
+          StaticType: "application/json"
+          StaticType: "application/pdf"
+          StaticType: "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+          StaticType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          StaticType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      application/vnd.openxmlformats-officedocument.wordprocessingml.document:
+        ad7ce34 com.microsoft.copilot/com.microsoft.copilotn.features.share.ShareToCopilotActivity filter eeed45d
+          Action: "android.intent.action.SEND"
+          Category: "android.intent.category.DEFAULT"
+          StaticType: "text/plain"
+          StaticType: "text/csv"
+          StaticType: "text/markdown"
+          StaticType: "image/jpeg"
+          StaticType: "image/jpg"
+          StaticType: "image/png"
+          StaticType: "application/txt"
+          StaticType: "application/json"
+          StaticType: "application/pdf"
+          StaticType: "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+          StaticType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          StaticType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      text/csv:
+        ad7ce34 com.microsoft.copilot/com.microsoft.copilotn.features.share.ShareToCopilotActivity filter eeed45d
+          Action: "android.intent.action.SEND"
+          Category: "android.intent.category.DEFAULT"
+          StaticType: "text/plain"
+          StaticType: "text/csv"
+          StaticType: "text/markdown"
+          StaticType: "image/jpeg"
+          StaticType: "image/jpg"
+          StaticType: "image/png"
+          StaticType: "application/txt"
+          StaticType: "application/json"
+          StaticType: "application/pdf"
+          StaticType: "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+          StaticType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          StaticType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      image/jpg:
+        ad7ce34 com.microsoft.copilot/com.microsoft.copilotn.features.share.ShareToCopilotActivity filter eeed45d
+          Action: "android.intent.action.SEND"
+          Category: "android.intent.category.DEFAULT"
+          StaticType: "text/plain"
+          StaticType: "text/csv"
+          StaticType: "text/markdown"
+          StaticType: "image/jpeg"
+          StaticType: "image/jpg"
+          StaticType: "image/png"
+          StaticType: "application/txt"
+          StaticType: "application/json"
+          StaticType: "application/pdf"
+          StaticType: "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+          StaticType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          StaticType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      image/png:
+        ad7ce34 com.microsoft.copilot/com.microsoft.copilotn.features.share.ShareToCopilotActivity filter eeed45d
+          Action: "android.intent.action.SEND"
+          Category: "android.intent.category.DEFAULT"
+          StaticType: "text/plain"
+          StaticType: "text/csv"
+          StaticType: "text/markdown"
+          StaticType: "image/jpeg"
+          StaticType: "image/jpg"
+          StaticType: "image/png"
+          StaticType: "application/txt"
+          StaticType: "application/json"
+          StaticType: "application/pdf"
+          StaticType: "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+          StaticType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          StaticType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      text/markdown:
+        ad7ce34 com.microsoft.copilot/com.microsoft.copilotn.features.share.ShareToCopilotActivity filter eeed45d
+          Action: "android.intent.action.SEND"
+          Category: "android.intent.category.DEFAULT"
+          StaticType: "text/plain"
+          StaticType: "text/csv"
+          StaticType: "text/markdown"
+          StaticType: "image/jpeg"
+          StaticType: "image/jpg"
+          StaticType: "image/png"
+          StaticType: "application/txt"
+          StaticType: "application/json"
+          StaticType: "application/pdf"
+          StaticType: "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+          StaticType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          StaticType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      application/json:
+        ad7ce34 com.microsoft.copilot/com.microsoft.copilotn.features.share.ShareToCopilotActivity filter eeed45d
+          Action: "android.intent.action.SEND"
+          Category: "android.intent.category.DEFAULT"
+          StaticType: "text/plain"
+          StaticType: "text/csv"
+          StaticType: "text/markdown"
+          StaticType: "image/jpeg"
+          StaticType: "image/jpg"
+          StaticType: "image/png"
+          StaticType: "application/txt"
+          StaticType: "application/json"
+          StaticType: "application/pdf"
+          StaticType: "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+          StaticType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          StaticType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      text/plain:
+        b295a5 com.microsoft.copilot/com.microsoft.copilotn.MainActivity filter 979bd07
+          Action: "android.intent.action.PROCESS_TEXT"
+          Category: "android.intent.category.DEFAULT"
+          StaticType: "text/plain"
+        ad7ce34 com.microsoft.copilot/com.microsoft.copilotn.features.share.ShareToCopilotActivity filter eeed45d
+          Action: "android.intent.action.SEND"
+          Category: "android.intent.category.DEFAULT"
+          StaticType: "text/plain"
+          StaticType: "text/csv"
+          StaticType: "text/markdown"
+          StaticType: "image/jpeg"
+          StaticType: "image/jpg"
+          StaticType: "image/png"
+          StaticType: "application/txt"
+          StaticType: "application/json"
+          StaticType: "application/pdf"
+          StaticType: "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+          StaticType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          StaticType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+        ad7ce34 com.microsoft.copilot/com.microsoft.copilotn.features.share.ShareToCopilotActivity filter eeed45d
+          Action: "android.intent.action.SEND"
+          Category: "android.intent.category.DEFAULT"
+          StaticType: "text/plain"
+          StaticType: "text/csv"
+          StaticType: "text/markdown"
+          StaticType: "image/jpeg"
+          StaticType: "image/jpg"
+          StaticType: "image/png"
+          StaticType: "application/txt"
+          StaticType: "application/json"
+          StaticType: "application/pdf"
+          StaticType: "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+          StaticType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          StaticType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+
+  Base MIME Types:
+      text:
+        b295a5 com.microsoft.copilot/com.microsoft.copilotn.MainActivity filter 979bd07
+          Action: "android.intent.action.PROCESS_TEXT"
+          Category: "android.intent.category.DEFAULT"
+          StaticType: "text/plain"
+        ad7ce34 com.microsoft.copilot/com.microsoft.copilotn.features.share.ShareToCopilotActivity filter eeed45d
+          Action: "android.intent.action.SEND"
+          Category: "android.intent.category.DEFAULT"
+          StaticType: "text/plain"
+          StaticType: "text/csv"
+          StaticType: "text/markdown"
+          StaticType: "image/jpeg"
+          StaticType: "image/jpg"
+          StaticType: "image/png"
+          StaticType: "application/txt"
+          StaticType: "application/json"
+          StaticType: "application/pdf"
+          StaticType: "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+          StaticType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          StaticType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        ad7ce34 com.microsoft.copilot/com.microsoft.copilotn.features.share.ShareToCopilotActivity filter eeed45d
+          Action: "android.intent.action.SEND"
+          Category: "android.intent.category.DEFAULT"
+          StaticType: "text/plain"
+          StaticType: "text/csv"
+          StaticType: "text/markdown"
+          StaticType: "image/jpeg"
+          StaticType: "image/jpg"
+          StaticType: "image/png"
+          StaticType: "application/txt"
+          StaticType: "application/json"
+          StaticType: "application/pdf"
+          StaticType: "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+          StaticType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          StaticType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        ad7ce34 com.microsoft.copilot/com.microsoft.copilotn.features.share.ShareToCopilotActivity filter eeed45d
+          Action: "android.intent.action.SEND"
+          Category: "android.intent.category.DEFAULT"
+          StaticType: "text/plain"
+          StaticType: "text/csv"
+          StaticType: "text/markdown"
+          StaticType: "image/jpeg"
+          StaticType: "image/jpg"
+          StaticType: "image/png"
+          StaticType: "application/txt"
+          StaticType: "application/json"
+          StaticType: "application/pdf"
+          StaticType: "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+          StaticType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          StaticType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      image:
+        ad7ce34 com.microsoft.copilot/com.microsoft.copilotn.features.share.ShareToCopilotActivity filter eeed45d
+          Action: "android.intent.action.SEND"
+          Category: "android.intent.category.DEFAULT"
+          StaticType: "text/plain"
+          StaticType: "text/csv"
+          StaticType: "text/markdown"
+          StaticType: "image/jpeg"
+          StaticType: "image/jpg"
+          StaticType: "image/png"
+          StaticType: "application/txt"
+          StaticType: "application/json"
+          StaticType: "application/pdf"
+          StaticType: "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+          StaticType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          StaticType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        ad7ce34 com.microsoft.copilot/com.microsoft.copilotn.features.share.ShareToCopilotActivity filter eeed45d
+          Action: "android.intent.action.SEND"
+          Category: "android.intent.category.DEFAULT"
+          StaticType: "text/plain"
+          StaticType: "text/csv"
+          StaticType: "text/markdown"
+          StaticType: "image/jpeg"
+          StaticType: "image/jpg"
+          StaticType: "image/png"
+          StaticType: "application/txt"
+          StaticType: "application/json"
+          StaticType: "application/pdf"
+          StaticType: "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+          StaticType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          StaticType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        ad7ce34 com.microsoft.copilot/com.microsoft.copilotn.features.share.ShareToCopilotActivity filter eeed45d
+          Action: "android.intent.action.SEND"
+          Category: "android.intent.category.DEFAULT"
+          StaticType: "text/plain"
+          StaticType: "text/csv"
+          StaticType: "text/markdown"
+          StaticType: "image/jpeg"
+          StaticType: "image/jpg"
+          StaticType: "image/png"
+          StaticType: "application/txt"
+          StaticType: "application/json"
+          StaticType: "application/pdf"
+          StaticType: "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+          StaticType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          StaticType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      application:
+        ad7ce34 com.microsoft.copilot/com.microsoft.copilotn.features.share.ShareToCopilotActivity filter eeed45d
+          Action: "android.intent.action.SEND"
+          Category: "android.intent.category.DEFAULT"
+          StaticType: "text/plain"
+          StaticType: "text/csv"
+          StaticType: "text/markdown"
+          StaticType: "image/jpeg"
+          StaticType: "image/jpg"
+          StaticType: "image/png"
+          StaticType: "application/txt"
+          StaticType: "application/json"
+          StaticType: "application/pdf"
+          StaticType: "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+          StaticType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          StaticType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        ad7ce34 com.microsoft.copilot/com.microsoft.copilotn.features.share.ShareToCopilotActivity filter eeed45d
+          Action: "android.intent.action.SEND"
+          Category: "android.intent.category.DEFAULT"
+          StaticType: "text/plain"
+          StaticType: "text/csv"
+          StaticType: "text/markdown"
+          StaticType: "image/jpeg"
+          StaticType: "image/jpg"
+          StaticType: "image/png"
+          StaticType: "application/txt"
+          StaticType: "application/json"
+          StaticType: "application/pdf"
+          StaticType: "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+          StaticType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          StaticType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        ad7ce34 com.microsoft.copilot/com.microsoft.copilotn.features.share.ShareToCopilotActivity filter eeed45d
+          Action: "android.intent.action.SEND"
+          Category: "android.intent.category.DEFAULT"
+          StaticType: "text/plain"
+          StaticType: "text/csv"
+          StaticType: "text/markdown"
+          StaticType: "image/jpeg"
+          StaticType: "image/jpg"
+          StaticType: "image/png"
+          StaticType: "application/txt"
+          StaticType: "application/json"
+          StaticType: "application/pdf"
+          StaticType: "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+          StaticType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          StaticType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        ad7ce34 com.microsoft.copilot/com.microsoft.copilotn.features.share.ShareToCopilotActivity filter eeed45d
+          Action: "android.intent.action.SEND"
+          Category: "android.intent.category.DEFAULT"
+          StaticType: "text/plain"
+          StaticType: "text/csv"
+          StaticType: "text/markdown"
+          StaticType: "image/jpeg"
+          StaticType: "image/jpg"
+          StaticType: "image/png"
+          StaticType: "application/txt"
+          StaticType: "application/json"
+          StaticType: "application/pdf"
+          StaticType: "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+          StaticType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          StaticType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        ad7ce34 com.microsoft.copilot/com.microsoft.copilotn.features.share.ShareToCopilotActivity filter eeed45d
+          Action: "android.intent.action.SEND"
+          Category: "android.intent.category.DEFAULT"
+          StaticType: "text/plain"
+          StaticType: "text/csv"
+          StaticType: "text/markdown"
+          StaticType: "image/jpeg"
+          StaticType: "image/jpg"
+          StaticType: "image/png"
+          StaticType: "application/txt"
+          StaticType: "application/json"
+          StaticType: "application/pdf"
+          StaticType: "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+          StaticType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          StaticType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        ad7ce34 com.microsoft.copilot/com.microsoft.copilotn.features.share.ShareToCopilotActivity filter eeed45d
+          Action: "android.intent.action.SEND"
+          Category: "android.intent.category.DEFAULT"
+          StaticType: "text/plain"
+          StaticType: "text/csv"
+          StaticType: "text/markdown"
+          StaticType: "image/jpeg"
+          StaticType: "image/jpg"
+          StaticType: "image/png"
+          StaticType: "application/txt"
+          StaticType: "application/json"
+          StaticType: "application/pdf"
+          StaticType: "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+          StaticType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          StaticType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+
+  Schemes:
+      copilotn:
+        b295a5 com.microsoft.copilot/com.microsoft.copilotn.MainActivity filter 78ab92b
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "copilotn"
+      link-popup:
+        b3d99a0 com.microsoft.copilot/com.stripe.android.link.LinkRedirectHandlerActivity filter fc95959
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "link-popup"
+          Authority: "complete": -1
+          Path: "PatternMatcher{LITERAL: /com.microsoft.copilot}"
+      stripesdk:
+        5ca591e com.microsoft.copilot/com.stripe.android.payments.StripeBrowserProxyReturnActivity filter 98345ff
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "stripesdk"
+          Authority: "payment_return_url": -1
+          Path: "PatternMatcher{LITERAL: /com.microsoft.copilot}"
+      https:
+        b295a5 com.microsoft.copilot/com.microsoft.copilotn.MainActivity filter cbe2188
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "https"
+          Authority: "copilot.microsoft.com": -1
+          Path: "PatternMatcher{PREFIX: /shares}"
+          Path: "PatternMatcher{PREFIX: /gallery}"
+          AutoVerify=true
+        b295a5 com.microsoft.copilot/com.microsoft.copilotn.MainActivity filter 25be721
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "https"
+          Authority: "copilot.microsoft.com": -1
+          Path: "PatternMatcher{PREFIX: /podcasts/public}"
+          AutoVerify=true
+        b295a5 com.microsoft.copilot/com.microsoft.copilotn.MainActivity filter 613a746
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "https"
+          Authority: "copilot.microsoft.com": -1
+          Path: "PatternMatcher{PREFIX: /conversations/join}"
+          AutoVerify=true
+        e72afcc com.microsoft.copilot/com.auth0.android.provider.RedirectActivity filter c2d3215
+          Action: "android.intent.action.VIEW"
+          Category: "android.intent.category.DEFAULT"
+          Category: "android.intent.category.BROWSABLE"
+          Scheme: "https"
+          Authority: "auth.copilot.microsoft.com": -1
+          Path: "PatternMatcher{PREFIX: /android/com.microsoft.copilot/callback}"
+          AutoVerify=true
+
+  Non-Data Actions:
+      android.intent.action.MAIN:
+        b295a5 com.microsoft.copilot/com.microsoft.copilotn.MainActivity filter 8402d7a
+          Action: "android.intent.action.MAIN"
+          Category: "android.intent.category.LAUNCHER"
+      android.intent.action.VOICE_COMMAND:
+        d52f1d2 com.microsoft.copilot/com.microsoft.copilotn.features.digitalassistant.AssistantOverlayActivity filter c6b22a3
+          Action: "android.intent.action.VOICE_COMMAND"
+          Category: "android.intent.category.DEFAULT"
+
+  MIME Typed Actions:
+      android.intent.action.SEND:
+        ad7ce34 com.microsoft.copilot/com.microsoft.copilotn.features.share.ShareToCopilotActivity filter eeed45d
+          Action: "android.intent.action.SEND"
+          Category: "android.intent.category.DEFAULT"
+          StaticType: "text/plain"
+          StaticType: "text/csv"
+          StaticType: "text/markdown"
+          StaticType: "image/jpeg"
+          StaticType: "image/jpg"
+          StaticType: "image/png"
+          StaticType: "application/txt"
+          StaticType: "application/json"
+          StaticType: "application/pdf"
+          StaticType: "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+          StaticType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+          StaticType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      android.intent.action.PROCESS_TEXT:
+        b295a5 com.microsoft.copilot/com.microsoft.copilotn.MainActivity filter 979bd07
+          Action: "android.intent.action.PROCESS_TEXT"
+          Category: "android.intent.category.DEFAULT"
+          StaticType: "text/plain"
+
+Receiver Resolver Table:
+  Non-Data Actions:
+      android.intent.action.BATTERY_OKAY:
+        43aaad0 com.microsoft.copilot/androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy filter 9e64ac9
+          Action: "android.intent.action.BATTERY_OKAY"
+          Action: "android.intent.action.BATTERY_LOW"
+      android.intent.action.ACTION_POWER_DISCONNECTED:
+        7177382 com.microsoft.copilot/androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy filter 2b9fa93
+          Action: "android.intent.action.ACTION_POWER_DISCONNECTED"
+          Action: "android.intent.action.ACTION_POWER_CONNECTED"
+      androidx.profileinstaller.action.SAVE_PROFILE:
+        5e7694 com.microsoft.copilot/androidx.profileinstaller.ProfileInstallReceiver filter f26ae83
+          Action: "androidx.profileinstaller.action.SAVE_PROFILE"
+      android.intent.action.DEVICE_STORAGE_LOW:
+        24d45ce com.microsoft.copilot/androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy filter 17facef
+          Action: "android.intent.action.DEVICE_STORAGE_LOW"
+          Action: "android.intent.action.DEVICE_STORAGE_OK"
+      android.net.conn.CONNECTIVITY_CHANGE:
+        9e7a3fc com.microsoft.copilot/androidx.work.impl.background.systemalarm.ConstraintProxy$NetworkStateProxy filter c7fca85
+          Action: "android.net.conn.CONNECTIVITY_CHANGE"
+      android.intent.action.DEVICE_STORAGE_OK:
+        24d45ce com.microsoft.copilot/androidx.work.impl.background.systemalarm.ConstraintProxy$StorageNotLowProxy filter 17facef
+          Action: "android.intent.action.DEVICE_STORAGE_LOW"
+          Action: "android.intent.action.DEVICE_STORAGE_OK"
+      androidx.profileinstaller.action.INSTALL_PROFILE:
+        5e7694 com.microsoft.copilot/androidx.profileinstaller.ProfileInstallReceiver filter ad1c53d
+          Action: "androidx.profileinstaller.action.INSTALL_PROFILE"
+      com.google.android.c2dm.intent.RECEIVE:
+        ba6df6 com.microsoft.copilot/com.google.firebase.iid.FirebaseInstanceIdReceiver filter f25f5f7
+          Action: "com.google.android.c2dm.intent.RECEIVE"
+      android.intent.action.BATTERY_LOW:
+        43aaad0 com.microsoft.copilot/androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryNotLowProxy filter 9e64ac9
+          Action: "android.intent.action.BATTERY_OKAY"
+          Action: "android.intent.action.BATTERY_LOW"
+      android.intent.action.TIMEZONE_CHANGED:
+        9fbf0da com.microsoft.copilot/androidx.work.impl.background.systemalarm.RescheduleReceiver filter 644290b
+          Action: "android.intent.action.TIMEZONE_CHANGED"
+          Action: "android.intent.action.TIME_SET"
+          Action: "android.intent.action.BOOT_COMPLETED"
+      android.intent.action.TIME_SET:
+        9fbf0da com.microsoft.copilot/androidx.work.impl.background.systemalarm.RescheduleReceiver filter 644290b
+          Action: "android.intent.action.TIMEZONE_CHANGED"
+          Action: "android.intent.action.TIME_SET"
+          Action: "android.intent.action.BOOT_COMPLETED"
+      androidx.profileinstaller.action.SKIP_FILE:
+        5e7694 com.microsoft.copilot/androidx.profileinstaller.ProfileInstallReceiver filter f97c132
+          Action: "androidx.profileinstaller.action.SKIP_FILE"
+      androidx.profileinstaller.action.BENCHMARK_OPERATION:
+        5e7694 com.microsoft.copilot/androidx.profileinstaller.ProfileInstallReceiver filter 8f66800
+          Action: "androidx.profileinstaller.action.BENCHMARK_OPERATION"
+      android.intent.action.BOOT_COMPLETED:
+        9fbf0da com.microsoft.copilot/androidx.work.impl.background.systemalarm.RescheduleReceiver filter 644290b
+          Action: "android.intent.action.TIMEZONE_CHANGED"
+          Action: "android.intent.action.TIME_SET"
+          Action: "android.intent.action.BOOT_COMPLETED"
+      android.intent.action.ACTION_POWER_CONNECTED:
+        7177382 com.microsoft.copilot/androidx.work.impl.background.systemalarm.ConstraintProxy$BatteryChargingProxy filter 2b9fa93
+          Action: "android.intent.action.ACTION_POWER_DISCONNECTED"
+          Action: "android.intent.action.ACTION_POWER_CONNECTED"
+      android.appwidget.action.APPWIDGET_UPDATE:
+        5bee92a com.microsoft.copilot/com.microsoft.copilotn.features.oswidget.CopilotWidgetReceiver$BaseWidgetReceiver filter dd0431b
+          Action: "android.appwidget.action.APPWIDGET_UPDATE"
+        800fcb8 com.microsoft.copilot/com.microsoft.copilotn.features.oswidget.CopilotWidgetReceiver$PodcastWidgetReceiver filter 3bbda91
+          Action: "android.appwidget.action.APPWIDGET_UPDATE"
+      androidx.work.diagnostics.REQUEST_DIAGNOSTICS:
+        db840a6 com.microsoft.copilot/androidx.work.impl.diagnostics.DiagnosticsReceiver filter 18a4ae7
+          Action: "androidx.work.diagnostics.REQUEST_DIAGNOSTICS"
+      android.intent.action.MY_PACKAGE_REPLACED:
+        8252c64 com.microsoft.copilot/androidx.glance.appwidget.MyPackageReplacedReceiver filter 4b28ecd
+          Action: "android.intent.action.MY_PACKAGE_REPLACED"
+      androidx.work.impl.background.systemalarm.UpdateProxies:
+        90903e8 com.microsoft.copilot/androidx.work.impl.background.systemalarm.ConstraintProxyUpdateReceiver filter 5778a01
+          Action: "androidx.work.impl.background.systemalarm.UpdateProxies"
+
+Service Resolver Table:
+  Non-Data Actions:
+      androidx.media3.session.MediaSessionService:
+        5a15ef5 com.microsoft.copilot/com.microsoft.copilotn.features.podcast.player.mediasession.PlaybackService filter 722448a
+          Action: "androidx.media3.session.MediaSessionService"
+      com.google.firebase.MESSAGING_EVENT:
+        49a7839 com.microsoft.copilot/com.microsoft.foundation.notifications.NotificationsMessagingService filter b7cbe7e
+          Action: "com.google.firebase.MESSAGING_EVENT"
+        3f5f571 com.microsoft.copilot/com.google.firebase.messaging.FirebaseMessagingService filter 6e81f56
+          Action: "com.google.firebase.MESSAGING_EVENT"
+          mPriority=-500, mOrder=0, mHasStaticPartialTypes=false, mHasDynamicPartialTypes=false
+      android.service.voice.VoiceInteractionService:
+        99bafdf com.microsoft.copilot/com.microsoft.copilotn.features.digitalassistant.service.BasicVoiceInteractionService filter c5a042c permission android.permission.BIND_VOICE_INTERACTION
+          Action: "android.service.voice.VoiceInteractionService"
+      com.google.android.gms.metadata.MODULE_DEPENDENCIES:
+        7356afb com.microsoft.copilot/com.google.android.gms.metadata.ModuleDependencies filter 1793718
+          Action: "com.google.android.gms.metadata.MODULE_DEPENDENCIES"
+      com.microsoft.tokenshare.TokenSharingService:
+        ce5bbd7 com.microsoft.copilot/com.microsoft.tokenshare.TokenSharingService filter c56acc4
+          Action: "com.microsoft.tokenshare.TokenSharingService"
+
+Domain verification status:
+  com.microsoft.copilot:
+    ID: 3479de4c-d6b4-4f94-82bd-1507e1edf53b
+    Signatures: [7A:F4:8E:E5:0F:6E:3A:54:19:A8:9B:82:34:08:0C:37:A6:B9:84:8C:6F:8E:4D:E7:EC:71:C5:79:4D:11:84:E2]
+    Domain verification state:
+      copilot.microsoft.com: verified
+      auth.copilot.microsoft.com: verified
+    User all:
+      Verification link handling allowed: true
+      Selection state:
+        Disabled:
+          copilot.microsoft.com
+          auth.copilot.microsoft.com
+
+Permissions:
+  Permission [com.microsoft.copilot.permission.NO_WRITE_ALLOWED] (bd59c01):
+    sourcePackage=com.microsoft.copilot
+    uid=10415 gids=[] type=0 prot=signature
+    perm=PermissionInfo{941eaa6 com.microsoft.copilot.permission.NO_WRITE_ALLOWED}
+    flags=0x0
+
+Permissions:
+  Permission [com.microsoft.copilot.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION] (8f3ace7):
+    sourcePackage=com.microsoft.copilot
+    uid=10415 gids=[] type=0 prot=signature
+    perm=PermissionInfo{193094 com.microsoft.copilot.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION}
+    flags=0x0
+
+Registered ContentProviders:
+  com.microsoft.copilot/com.microsoft.copilotn.feature.voicecalldiagnostic.VoiceDiagnosticFileProvider:
+    Provider{dfef73d com.microsoft.copilot/com.microsoft.copilotn.feature.voicecalldiagnostic.VoiceDiagnosticFileProvider}
+  com.microsoft.copilot/com.microsoft.copilotn.provider.CopilotFeatureProvider:
+    Provider{b120b32 com.microsoft.copilot/com.microsoft.copilotn.provider.CopilotFeatureProvider}
+  com.microsoft.copilot/com.microsoft.foundation.android.utilities.DefaultFileProvider:
+    Provider{c43083 com.microsoft.copilot/com.microsoft.foundation.android.utilities.DefaultFileProvider}
+  com.microsoft.copilot/androidx.startup.InitializationProvider:
+    Provider{2a2c200 com.microsoft.copilot/androidx.startup.InitializationProvider}
+  com.microsoft.copilot/ru.noties.jlatexmath.JLatexMathInitProvider:
+    Provider{268ca39 com.microsoft.copilot/ru.noties.jlatexmath.JLatexMathInitProvider}
+  com.microsoft.copilot/io.sentry.android.core.SentryPerformanceProvider:
+    Provider{551a87e com.microsoft.copilot/io.sentry.android.core.SentryPerformanceProvider}
+  com.microsoft.copilot/io.sentry.android.core.SentryInitProvider:
+    Provider{48f51df com.microsoft.copilot/io.sentry.android.core.SentryInitProvider}
+  com.microsoft.copilot/com.microsoft.copilotn.provider.dailybriefing.DailyBriefingContentProvider:
+    Provider{d71fe2c com.microsoft.copilot/com.microsoft.copilotn.provider.dailybriefing.DailyBriefingContentProvider}
+  com.microsoft.copilot/com.adjust.sdk.SystemLifecycleContentProvider:
+    Provider{702d0f5 com.microsoft.copilot/com.adjust.sdk.SystemLifecycleContentProvider}
+
+ContentProvider Authorities:
+  [com.microsoft.copilot.dailyBriefing.provider]:
+    Provider{d71fe2c com.microsoft.copilot/com.microsoft.copilotn.provider.dailybriefing.DailyBriefingContentProvider}
+      applicationInfo=ApplicationInfo{a5bce8a com.microsoft.copilot}
+  [com.microsoft.copilot.SentryPerformanceProvider]:
+    Provider{551a87e com.microsoft.copilot/io.sentry.android.core.SentryPerformanceProvider}
+      applicationInfo=ApplicationInfo{ac12cfb com.microsoft.copilot}
+  [com.microsoft.copilot.file.provider]:
+    Provider{c43083 com.microsoft.copilot/com.microsoft.foundation.android.utilities.DefaultFileProvider}
+      applicationInfo=ApplicationInfo{516d118 com.microsoft.copilot}
+  [com.microsoft.copilot.adjust-lifecycle-provider]:
+    Provider{702d0f5 com.microsoft.copilot/com.adjust.sdk.SystemLifecycleContentProvider}
+      applicationInfo=ApplicationInfo{efc8771 com.microsoft.copilot}
+  [com.microsoft.copilot.voicecalldiagnostic.provider]:
+    Provider{dfef73d com.microsoft.copilot/com.microsoft.copilotn.feature.voicecalldiagnostic.VoiceDiagnosticFileProvider}
+      applicationInfo=ApplicationInfo{5304956 com.microsoft.copilot}
+  [com.microsoft.copilot.feature.provider]:
+    Provider{b120b32 com.microsoft.copilot/com.microsoft.copilotn.provider.CopilotFeatureProvider}
+      applicationInfo=ApplicationInfo{a6b9dd7 com.microsoft.copilot}
+  [com.microsoft.copilot.androidx-startup]:
+    Provider{2a2c200 com.microsoft.copilot/androidx.startup.InitializationProvider}
+      applicationInfo=ApplicationInfo{533e6c4 com.microsoft.copilot}
+  [com.microsoft.copilot.jlatexmathinitprovider]:
+    Provider{268ca39 com.microsoft.copilot/ru.noties.jlatexmath.JLatexMathInitProvider}
+      applicationInfo=ApplicationInfo{70129ad com.microsoft.copilot}
+  [com.microsoft.copilot.SentryInitProvider]:
+    Provider{48f51df com.microsoft.copilot/io.sentry.android.core.SentryInitProvider}
+      applicationInfo=ApplicationInfo{effa4e2 com.microsoft.copilot}
+
+Key Set Manager:
+  [com.microsoft.copilot]
+      Signing KeySets: 140
+
+Packages:
+  Package [com.microsoft.copilot] (fe24073):
+    appId=10415
+    pkg=Package{eeaab30 com.microsoft.copilot}
+    codePath=/data/app/~~lbtRr_MBQ5UFtXI7r2XjuA==/com.microsoft.copilot-QieBbIQazRODoEfLzTkkDw==
+    resourcePath=/data/app/~~lbtRr_MBQ5UFtXI7r2XjuA==/com.microsoft.copilot-QieBbIQazRODoEfLzTkkDw==
+    legacyNativeLibraryDir=/data/app/~~lbtRr_MBQ5UFtXI7r2XjuA==/com.microsoft.copilot-QieBbIQazRODoEfLzTkkDw==/lib
+    extractNativeLibs=false
+    primaryCpuAbi=arm64-v8a
+    secondaryCpuAbi=null
+    cpuAbiOverride=null
+    versionCode=440203004 minSdk=26 targetSdk=35
+    minExtensionVersions=[]
+    versionName=30.0.440203004
+    hiddenApiEnforcementPolicy=2
+    usesNonSdkApi=false
+    splits=[base, config.arm64_v8a, config.en, config.xxhdpi]
+    apkSigningVersion=3
+    flags=[ HAS_CODE ALLOW_CLEAR_USER_DATA ]
+    privateFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION ALLOW_AUDIO_PLAYBACK_CAPTURE HAS_DOMAIN_URLS PARTIALLY_DIRECT_BOOT_AWARE PRIVATE_FLAG_ALLOW_NATIVE_HEAP_POINTER_TAGGING ]
+    forceQueryable=false
+    pageSizeCompat=0
+    queriesPackages=[com.android.chrome, com.azure.authenticator, com.microsoft.identity.testuserapp, com.microsoft.windowsintune.companyportal, com.microsoft.mockauthapp, com.microsoft.mockcp, com.microsoft.mockltw, com.microsoft.appmanager, com.google.android.apps.maps]
+    queriesIntents=[Intent { act=android.intent.action.VIEW cat=[android.intent.category.BROWSABLE] dat=https:/... }, Intent { act=android.support.customtabs.action.CustomTabsService }, Intent { act=com.android.vending.billing.InAppBillingService.BIND }, Intent { act=com.google.android.apps.play.billingtestcompanion.BillingOverrideService.BIND }, Intent { act=org.chromium.intent.action.PAY }, Intent { act=org.chromium.intent.action.IS_READY_TO_PAY }, Intent { act=org.chromium.intent.action.UPDATE_PAYMENT_DETAILS }, Intent { act=com.microsoft.tokenshare.TokenSharingService }]
+    scannedAsStoppedSystemApp=false
+    supportsScreens=[small, medium, large, xlarge, resizeable, anyDensity]
+    usesOptionalLibraries:
+      org.apache.http.legacy
+      androidx.window.extensions
+      androidx.window.sidecar
+    usesLibraryFiles:
+      /system/framework/org.apache.http.legacy.jar
+      /system_ext/framework/androidx.window.extensions.jar
+      /system_ext/framework/androidx.window.sidecar.jar
+    timeStamp=2026-02-08 02:13:30
+    lastUpdateTime=2026-02-08 02:13:33
+    installerPackageName=com.android.vending
+    installerPackageUid=10269
+    initiatingPackageName=com.android.vending
+    originatingPackageName=null
+    category=manifest: -1, override: 7, by user: -1
+    packageSource=0
+    appMetadataFilePath=/data/app/~~lbtRr_MBQ5UFtXI7r2XjuA==/com.microsoft.copilot-QieBbIQazRODoEfLzTkkDw==/app.metadata
+    appMetadataSource=2
+    signatures=PackageSignatures{133b3a9 version:3, signatures:[506f396f], past signatures:[]}
+    installPermissionsFixed=false
+    pkgFlags=[ HAS_CODE ALLOW_CLEAR_USER_DATA ]
+    privatePkgFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION ALLOW_AUDIO_PLAYBACK_CAPTURE HAS_DOMAIN_URLS PARTIALLY_DIRECT_BOOT_AWARE PRIVATE_FLAG_ALLOW_NATIVE_HEAP_POINTER_TAGGING ]
+    apexModuleName=null
+    componentsDeclared=81
+    declared permissions:
+      com.microsoft.copilot.permission.NO_WRITE_ALLOWED: prot=signature
+      com.microsoft.copilot.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION: prot=signature
+    requested permissions:
+      com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE
+      android.permission.READ_CALENDAR
+      android.permission.POST_NOTIFICATIONS
+      com.google.android.c2dm.permission.RECEIVE
+      android.permission.ACCESS_FINE_LOCATION
+      android.permission.MODIFY_AUDIO_SETTINGS
+      android.permission.DETECT_SCREEN_CAPTURE
+      android.permission.NFC
+      android.permission.FOREGROUND_SERVICE
+      android.permission.RECEIVE_BOOT_COMPLETED
+      android.permission.HIGH_SAMPLING_RATE_SENSORS
+      com.android.alarm.permission.SET_ALARM
+      android.permission.INTERNET
+      com.android.vending.BILLING
+      android.permission.READ_EXTERNAL_STORAGE
+      android.permission.ACCESS_COARSE_LOCATION
+      android.permission.READ_PHONE_STATE
+      android.permission.SEND_SMS
+      android.permission.CALL_PHONE
+      android.permission.ACCESS_NETWORK_STATE
+      android.permission.CAMERA
+      com.microsoft.copilot.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+      android.permission.WRITE_CALENDAR
+      android.permission.USE_FINGERPRINT
+      android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION
+      android.permission.FOREGROUND_SERVICE_MICROPHONE
+      android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK
+      com.orange.update.permission.READ_ATTRIBUTION
+      android.permission.ACCESS_WIFI_STATE
+      android.permission.USE_BIOMETRIC
+      android.permission.QUERY_ALL_PACKAGES
+      android.permission.RECORD_AUDIO
+      com.google.android.gms.permission.AD_ID
+      android.permission.WAKE_LOCK
+      android.permission.READ_CONTACTS
+    install permissions:
+      com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE: granted=true
+      com.google.android.c2dm.permission.RECEIVE: granted=true
+      android.permission.MODIFY_AUDIO_SETTINGS: granted=true
+      android.permission.DETECT_SCREEN_CAPTURE: granted=true
+      android.permission.NFC: granted=true
+      android.permission.FOREGROUND_SERVICE: granted=true
+      android.permission.RECEIVE_BOOT_COMPLETED: granted=true
+      android.permission.HIGH_SAMPLING_RATE_SENSORS: granted=true
+      com.android.alarm.permission.SET_ALARM: granted=true
+      android.permission.INTERNET: granted=true
+      com.android.vending.BILLING: granted=true
+      android.permission.ACCESS_NETWORK_STATE: granted=true
+      com.microsoft.copilot.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION: granted=true
+      android.permission.USE_FINGERPRINT: granted=true
+      android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION: granted=true
+      android.permission.FOREGROUND_SERVICE_MICROPHONE: granted=true
+      android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK: granted=true
+      android.permission.ACCESS_WIFI_STATE: granted=true
+      android.permission.USE_BIOMETRIC: granted=true
+      android.permission.QUERY_ALL_PACKAGES: granted=true
+      com.google.android.gms.permission.AD_ID: granted=true
+      android.permission.WAKE_LOCK: granted=true
+    User 0: ceDataInode=66260 deDataInode=66424 installed=true hidden=false suspended=false distractionFlags=0 stopped=false notLaunched=false enabled=0 instant=false virtual=false quarantined=false
+      installReason=2
+      dataDir=/data/user/0/com.microsoft.copilot
+      firstInstallTime=2026-02-01 21:02:04
+      uninstallReason=0
+      overlay paths:
+        /product/overlay/NavigationBarModeGestural/NavigationBarModeGesturalOverlay.apk
+      legacy overlay paths:
+        /product/overlay/NavigationBarModeGestural/NavigationBarModeGesturalOverlay.apk
+      lastDisabledCaller: com.android.vending
+      gids=[3003]
+      runtime permissions:
+        android.permission.READ_CALENDAR: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.POST_NOTIFICATIONS: granted=true, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.ACCESS_FINE_LOCATION: granted=true, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.READ_EXTERNAL_STORAGE: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED|RESTRICTION_INSTALLER_EXEMPT]
+        android.permission.ACCESS_COARSE_LOCATION: granted=true, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.READ_PHONE_STATE: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.SEND_SMS: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED|RESTRICTION_INSTALLER_EXEMPT]
+        android.permission.CALL_PHONE: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.CAMERA: granted=true, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.WRITE_CALENDAR: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.RECORD_AUDIO: granted=true, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+        android.permission.READ_CONTACTS: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]
+      disabledComponents:
+        com.microsoft.copilotn.features.oswidget.CopilotWidgetReceiver$PodcastWidgetReceiver
+      enabledComponents:
+        com.microsoft.copilotn.features.share.ShareToCopilotActivity
+
+Queries:
+  system apps queryable: false
+  queries via forceQueryable:
+  queries via package name:
+    com.microsoft.copilot:
+      com.microsoft.appmanager
+      com.android.chrome
+      com.google.android.apps.maps
+      com.azure.authenticator
+  queries via component:
+    com.samsung.android.app.sharelive:
+      com.microsoft.copilot
+    com.microsoft.skydrive:
+      com.microsoft.copilot
+    com.samsung.android.app.reminder:
+      com.microsoft.copilot
+    com.google.android.as.oss:
+      com.microsoft.copilot
+    com.google.android.apps.messaging:
+      com.microsoft.copilot
+    com.google.android.apps.maps:
+      com.microsoft.copilot
+    com.google.android.youtube:
+      com.microsoft.copilot
+    com.touchtype.swiftkey:
+      com.microsoft.copilot
+    com.facebook.katana:
+      com.microsoft.copilot
+    com.whatsapp:
+      com.microsoft.copilot
+    com.facebook.orca:
+      com.microsoft.copilot
+    org.readera:
+      com.microsoft.copilot
+    com.viber.voip:
+      com.microsoft.copilot
+    au.gov.digitalhealth.myhealth:
+      com.microsoft.copilot
+    com.microsoft.office.officelens:
+      com.microsoft.copilot
+    com.google.android.apps.photos:
+      com.microsoft.copilot
+    com.linkedin.android:
+      com.microsoft.copilot
+    com.transferwise.android:
+      com.microsoft.copilot
+    com.mxtech.videoplayer.ad:
+      com.microsoft.copilot
+    com.alibaba.aliexpresshd:
+      com.microsoft.copilot
+    com.coles.android.flybuys.release:
+      com.microsoft.copilot
+    app.revanced.android.youtube:
+      com.microsoft.copilot
+    com.renogy.dchome:
+      com.microsoft.copilot
+    com.alltrails.alltrails:
+      com.microsoft.copilot
+    com.facebook.pages.app:
+      com.microsoft.copilot
+    com.amazon.mShop.android.shopping:
+      com.microsoft.copilot
+    com.facebook.adsmanager:
+      com.microsoft.copilot
+    app.revanced.android.photos:
+      com.microsoft.copilot
+    com.twitter.android:
+      com.microsoft.copilot
+    [com.microsoft.office.word,com.microsoft.office.excel]:
+      com.microsoft.copilot
+    com.microsoft.teams:
+      com.microsoft.copilot
+    com.microsoft.copilot:
+      com.google.android.googlequicksearchbox
+      com.android.chrome
+      com.mxtech.videoplayer.ad
+    com.facebook.stella:
+      com.microsoft.copilot
+    com.iherb:
+      com.microsoft.copilot
+    us.zoom.videomeetings:
+      com.microsoft.copilot
+    com.google.android.apps.youtube.creator:
+      com.microsoft.copilot
+    org.zotero.android:
+      com.microsoft.copilot
+    au.com.angryrobot.wikicamps:
+      com.microsoft.copilot
+    com.reddit.frontpage:
+      com.microsoft.copilot
+    com.shazam.android:
+      com.microsoft.copilot
+    com.binance.dev:
+      com.microsoft.copilot
+    com.google.android.apps.magazines:
+      com.microsoft.copilot
+    com.xiaomi.smarthome:
+      com.microsoft.copilot
+    com.camerasideas.trimmer:
+      com.microsoft.copilot
+    org.edx.mobile:
+      com.microsoft.copilot
+    com.coles.android.shopmate:
+      com.microsoft.copilot
+    com.canva.editor:
+      com.microsoft.copilot
+    nz.co.campermate:
+      com.microsoft.copilot
+    com.wakdev.wdnfc:
+      com.microsoft.copilot
+    com.waze:
+      com.microsoft.copilot
+    com.sec.android.app.voicenote:
+      com.microsoft.copilot
+  queryable via interaction:
+    User 0:
+      [com.samsung.android.da.daagent,com.samsung.android.dqagent,com.sec.usbsettings,com.sec.imslogger,com.samsung.android.bbc.bbcagent,com.sec.automation,com.samsung.android.knox.zt.framework,com.sem.factoryapp,com.sec.modem.settings,com.samsung.android.photoremasterservice,com.samsung.android.themecenter,com.android.dynsystem,com.sec.android.app.wlantest,com.samsung.android.lool,com.sec.android.app.servicemodeapp,com.samsung.android.bixby.wakeup,com.sec.epdg,com.sec.mhs.smarttethering,com.sec.factory.camera,com.sec.app.RilErrorNotifier,com.sec.sve,com.samsung.android.hdmapp,com.samsung.android.knox.pushmanager,com.samsung.android.camerasdkservice,com.wssyncmldm,com.samsung.accessibility,com.sec.android.app.hwmoduletest,com.samsung.android.app.omcagent,com.sec.android.iaft,com.qualcomm.qti.services.systemhelper,com.samsung.android.wifi.ai,com.android.settings,com.sec.facatfunction,com.samsung.android.ese,com.samsung.SMT,com.samsung.android.simagent,com.samsung.android.vexfwk.service,com.android.localtransport,com.samsung.android.knox.mpos,com.samsung.android.stickercenter,com.sec.android.smartfpsadjuster,com.samsung.android.svcagent,com.android.inputdevices,com.sec.android.emergencylauncher,com.samsung.android.forest,com.samsung.android.biometrics.app.setting,com.samsung.android.app.esimkeystring,com.samsung.android.brightnessbackupservice,com.samsung.android.globalpostprocmgr,com.skms.android.agent,com.sec.android.app.quicktool,com.sec.android.app.uwbtest,com.samsung.sait.sohservice,com.sec.android.app.RilPhoneNumberService,android,com.samsung.android.knox.attestation,com.samsung.android.cameraxservice,com.samsung.android.provider.filterprovider,com.samsung.android.providers.factory,com.sec.android.app.SecSetupWizard,com.sec.android.soagent,com.sec.bcservice,com.sec.android.app.factorykeystring,com.samsung.android.emergency,com.qti.snapdragon.qdcm_ff,com.samsung.aasaservice,com.samsung.android.fmm,com.samsung.android.app.dressroom,com.samsung.android.smartface,com.samsung.euicc,com.android.keychain,com.sec.android.app.parser,com.samsung.gpuwatchapp,com.sec.android.app.desktoplauncher,com.samsung.android.smartswitchassistant,com.sec.imsservice,com.sec.android.sdhms,com.samsung.android.dck.timesync,com.android.location.fused,com.sec.android.diagmonagent,com.android.server.telecom,com.samsung.android.motionphoto.app,com.samsung.android.aircommandmanager,com.samsung.oda.service,com.sec.android.app.personalization,com.samsung.android.vtcamerasettings,com.android.providers.settings,com.sec.android.CcInfo,com.samsung.android.mdecservice]:
+        com.microsoft.copilot
+      com.microsoft.skydrive:
+        com.microsoft.copilot
+      com.samsung.android.honeyboard:
+        com.microsoft.copilot
+      com.android.vending:
+        com.microsoft.copilot
+      com.google.android.gms:
+        com.microsoft.copilot
+      com.google.android.webview:
+        com.microsoft.copilot
+      com.microsoft.office.officelens:
+        com.microsoft.copilot
+      com.microsoft.copilot:
+        com.microsoft.skydrive
+        com.microsoft.appmanager
+        com.google.android.webview
+  queryable via uses-library:
+
+Dexopt state:
+  [com.microsoft.copilot]
+    path: /data/app/~~lbtRr_MBQ5UFtXI7r2XjuA==/com.microsoft.copilot-QieBbIQazRODoEfLzTkkDw==/base.apk
+      arm64: [status=speed-profile] [reason=bg-dexopt] [primary-abi]
+        [location is /data/app/~~lbtRr_MBQ5UFtXI7r2XjuA==/com.microsoft.copilot-QieBbIQazRODoEfLzTkkDw==/oat/arm64/base.odex]
+
+SPEG state:
+
+Profile utilization state:
+  Current state:
+    Version: 2.1.1
+    Start reason: boot-no-update
+    Start time: not started
+    Finish time: not finished
+    PU_StatusWatcher:
+      Initial thermal status: 0
+      Thermal status: 0
+      Screen off: false
+      Low battery: true
+    PU_DexoptTrigger:
+      Dexopt concurrency: 4
+      Dexopting: false
+    PU_Storage:
+      Stored apps:
+        app.revanced.android.youtube 36
+        com.viber.voip 55
+        com.sec.android.easyMover 64
+        com.google.android.googlequicksearchbox 65
+        com.whatsapp 70
+        com.google.android.gm 73
+        com.sec.android.app.camera 79
+        com.google.android.apps.messaging 84
+        com.samsung.android.dialer 86
+        radiotime.player 90
+        com.facebook.orca 95
+        com.google.android.apps.photos 95
+        com.android.settings 96
+        com.brave.browser 97
+        com.samsung.android.samsungpass 102
+        com.samsung.android.messaging 106
+        com.google.android.calendar 108
+        com.samsung.android.app.routineplus 112
+        com.samsung.android.app.notes 116
+        com.samsung.android.app.contacts 120
+        com.android.vending 126
+        com.google.android.apps.tachyon 130
+        ak.alizandro.smartaudiobookplayer 136
+        com.coles.android.flybuys.release 140
+        com.coinmarketcap.android 144
+    Stored PU state:
+      Service:
+        Version: 2.1.1
+        Start reason: boot-after-ota
+        Start time: Wed Feb 04 22:24:36 GMT+11:00 2026 ts=1770204276269
+        Finish time: Wed Feb 04 22:29:04 GMT+11:00 2026 ts=1770204544203
+        Took time 267sec
+      Watcher:
+        Initial thermal status: 0
+        Thermal status: 0
+        Screen off: true
+        Low battery: false
+      Metrics:
+        Predicted and launched apps: 0
+        Predicted apps: 20
+        Launched apps: 0
+        Best f1Score: 0.0, prefixCount: 0, precision: 0.0, recall: 0.0
+      Trigger:
+        Dexopt concurrency: 4
+        Dexopting: false
+        Hot apps list:
+          app.revanced.android.youtube, w=36, s=OPTIMIZED, optTimeMs=1770204394393, cancelCount=1, dexopt=PERFORMED, [primaryDex=true, reason=profile-utilization, dex2oatTimeMs=19965, filter=speed-profile]
+          com.viber.voip, w=55, s=OPTIMIZED, optTimeMs=1770204400414, cancelCount=1, dexopt=PERFORMED, [primaryDex=true, reason=profile-utilization, dex2oatTimeMs=24473, filter=speed-profile], [primaryDex=true, reason=profile-utilization, dex2oatTimeMs=929, filter=speed-profile]
+          com.sec.android.easyMover, w=64, s=OPTIMIZED, optTimeMs=1770204292911, cancelCount=1, dexopt=PERFORMED, [primaryDex=true, reason=profile-utilization, dex2oatTimeMs=2945, filter=speed-profile]
+          com.google.android.googlequicksearchbox, w=65, s=OPTIMIZED, optTimeMs=1770204490112, cancelCount=1, dexopt=PERFORMED, [dex2oatTimeMs=24338, filter=speed-profile], [dex2oatTimeMs=16802, filter=speed-profile]
+          com.whatsapp, w=70, s=OPTIMIZED, optTimeMs=1770204396741, cancelCount=0, dexopt=PERFORMED, [primaryDex=true, reason=profile-utilization, dex2oatTimeMs=19203, filter=speed-profile]
+          com.google.android.gm, w=73, s=OPTIMIZED, optTimeMs=1770204481645, cancelCount=0, dexopt=PERFORMED, [primaryDex=true, reason=profile-utilization, dex2oatTimeMs=15072, filter=speed-profile]
+          com.sec.android.app.camera, w=79, s=OPTIMIZED, optTimeMs=1770204396817, cancelCount=0, dexopt=SKIPPED, [primaryDex=true, reason=prebuilt-prep, dex2oatTimeMs=0, filter=speed-profile]
+          com.google.android.apps.messaging, w=84, s=OPTIMIZED, optTimeMs=1770204484032, cancelCount=0, dexopt=PERFORMED, [primaryDex=true, reason=profile-utilization, dex2oatTimeMs=15075, filter=speed-profile]
+          com.samsung.android.dialer, w=86, s=OPTIMIZED, optTimeMs=1770204400450, cancelCount=0, dexopt=SKIPPED, [primaryDex=true, reason=prebuilt-prep, dex2oatTimeMs=0, filter=speed-profile]
+          radiotime.player, w=90, s=OPTIMIZED, optTimeMs=1770204467670, cancelCount=0, dexopt=PERFORMED, [primaryDex=true, reason=profile-utilization, dex2oatTimeMs=8843, filter=speed-profile]
+          com.facebook.orca, w=95, s=OPTIMIZED, optTimeMs=1770204543028, cancelCount=0, dexopt=PERFORMED, [primaryDex=true, reason=profile-utilization, dex2oatTimeMs=14828, filter=speed-profile]
+          com.google.android.apps.photos, w=95, s=OPTIMIZED, optTimeMs=1770204527092, cancelCount=0, dexopt=PERFORMED, [primaryDex=true, reason=profile-utilization, dex2oatTimeMs=12213, filter=speed-profile]
+          com.android.settings, w=96, s=OPTIMIZED, optTimeMs=1770204484101, cancelCount=0, dexopt=SKIPPED, [primaryDex=true, reason=prebuilt, dex2oatTimeMs=0, filter=verify]
+          com.brave.browser, w=97, s=OPTIMIZED, optTimeMs=1770204489891, cancelCount=0, dexopt=PERFORMED, [primaryDex=true, reason=profile-utilization, dex2oatTimeMs=655, filter=speed-profile], [primaryDex=true, reason=profile-utilization, dex2oatTimeMs=2522, filter=speed-profile], [primaryDex=true, reason=vdex, dex2oatTimeMs=0, filter=verify]
+          com.samsung.android.samsungpass, w=102, s=OPTIMIZED, optTimeMs=1770204524506, cancelCount=0, dexopt=PERFORMED, [primaryDex=true, reason=profile-utilization, dex2oatTimeMs=3801, filter=speed-profile]
+          com.samsung.android.messaging, w=106, s=OPTIMIZED, optTimeMs=1770204490170, cancelCount=0, dexopt=SKIPPED, [primaryDex=true, reason=prebuilt-prep, dex2oatTimeMs=0, filter=speed-profile]
+          com.google.android.calendar, w=108, s=OPTIMIZED, optTimeMs=1770204526161, cancelCount=0, dexopt=PERFORMED, [primaryDex=true, reason=profile-utilization, dex2oatTimeMs=5184, filter=speed-profile]
+          com.samsung.android.app.routineplus, w=112, s=OPTIMIZED, optTimeMs=1770204526234, cancelCount=0, dexopt=PERFORMED, [primaryDex=true, reason=profile-utilization, dex2oatTimeMs=1625, filter=speed-profile]
+          com.samsung.android.app.notes, w=116, s=OPTIMIZED, optTimeMs=1770204544202, cancelCount=0, dexopt=PERFORMED, [primaryDex=true, reason=profile-utilization, dex2oatTimeMs=4289, filter=speed-profile]
+          com.samsung.android.app.contacts, w=120, s=OPTIMIZED, optTimeMs=1770204526357, cancelCount=0, dexopt=SKIPPED, [primaryDex=true, reason=prebuilt-prep, dex2oatTimeMs=0, filter=speed-profile]
+    Stored SCPM state:
+      packages-9a07:
+        [                                            ]
+      disable-2bb4:
+        [                                            ]
+
+Compiler stats:
+  [com.microsoft.copilot]
+     base.apk - 9962
+
+HeimdAllFS state:
+  [com.microsoft.copilot]
+    path: /data/app/~~lbtRr_MBQ5UFtXI7r2XjuA==/com.microsoft.copilot-QieBbIQazRODoEfLzTkkDw==/base.apk
+    Compressed? False
+    path: /data/app/~~lbtRr_MBQ5UFtXI7r2XjuA==/com.microsoft.copilot-QieBbIQazRODoEfLzTkkDw==/split_config.arm64_v8a.apk
+    Compressed? False
+    path: /data/app/~~lbtRr_MBQ5UFtXI7r2XjuA==/com.microsoft.copilot-QieBbIQazRODoEfLzTkkDw==/split_config.en.apk
+    Compressed? False
+    path: /data/app/~~lbtRr_MBQ5UFtXI7r2XjuA==/com.microsoft.copilot-QieBbIQazRODoEfLzTkkDw==/split_config.xxhdpi.apk
+    Compressed? False
+  [ Summary ]
+    # of packages: 1 / # of packages in DATA: 1 (4)
+    Compressed apks info - sum of orig size: 30244 / sum of compr size : 30244

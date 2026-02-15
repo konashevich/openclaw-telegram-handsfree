@@ -103,13 +103,16 @@ class MainActivity : AppCompatActivity() {
         statusText = findViewById(R.id.status_text)
         activityText = findViewById(R.id.activity_text)
         btnSetAssistant = findViewById(R.id.btn_set_assistant)
+        btnSetAssistant.visibility = View.VISIBLE
         btnRecordToggle = findViewById(R.id.btn_record_toggle)
+        btnRecordToggle.visibility = View.VISIBLE
         btnRecordToggle.setOnClickListener {
             val intent = Intent(this, NovaForegroundService::class.java).apply {
                 action = NovaForegroundService.ACTION_TOGGLE_RECORDING
             }
             startService(intent)
         }
+        handleActivityState("idle")
 
         loadSettingsIntoFields()
 
@@ -178,26 +181,21 @@ class MainActivity : AppCompatActivity() {
             }
             status == "connecting" -> {
                 statusText.text = getString(R.string.status_connecting)
-                btnRecordToggle.visibility = View.GONE
             }
             status == "waiting_code" -> {
                 statusText.text = getString(R.string.status_waiting_code)
                 showAuthSection(getString(R.string.step2_subtitle))
-                btnRecordToggle.visibility = View.GONE
             }
             status == "waiting_password" -> {
                 statusText.text = getString(R.string.status_waiting_password)
                 showAuthSection(getString(R.string.step2_subtitle_2fa))
-                btnRecordToggle.visibility = View.GONE
             }
             status.startsWith("error:") -> {
                 val reason = status.removePrefix("error:")
                 statusText.text = getString(R.string.status_error, reason)
-                btnRecordToggle.visibility = View.GONE
             }
             status.startsWith("needs_config:") -> {
                 statusText.text = getString(R.string.status_error, status.removePrefix("needs_config:"))
-                btnRecordToggle.visibility = View.GONE
             }
         }
     }
@@ -256,13 +254,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateAssistantButton() {
-        val lastStatus = getSharedPreferences(NovaForegroundService.PREFS_NAME, MODE_PRIVATE)
-            .getString(NovaForegroundService.KEY_LAST_STATUS, null)
-        val isConnected = lastStatus == "connected"
-        if (!isConnected) {
-            btnSetAssistant.visibility = View.GONE
-            return
-        }
         btnSetAssistant.visibility = View.VISIBLE
         if (isDefaultAssistant()) {
             btnSetAssistant.text = getString(R.string.btn_assistant_active)

@@ -39,22 +39,51 @@
             android:excludeFromRecents="true"
             android:launchMode="singleTask"
             android:noHistory="true"
-            android:theme="@android:style/Theme.NoDisplay" />
-
-        <receiver
-            android:name=".voice.MediaButtonReceiver"
-            android:enabled="true"
-            android:exported="true">
+            android:theme="@android:style/Theme.Translucent.NoTitleBar">
             <intent-filter>
-                <action android:name="android.intent.action.MEDIA_BUTTON" />
+                <action android:name="android.intent.action.ASSIST" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </receiver>
+            <intent-filter>
+                <action android:name="android.intent.action.VOICE_COMMAND" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH_LONG_PRESS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VOICE_ASSIST" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.speech.action.VOICE_SEARCH_HANDS_FREE" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.speech.action.WEB_SEARCH" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.samsung.android.intent.action.AI_ASSIST" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
         <service
             android:name=".voice.NovaForegroundService"
             android:enabled="true"
             android:exported="false"
             android:foregroundServiceType="mediaPlayback|microphone" />
+
+        <receiver
+            android:name=".voice.MediaButtonReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter android:priority="1000">
+                <action android:name="android.intent.action.MEDIA_BUTTON" />
+            </intent-filter>
+        </receiver>
 
         <service
             android:name=".voice.NovaVoiceInteractionService"
@@ -69,6 +98,16 @@
             <meta-data
                 android:name="android.voice_interaction"
                 android:resource="@xml/voice_interaction_service" />
+        </service>
+
+        <service
+            android:name=".voice.NovaRecognitionService"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="android.permission.BIND_SPEECH_RECOGNITION_SERVICE">
+            <intent-filter>
+                <action android:name="android.speech.RecognitionService" />
+            </intent-filter>
         </service>
 
         <service
