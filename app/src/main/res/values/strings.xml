@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Nova Walkie-Talkie</string>
+    <string name="app_name">Clawsfree</string>
     <string name="step1_header">1. Telegram Connection</string>
     <string name="step1_subtitle">Enter your Telegram API credentials and target group.</string>
     <string name="hint_api_id">API ID</string>
@@ -22,11 +22,11 @@
     <string name="status_waiting_password">Waiting for 2FA password</string>
     <string name="status_connected">Connected. Service running.</string>
     <string name="status_error">Error: %1$s</string>
-    <string name="notif_channel_name">Nova Handsfree</string>
-    <string name="notif_channel_desc">Background recording and playback for Nova Telegram voice.</string>
-    <string name="notif_title_idle">Nova ready</string>
+    <string name="notif_channel_name">Clawsfree Handsfree</string>
+    <string name="notif_channel_desc">Background recording and playback for Clawsfree Telegram voice.</string>
+    <string name="notif_title_idle">Clawsfree ready</string>
     <string name="notif_text_idle">Waiting for steering wheel trigger.</string>
-    <string name="notif_title_recording">Recording to Nova</string>
+    <string name="notif_title_recording">Recording to Clawsfree</string>
     <string name="notif_text_recording">Tap play/media to stop and send.</string>
     <string name="activity_idle">⏸ Waiting for media button long-press</string>
     <string name="activity_recording">🔴 Recording…</string>

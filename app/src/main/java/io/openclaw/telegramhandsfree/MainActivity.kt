@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
             val roleGranted = isDefaultAssistant()
             updateAssistantButton()
             if (roleGranted) {
-                Toast.makeText(this, "Nova is now the default assistant", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Clawsfree is now the default assistant", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(this, "Assistant role was not granted", Toast.LENGTH_LONG).show()
             }
@@ -226,7 +226,7 @@ class MainActivity : AppCompatActivity() {
             val roleManager = getSystemService(RoleManager::class.java)
             if (roleManager.isRoleAvailable(RoleManager.ROLE_ASSISTANT)) {
                 if (roleManager.isRoleHeld(RoleManager.ROLE_ASSISTANT)) {
-                    Toast.makeText(this, "Nova is already the default assistant", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Clawsfree is already the default assistant", Toast.LENGTH_SHORT).show()
                     updateAssistantButton()
                     return
                 }
@@ -243,7 +243,7 @@ class MainActivity : AppCompatActivity() {
         // Fallback: open default-apps settings directly
         try {
             startActivity(Intent(Settings.ACTION_MANAGE_DEFAULT_APPS_SETTINGS))
-            Toast.makeText(this, "Open Digital assistant app and select Nova", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Open Digital assistant app and select Clawsfree", Toast.LENGTH_LONG).show()
         } catch (_: Exception) {
             try {
                 startActivity(Intent(Settings.ACTION_VOICE_INPUT_SETTINGS))

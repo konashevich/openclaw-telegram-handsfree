@@ -1,4 +1,4 @@
-# Nova Walkie-Talkie: Project Specification
+# Clawsfree: Project Specification
 
 ## 1. Objective
 Build a native Android application that serves as a dedicated, "eyes-free" interface for an Telegram group. The app focuses on hands-free operation while driving, using physical Bluetooth triggers and automatic audio responses.
@@ -27,24 +27,24 @@ Build a native Android application that serves as a dedicated, "eyes-free" inter
 - **Initial Action:** Upon trigger, the app provides a short "beep" and begins recording audio immediately via the car's Bluetooth microphone.
 
 ### B. Message Termination & Safety Net
-- **Primary Stop Method (Manual):** A **second tap** of the Play/Media button stops the recording and sends it instantly to the Nova group.
+- **Primary Stop Method (Manual):** A **second tap** of the Play/Media button stops the recording and sends it instantly to the Clawsfree group.
 - **Secondary Stop Method (Safety Net):** A generous **20-second Auto-Silence timer**. 
   - If no speech is detected for 20 seconds, the app assumed the user forgot to tap "stop" and finishes the session automatically. 
   - This long duration ensures the user is never cut off during thinking pauses.
 
 ### C. Automatic Playback
-- **Background Monitor:** The app continuously monitors the specific Telegram Group for incoming voice messages from the Nova bot.
+- **Background Monitor:** The app continuously monitors the specific Telegram Group for incoming voice messages from the Clawsfree bot.
 - **Auto-Fetch & Play:** New responses are downloaded in the background and played automatically through the Bluetooth audio channel.
-- **Audio Focus:** The app ducks/pauses other media (like music or audiobooks) while Nova is speaking.
+- **Audio Focus:** The app ducks/pauses other media (like music or audiobooks) while Clawsfree is speaking.
 
 ---
 
 ## 4. User Experience (Driving Flow)
 1. **Initiate:** Long-press steering wheel button -> *Beep heard*.
-2. **Speak:** "Nova, remind me to check the tire pressure when I get home."
+2. **Speak:** "Clawsfree, remind me to check the tire pressure when I get home."
 3. **Finish:** Tap button once -> *Recording stops*.
 4. **Wait:** (Eyes remain on the road).
-5. **Listen:** Nova's voice response plays automatically over the car speakers.
+5. **Listen:** Clawsfree's voice response plays automatically over the car speakers.
 
 ---
 
