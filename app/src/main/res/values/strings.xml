@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Nova Walkie-Talkie</string>
+    <string name="step1_header">1. Telegram Connection</string>
+    <string name="step1_subtitle">Enter your Telegram API credentials and target group.</string>
+    <string name="hint_api_id">API ID</string>
+    <string name="hint_api_hash">API Hash</string>
+    <string name="hint_phone">Phone Number (+1234…)</string>
+    <string name="hint_group_id">Group / Chat ID</string>
+    <string name="hint_topic_id">Topic / Thread ID (0 = general)</string>
+    <string name="btn_connect">Connect to Telegram</string>
+    <string name="label_bluetooth_mic">Use Bluetooth microphone</string>
+    <string name="step2_header">2. Enter Auth Code</string>
+    <string name="step2_subtitle">Telegram sent a code to your phone or other Telegram clients. Enter it below.</string>
+    <string name="step2_subtitle_2fa">Telegram requires your 2FA password. Enter it below.</string>
+    <string name="hint_auth_code">Auth Code</string>
+    <string name="hint_2fa_password">2FA Password</string>
+    <string name="btn_submit_code">Submit Code</string>
+    <string name="btn_set_assistant">Set as Default Assistant</string>
+    <string name="btn_assistant_active">✅ Default Assistant</string>
+    <string name="status_connecting">Connecting…</string>
+    <string name="status_waiting_code">Waiting for auth code</string>
+    <string name="status_waiting_password">Waiting for 2FA password</string>
+    <string name="status_connected">Connected. Service running.</string>
+    <string name="status_error">Error: %1$s</string>
+    <string name="notif_channel_name">Nova Handsfree</string>
+    <string name="notif_channel_desc">Background recording and playback for Nova Telegram voice.</string>
+    <string name="notif_title_idle">Nova ready</string>
+    <string name="notif_text_idle">Waiting for steering wheel trigger.</string>
+    <string name="notif_title_recording">Recording to Nova</string>
+    <string name="notif_text_recording">Tap play/media to stop and send.</string>
+    <string name="activity_idle">⏸ Waiting for media button long-press</string>
+    <string name="activity_recording">🔴 Recording…</string>
+    <string name="activity_sending">✉️ Sending voice…</string>
+    <string name="activity_sent">✅ Sent!</string>
+    <string name="btn_record_toggle_start">Record</string>
+    <string name="btn_record_toggle_stop">Stop &amp; Send</string>
+</resources>
