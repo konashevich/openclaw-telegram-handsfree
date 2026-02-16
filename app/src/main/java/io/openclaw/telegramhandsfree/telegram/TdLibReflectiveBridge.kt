@@ -64,6 +64,14 @@ class TdLibReflectiveBridge(
         sendPasswordOrFail()
     }
 
+    fun refreshTargetChatBinding() {
+        loadChats()
+        val targetChatId = ClawsfreeConfig.TELEGRAM_GROUP_ID
+        if (targetChatId != 0L) {
+            openChat(targetChatId)
+        }
+    }
+
     fun sendVoiceMessage(chatId: Long, file: File): Boolean {
         val client = clientInstance ?: return false
         return runCatching {

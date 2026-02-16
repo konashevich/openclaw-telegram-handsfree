@@ -142,7 +142,7 @@ class MainActivity : AppCompatActivity() {
         handleActivityState("idle")
 
         loadSettingsIntoFields()
-        isChatConnected = isChatConfigured()
+        isChatConnected = isChatConnectionConfirmed()
         setAuthGroupCollapsed(collapsed = false)
         setChatGroupCollapsed(collapsed = true)
         setOtherSettingsVisible(isChatConnected)
@@ -217,7 +217,7 @@ class MainActivity : AppCompatActivity() {
             status == "connected" -> {
                 authPhase = "connected"
                 isAuthConnected = true
-                isChatConnected = isChatConfigured()
+                isChatConnected = isChatConnectionConfirmed()
                 statusText.text = getString(R.string.status_connected)
                 authSection.visibility = View.GONE
                 setAuthGroupCollapsed(collapsed = true)
@@ -337,6 +337,8 @@ class MainActivity : AppCompatActivity() {
         saveAuthSettingsForNewCycle()
         authPhase = "connecting"
         isAuthConnected = false
+        isChatConnected = false
+        setChatConnectionConfirmed(false)
         setAuthGroupCollapsed(collapsed = false)
         setChatGroupCollapsed(collapsed = true)
         setOtherSettingsVisible(false)
@@ -365,11 +367,19 @@ class MainActivity : AppCompatActivity() {
         saveChatConnectionSettings()
         isChatConnected = isChatConfigured()
         if (isChatConnected) {
+            setChatConnectionConfirmed(true)
             statusText.text = getString(R.string.status_chat_connected)
             setChatGroupCollapsed(collapsed = true)
             setOtherSettingsVisible(true)
             setOtherSettingsCollapsed(collapsed = false)
+            ensureForegroundServiceRunning()
+            startService(
+                Intent(this, ClawsfreeForegroundService::class.java).apply {
+                    action = ClawsfreeForegroundService.ACTION_REFRESH_CHAT_BINDING
+                }
+            )
         } else {
+            setChatConnectionConfirmed(false)
             setChatGroupCollapsed(collapsed = false)
             setOtherSettingsVisible(false)
         }
@@ -494,6 +504,16 @@ class MainActivity : AppCompatActivity() {
         btnRecordToggle.visibility = if (isChatConnected) View.VISIBLE else View.GONE
     }
 
+    private fun isChatConnectionConfirmed(): Boolean {
+        return onboardingPrefs().getBoolean(KEY_CHAT_CONNECTED, false)
+    }
+
+    private fun setChatConnectionConfirmed(connected: Boolean) {
+        onboardingPrefs().edit().putBoolean(KEY_CHAT_CONNECTED, connected).apply()
+    }
+
+    private fun onboardingPrefs() = getSharedPreferences(ONBOARDING_PREFS, MODE_PRIVATE)
+
     private fun requiredPermissions(): List<String> {
         val permissions = mutableListOf(Manifest.permission.RECORD_AUDIO)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -519,5 +539,10 @@ class MainActivity : AppCompatActivity() {
                 action = ClawsfreeForegroundService.ACTION_BEGIN_AUTH
             }
         )
+    }
+
+    companion object {
+        private const val ONBOARDING_PREFS = "onboarding_state"
+        private const val KEY_CHAT_CONNECTED = "chat_connected"
     }
 }

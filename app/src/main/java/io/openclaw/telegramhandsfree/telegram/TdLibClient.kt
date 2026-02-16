@@ -121,6 +121,11 @@ class TdLibClient(
         bridge?.submitPassword()
     }
 
+    fun refreshTargetChatBinding() {
+        bridge?.refreshTargetChatBinding()
+        Log.i(TAG, "Requested TDLib target chat refresh for groupId=${ClawsfreeConfig.TELEGRAM_GROUP_ID}")
+    }
+
     suspend fun sendGroupVoiceMessage(groupId: Long, file: File) {
         if (_status.value != TelegramStatus.Ready) {
             outbox.enqueue(file)

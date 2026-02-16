@@ -133,6 +133,9 @@ class ClawsfreeForegroundService : Service() {
             ACTION_SUBMIT_PASSWORD -> {
                 repository.submitPassword()
             }
+            ACTION_REFRESH_CHAT_BINDING -> {
+                repository.refreshTargetChatBinding()
+            }
             ACTION_ENSURE_RUNNING, null -> Unit
         }
         return START_NOT_STICKY
@@ -528,6 +531,7 @@ class ClawsfreeForegroundService : Service() {
         const val ACTION_BEGIN_AUTH = "io.openclaw.telegramhandsfree.action.BEGIN_AUTH"
         const val ACTION_SUBMIT_AUTH = "io.openclaw.telegramhandsfree.action.SUBMIT_AUTH"
         const val ACTION_SUBMIT_PASSWORD = "io.openclaw.telegramhandsfree.action.SUBMIT_PASSWORD"
+        const val ACTION_REFRESH_CHAT_BINDING = "io.openclaw.telegramhandsfree.action.REFRESH_CHAT_BINDING"
         const val ACTION_STATUS_UPDATE = "io.openclaw.telegramhandsfree.action.STATUS_UPDATE"
         const val ACTION_ACTIVITY_UPDATE = "io.openclaw.telegramhandsfree.action.ACTIVITY_UPDATE"
         const val EXTRA_STATUS = "status"
