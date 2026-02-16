@@ -124,8 +124,13 @@ class ClawsfreeForegroundService : Service() {
             ACTION_TOGGLE_RECORDING -> {
                 if (recorder.isRecording) stopRecordingAndSend() else startRecording()
             }
+            ACTION_BEGIN_AUTH -> {
+                repository.submitAuthCode()
+            }
             ACTION_SUBMIT_AUTH -> {
                 repository.submitAuthCode()
+            }
+            ACTION_SUBMIT_PASSWORD -> {
                 repository.submitPassword()
             }
             ACTION_ENSURE_RUNNING, null -> Unit
@@ -520,7 +525,9 @@ class ClawsfreeForegroundService : Service() {
         const val ACTION_STOP_IF_RECORDING = "io.openclaw.telegramhandsfree.action.STOP_IF_RECORDING"
         const val ACTION_TOGGLE_RECORDING = "io.openclaw.telegramhandsfree.action.TOGGLE_RECORDING"
         const val ACTION_ENSURE_RUNNING = "io.openclaw.telegramhandsfree.action.ENSURE_RUNNING"
+        const val ACTION_BEGIN_AUTH = "io.openclaw.telegramhandsfree.action.BEGIN_AUTH"
         const val ACTION_SUBMIT_AUTH = "io.openclaw.telegramhandsfree.action.SUBMIT_AUTH"
+        const val ACTION_SUBMIT_PASSWORD = "io.openclaw.telegramhandsfree.action.SUBMIT_PASSWORD"
         const val ACTION_STATUS_UPDATE = "io.openclaw.telegramhandsfree.action.STATUS_UPDATE"
         const val ACTION_ACTIVITY_UPDATE = "io.openclaw.telegramhandsfree.action.ACTIVITY_UPDATE"
         const val EXTRA_STATUS = "status"

@@ -35,6 +35,19 @@ You can get prebuilt TDLib Android artifacts from [tdlib/td releases](https://gi
 
 Install the APK, open the app. The settings screen lets you enter all Telegram connection parameters. No code editing needed.
 
+### Get Telegram API ID and API Hash
+
+Use **https://my.telegram.org** (this is the correct URL, not `my.telegram.com`).
+
+1. Open [my.telegram.org](https://my.telegram.org) in a browser.
+2. Sign in with your Telegram phone number.
+3. Enter the login code Telegram sends you.
+4. Open **API development tools**.
+5. Create an app (title + short name).
+6. Copy:
+	- `App api_id` → use as **API ID** in this app
+	- `App api_hash` → use as **API Hash** in this app
+
 | Setting | What it is | Where / how to get it |
 |---|---|---|
 | **API ID** | Numeric ID Telegram gives your "app" | [my.telegram.org](https://my.telegram.org) → log in → API development tools → `App api_id` |
@@ -42,19 +55,29 @@ Install the APK, open the app. The settings screen lets you enter all Telegram c
 | **Phone Number** | Your Telegram account phone | International format: `+79161234567` |
 | **Group / Chat ID** | Numeric ID of the target Telegram group | Add `@RawDataBot` to the group — it replies with the chat ID (e.g. `-1001234567890`). Remove the bot after. |
 | **Topic / Thread ID** | ID of a topic inside a group with Topics enabled | `0` if no topics. Otherwise open the topic in [web.telegram.org](https://web.telegram.org), URL looks like `#-1001234567890_456` — `456` is the topic ID. |
-| **Auth Code** | One-time login code | Leave blank first. Save settings → Telegram sends a code to your phone/other clients → enter it → Save again. |
+| **Auth Code** | One-time login code | Leave blank first. Start authentication → Telegram sends a code to your phone/other clients → enter it → Submit Code. |
 | **2FA Password** | Two-step verification password | Only if you have 2FA enabled in Telegram. Otherwise leave blank. |
 
-## First run
+## Onboarding flow (current UI)
 
 1. Install APK on your Android device.
-2. Open the app, fill in API ID, API Hash, Phone Number, Group ID (and Topic ID if needed).
-3. Tap **Save & Restart Service**.
-4. Telegram will send you an auth code — enter it in the Auth Code field, tap Save again.
-5. If you have 2FA — enter the password, tap Save again.
-6. Status should show "ready". Grant mic/Bluetooth permissions when prompted.
-7. In Android Settings → Apps → Default apps → Digital assistant, select this app.
-8. Long-press the media/assistant button to record, release to send.
+2. In **Telegram Authentication**:
+	- Enter API ID, API Hash, Phone Number.
+	- Tap **Start Authentication**.
+	- Enter auth code when prompted, then tap **Submit Code**.
+	- If your account has 2FA, enter password and submit (otherwise leave it empty).
+3. After auth is connected, use **Chat / Group Connection**:
+	- Enter Group / Chat ID (and Topic ID if needed).
+	- Tap **Connect Chat / Group**.
+4. In **Other settings**:
+	- Tap **Set as Default Assistant**.
+	- Configure **Use Bluetooth microphone** if needed.
+	- Tap **Finish setup**.
+5. Use **Record** or long-press media/assistant button to record and send voice.
+
+Notes:
+- Authentication and chat/group targeting are separate steps.
+- You can reopen any collapsed group to reconfigure and reconnect.
 
 ## Project structure
 
