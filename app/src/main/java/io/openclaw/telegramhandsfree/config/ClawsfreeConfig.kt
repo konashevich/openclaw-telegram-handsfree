@@ -11,13 +11,13 @@ object ClawsfreeConfig {
         prefs = context.applicationContext.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
     }
 
-    val TELEGRAM_API_ID: Int get() = prefs.getInt("api_id", 31058922)
-    val TELEGRAM_API_HASH: String get() = prefs.getString("api_hash", "0be77c67e99960d0d2677963b25ddd55") ?: ""
-    val TELEGRAM_PHONE_NUMBER: String get() = prefs.getString("phone_number", "+61414739692") ?: ""
+    val TELEGRAM_API_ID: Int get() = prefs.getInt("api_id", 0)
+    val TELEGRAM_API_HASH: String get() = prefs.getString("api_hash", "") ?: ""
+    val TELEGRAM_PHONE_NUMBER: String get() = prefs.getString("phone_number", "") ?: ""
     val TELEGRAM_AUTH_CODE: String get() = prefs.getString("auth_code", "") ?: ""
     val TELEGRAM_2FA_PASSWORD: String get() = prefs.getString("2fa_password", "") ?: ""
-    val TELEGRAM_GROUP_ID: Long get() = prefs.getLong("group_id", -1003830049605L)
-    val TELEGRAM_TOPIC_ID: Long get() = prefs.getLong("topic_id", 1L)
+    val TELEGRAM_GROUP_ID: Long get() = prefs.getLong("group_id", 0L)
+    val TELEGRAM_TOPIC_ID: Long get() = prefs.getLong("topic_id", 0L)
     val USE_BLUETOOTH_MIC: Boolean get() = prefs.getBoolean("use_bluetooth_mic", false)
     const val SILENCE_TIMEOUT_MS = 20_000L
     const val MAX_RECORDING_MS = 120_000L  // 2 minute hard cap

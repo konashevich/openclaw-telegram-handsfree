@@ -108,6 +108,7 @@ class TdLibReflectiveBridge(
         when (update.javaClass.simpleName) {
             "UpdateAuthorizationState" -> handleAuthorizationUpdate(update)
             "UpdateNewMessage" -> handleNewMessage(update)
+            "UpdateChatLastMessage" -> handleChatLastMessage(update)
             "UpdateFile" -> handleUpdateFile(update)
         }
     }
@@ -271,24 +272,66 @@ class TdLibReflectiveBridge(
 
     private fun handleNewMessage(update: Any) {
         val message = getFieldValueAny(update, "message") ?: return
+        processIncomingMessage(message, source = "UpdateNewMessage")
+    }
+
+    private fun handleChatLastMessage(update: Any) {
+        val message = getFieldValueAny(update, "lastMessage", "last_message") ?: return
+        processIncomingMessage(message, source = "UpdateChatLastMessage")
+    }
+
+    private fun processIncomingMessage(message: Any, source: String) {
         val chatId = ((getFieldValueAny(message, "chatId", "chat_id") as? Number)?.toLong()) ?: return
-        if (chatId != ClawsfreeConfig.TELEGRAM_GROUP_ID) return
+        val targetChatId = ClawsfreeConfig.TELEGRAM_GROUP_ID
+        if (chatId != targetChatId) {
+            Log.i(TAG, "Ignoring message source=$source from chatId=$chatId, targetChatId=$targetChatId")
+            return
+        }
 
         // Skip messages sent by this app (our own outgoing voice notes)
         val isOutgoing = (getFieldValueAny(message, "isOutgoing", "is_outgoing") as? Boolean) == true
-        if (isOutgoing) return
+        if (isOutgoing) {
+            Log.i(TAG, "Ignoring outgoing message source=$source in target chatId=$chatId")
+            return
+        }
 
         val content = getFieldValueAny(message, "content") ?: return
-        if (content.javaClass.simpleName != "MessageVoiceNote") return
-
+        val contentType = content.javaClass.simpleName
         val senderId = extractSenderUserId(message)
-        val voiceNote = getFieldValueAny(content, "voiceNote", "voice_note") ?: return
-        val voiceFile = getFieldValueAny(voiceNote, "voice") ?: return
 
-        val fileId = (getFieldValueAny(voiceFile, "id") as? Number)?.toInt() ?: return
-        val local = getFieldValueAny(voiceFile, "local")
+        val mediaFile = when (content.javaClass.simpleName) {
+            "MessageVoiceNote" -> {
+                val voiceNote = getFieldValueAny(content, "voiceNote", "voice_note") ?: return
+                getFieldValueAny(voiceNote, "voice") ?: return
+            }
+            "MessageAudio" -> {
+                val audio = getFieldValueAny(content, "audio") ?: return
+                getFieldValueAny(audio, "audio") ?: return
+            }
+            "MessageDocument" -> {
+                val messageDocument = getFieldValueAny(content, "document") ?: return
+                val mime = (getFieldValueAny(messageDocument, "mimeType", "mime_type") as? String).orEmpty()
+                if (!mime.startsWith("audio/")) {
+                    Log.i(TAG, "Ignoring MessageDocument source=$source with non-audio mimeType=$mime")
+                    return
+                }
+                getFieldValueAny(messageDocument, "document") ?: return
+            }
+            else -> {
+                Log.i(TAG, "Ignoring non-media contentType=$contentType source=$source chatId=$chatId")
+                return
+            }
+        }
+
+        val fileId = (getFieldValueAny(mediaFile, "id") as? Number)?.toInt() ?: run {
+            Log.w(TAG, "Unable to resolve TDLib file id for source=$source contentType=$contentType chatId=$chatId")
+            return
+        }
+        val local = getFieldValueAny(mediaFile, "local")
         val path = (local?.let { getFieldValueAny(it, "path") } as? String).orEmpty()
         val downloaded = (local?.let { getFieldValueAny(it, "isDownloadingCompleted", "is_downloading_completed") } as? Boolean) == true
+
+        Log.i(TAG, "Incoming media source=$source contentType=$contentType chatId=$chatId fileId=$fileId downloaded=$downloaded path=${path.ifBlank { "<empty>" }}")
 
         if (downloaded && path.isNotBlank()) {
             onIncomingVoice(chatId, File(path), senderId)
@@ -310,6 +353,7 @@ class TdLibReflectiveBridge(
 
         if (downloaded && path.isNotBlank()) {
             pendingVoiceDownloads.remove(fileId)
+            Log.i(TAG, "Downloaded pending media fileId=$fileId path=$path")
             onIncomingVoice(pending.chatId, File(path), pending.senderUserId)
         }
     }

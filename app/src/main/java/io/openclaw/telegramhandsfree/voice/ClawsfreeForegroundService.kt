@@ -40,6 +40,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import java.io.File
 
 class ClawsfreeForegroundService : Service() {
     private val serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
@@ -57,6 +58,8 @@ class ClawsfreeForegroundService : Service() {
     private var mediaKeyKeepAliveTrack: AudioTrack? = null
     private val mainHandler = Handler(Looper.getMainLooper())
     private var lastHandledMediaKeyAtMs: Long = 0L
+    private var awaitingReplyPlayback: Boolean = false
+    private var pendingReplyFile: File? = null
 
     override fun onCreate() {
         super.onCreate()
@@ -90,7 +93,21 @@ class ClawsfreeForegroundService : Service() {
 
         repository.startMonitoring { incomingVoice ->
             if (incomingVoice.chatId == ClawsfreeConfig.TELEGRAM_GROUP_ID) {
+                if (!awaitingReplyPlayback) {
+                    Log.i(TAG, "Ignoring incoming media because no reply is currently awaited")
+                    return@startMonitoring
+                }
+
+                if (recorder.isRecording) {
+                    pendingReplyFile = incomingVoice.file
+                    Log.i(TAG, "Queued incoming media for playback after recording stops")
+                    return@startMonitoring
+                }
+
                 playbackManager.playFile(incomingVoice.file)
+                awaitingReplyPlayback = false
+                pendingReplyFile = null
+                Log.i(TAG, "Played incoming reply media and cleared awaited-reply state")
             }
         }
 
@@ -178,6 +195,7 @@ class ClawsfreeForegroundService : Service() {
         if (useBt) startBluetoothSco()
         requestAudioFocus()
         startMediaKeyKeepAlivePlayback()
+        playbackManager.stop()
 
         beepStartRecording()
         recorder.start()
@@ -201,9 +219,22 @@ class ClawsfreeForegroundService : Service() {
         updatePlaybackState(isRecording = false)
         updateNotification(isRecording = false)
         broadcastActivity("sending")
+        awaitingReplyPlayback = true
+        pendingReplyFile = null
+        Log.i(TAG, "Send cycle started; awaiting next incoming reply playback")
 
         serviceScope.launch {
             repository.sendVoiceMessage(recordingFile)
+
+            pendingReplyFile?.let { queuedFile ->
+                if (!recorder.isRecording) {
+                    playbackManager.playFile(queuedFile)
+                    awaitingReplyPlayback = false
+                    pendingReplyFile = null
+                    Log.i(TAG, "Played queued incoming media after send completion")
+                }
+            }
+
             broadcastActivity("sent")
             // After a pause, go back to idle
             mainHandler.postDelayed({ broadcastActivity("idle") }, 2000)
