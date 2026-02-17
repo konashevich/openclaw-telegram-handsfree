@@ -20,7 +20,7 @@ object ClawsfreeConfig {
     val TELEGRAM_TOPIC_ID: Long get() = prefs.getLong("topic_id", 0L)
     val USE_BLUETOOTH_MIC: Boolean get() = prefs.getBoolean("use_bluetooth_mic", false)
     const val SILENCE_TIMEOUT_MS = 20_000L
-    const val MAX_RECORDING_MS = 120_000L  // 2 minute hard cap
+    const val MAX_RECORDING_MS = 600_000L  // 10 minute hard cap
 
     fun setBluetoothMic(enabled: Boolean) {
         prefs.edit().putBoolean("use_bluetooth_mic", enabled).apply()
