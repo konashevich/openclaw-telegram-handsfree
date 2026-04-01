@@ -21,11 +21,13 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.LinearLayout
+import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
 import com.google.android.material.switchmaterial.SwitchMaterial
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.doOnLayout
@@ -58,6 +60,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var connectButton: Button
     private lateinit var connectChatButton: Button
     private lateinit var switchBluetoothMic: SwitchMaterial
+    private lateinit var themeModeGroup: RadioGroup
     private lateinit var mainRoot: View
     private lateinit var topBar: View
     private lateinit var setupContainer: View
@@ -100,6 +103,7 @@ class MainActivity : AppCompatActivity() {
     private var authPhase: String = "idle"
     private var currentActivityState: String = "idle"
     private var isSettingsMenuVisible: Boolean = false
+    private var isBindingThemeSelection: Boolean = false
 
     private val requestPermissionsLauncher =
         registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { results ->
@@ -167,6 +171,7 @@ class MainActivity : AppCompatActivity() {
         connectButton = findViewById(R.id.connect_button)
         connectChatButton = findViewById(R.id.connect_chat_button)
         switchBluetoothMic = findViewById(R.id.switch_bluetooth_mic)
+        themeModeGroup = findViewById(R.id.theme_mode_group)
 
         authGroupHeader = findViewById(R.id.auth_group_header)
         authGroupContent = findViewById(R.id.auth_group_content)
@@ -218,6 +223,7 @@ class MainActivity : AppCompatActivity() {
         switchBluetoothMic.setOnCheckedChangeListener { _, isChecked ->
             ClawsfreeConfig.setBluetoothMic(isChecked)
         }
+        bindThemeSelection()
 
         authGroupHeader.setOnClickListener {
             setAuthGroupCollapsed(collapsed = authGroupContent.visibility == View.VISIBLE)
@@ -344,6 +350,35 @@ class MainActivity : AppCompatActivity() {
             btnRecordToggle.layoutParams = params
         }
         btnRecordToggle.radius = targetSize / 2f
+    }
+
+    private fun bindThemeSelection() {
+        isBindingThemeSelection = true
+        themeModeGroup.check(themeModeButtonId(ClawsfreeConfig.THEME_MODE))
+        isBindingThemeSelection = false
+
+        themeModeGroup.setOnCheckedChangeListener { _, checkedId ->
+            if (isBindingThemeSelection || checkedId == View.NO_ID) return@setOnCheckedChangeListener
+
+            val themeMode = when (checkedId) {
+                R.id.theme_mode_light -> ClawsfreeConfig.THEME_LIGHT
+                R.id.theme_mode_dark -> ClawsfreeConfig.THEME_DARK
+                else -> ClawsfreeConfig.THEME_AUTO
+            }
+
+            if (themeMode == ClawsfreeConfig.THEME_MODE) return@setOnCheckedChangeListener
+
+            ClawsfreeConfig.setThemeMode(themeMode)
+            AppCompatDelegate.setDefaultNightMode(ClawsfreeConfig.resolveNightMode(themeMode))
+        }
+    }
+
+    private fun themeModeButtonId(themeMode: String): Int {
+        return when (themeMode) {
+            ClawsfreeConfig.THEME_LIGHT -> R.id.theme_mode_light
+            ClawsfreeConfig.THEME_DARK -> R.id.theme_mode_dark
+            else -> R.id.theme_mode_auto
+        }
     }
 
     private fun toggleRecording() {

@@ -14,6 +14,10 @@
     <string name="chat_group_subtitle">Choose the group or topic that should receive the voice message.</string>
     <string name="other_settings_header">Triggers &amp; audio</string>
     <string name="other_settings_subtitle">Choose how recording starts. Assistant setup is recommended, but Bluetooth media buttons and the dashboard button still work.</string>
+    <string name="label_theme_mode">Theme</string>
+    <string name="theme_mode_auto">Auto</string>
+    <string name="theme_mode_light">Light</string>
+    <string name="theme_mode_dark">Dark</string>
     <string name="hint_api_id">API ID</string>
     <string name="hint_api_hash">API Hash</string>
     <string name="hint_phone">Phone Number (+1234…)</string>

@@ -487,6 +487,41 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="12dp"
                                 android:text="@string/label_bluetooth_mic" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:text="@string/label_theme_mode"
+                                android:textColor="@color/clawsfree_text_primary"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <RadioGroup
+                                android:id="@+id/theme_mode_group"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:orientation="vertical">
+
+                                <com.google.android.material.radiobutton.MaterialRadioButton
+                                    android:id="@+id/theme_mode_auto"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/theme_mode_auto" />
+
+                                <com.google.android.material.radiobutton.MaterialRadioButton
+                                    android:id="@+id/theme_mode_light"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/theme_mode_light" />
+
+                                <com.google.android.material.radiobutton.MaterialRadioButton
+                                    android:id="@+id/theme_mode_dark"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/theme_mode_dark" />
+                            </RadioGroup>
                         </LinearLayout>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>

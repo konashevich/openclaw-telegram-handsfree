@@ -2,9 +2,13 @@ package io.openclaw.telegramhandsfree.config
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.appcompat.app.AppCompatDelegate
 
 object ClawsfreeConfig {
     private const val PREFS_NAME = "clawsfree_config"
+    const val THEME_AUTO = "auto"
+    const val THEME_LIGHT = "light"
+    const val THEME_DARK = "dark"
     private lateinit var prefs: SharedPreferences
 
     fun init(context: Context) {
@@ -19,11 +23,24 @@ object ClawsfreeConfig {
     val TELEGRAM_GROUP_ID: Long get() = prefs.getLong("group_id", 0L)
     val TELEGRAM_TOPIC_ID: Long get() = prefs.getLong("topic_id", 0L)
     val USE_BLUETOOTH_MIC: Boolean get() = prefs.getBoolean("use_bluetooth_mic", false)
+    val THEME_MODE: String get() = prefs.getString("theme_mode", THEME_AUTO) ?: THEME_AUTO
     const val SILENCE_TIMEOUT_MS = 20_000L
     const val MAX_RECORDING_MS = 600_000L  // 10 minute hard cap
 
     fun setBluetoothMic(enabled: Boolean) {
         prefs.edit().putBoolean("use_bluetooth_mic", enabled).apply()
+    }
+
+    fun setThemeMode(themeMode: String) {
+        prefs.edit().putString("theme_mode", themeMode).apply()
+    }
+
+    fun resolveNightMode(themeMode: String = THEME_MODE): Int {
+        return when (themeMode) {
+            THEME_LIGHT -> AppCompatDelegate.MODE_NIGHT_NO
+            THEME_DARK -> AppCompatDelegate.MODE_NIGHT_YES
+            else -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+        }
     }
 
     fun save(
