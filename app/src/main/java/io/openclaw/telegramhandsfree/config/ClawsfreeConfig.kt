@@ -6,6 +6,11 @@ import androidx.appcompat.app.AppCompatDelegate
 
 object ClawsfreeConfig {
     private const val PREFS_NAME = "clawsfree_config"
+    private const val ONBOARDING_PREFS_NAME = "onboarding_state"
+    private const val SERVICE_STATUS_PREFS_NAME = "clawsfree_service_status"
+    private const val KEY_CHAT_CONNECTED = "chat_connected"
+    private const val KEY_SETUP_COMPLETED = "setup_completed"
+    private const val KEY_LAST_STATUS = "last_status"
     const val THEME_AUTO = "auto"
     const val THEME_LIGHT = "light"
     const val THEME_DARK = "dark"
@@ -35,6 +40,25 @@ object ClawsfreeConfig {
         prefs.edit().putString("theme_mode", themeMode).apply()
     }
 
+    fun isChatConnectionConfirmed(context: Context): Boolean {
+        return onboardingPrefs(context).getBoolean(KEY_CHAT_CONNECTED, false)
+    }
+
+    fun isSetupCompleted(context: Context): Boolean {
+        return onboardingPrefs(context).getBoolean(KEY_SETUP_COMPLETED, false)
+    }
+
+    fun isTelegramConnected(context: Context): Boolean {
+        return serviceStatusPrefs(context).getString(KEY_LAST_STATUS, null) == "connected"
+    }
+
+    fun canStartRecording(context: Context): Boolean {
+        return isChatConnectionConfirmed(context) &&
+            isSetupCompleted(context) &&
+            isTelegramConnected(context) &&
+            TELEGRAM_GROUP_ID != 0L
+    }
+
     fun resolveNightMode(themeMode: String = THEME_MODE): Int {
         return when (themeMode) {
             THEME_LIGHT -> AppCompatDelegate.MODE_NIGHT_NO
@@ -61,5 +85,13 @@ object ClawsfreeConfig {
             .putLong("group_id", groupId)
             .putLong("topic_id", topicId)
             .apply()
+    }
+
+    private fun onboardingPrefs(context: Context): SharedPreferences {
+        return context.applicationContext.getSharedPreferences(ONBOARDING_PREFS_NAME, Context.MODE_PRIVATE)
+    }
+
+    private fun serviceStatusPrefs(context: Context): SharedPreferences {
+        return context.applicationContext.getSharedPreferences(SERVICE_STATUS_PREFS_NAME, Context.MODE_PRIVATE)
     }
 }

@@ -6,6 +6,8 @@
     <string name="setup_badge">Setup</string>
     <string name="setup_title">Make the app ready once</string>
     <string name="setup_subtitle">Telegram and trigger settings live here. After setup, the dashboard becomes the main screen and these controls stay behind the settings button.</string>
+    <string name="btn_import_settings_json">Import settings JSON</string>
+    <string name="import_settings_hint">Load Telegram and chat settings from a local JSON file on this phone.</string>
     <string name="step1_header">1. Telegram Connection</string>
     <string name="step1_subtitle">Enter your Telegram API credentials and target group.</string>
     <string name="auth_group_header">Telegram Authentication</string>
@@ -43,8 +45,10 @@
     <string name="assistant_hint_active">Clawsfree is selected as the assistant. If Bluetooth long-press does not work on this phone, try the assistant key, a media/play button, or the dashboard button.</string>
     <string name="cd_open_settings">Open settings</string>
     <string name="cd_close_settings">Close settings</string>
-    <string name="setup_finish_requires_chat">Connect a chat or group before leaving setup.</string>
+    <string name="setup_finish_requires_chat">Complete Telegram authentication and connect a chat before leaving setup.</string>
     <string name="setup_complete_message">Setup saved. The dashboard is ready.</string>
+    <string name="settings_import_success">Settings imported. Review the fields, start authentication, then connect the chat.</string>
+    <string name="settings_import_error">Import failed: %1$s</string>
     <string name="dashboard_status_label">System status</string>
     <string name="status_setup_needed">Setup not finished yet.</string>
     <string name="dashboard_connection_ready">Chat linked</string>
@@ -55,6 +59,7 @@
     <string name="status_waiting_code">Waiting for auth code</string>
     <string name="status_waiting_password">Waiting for 2FA password</string>
     <string name="status_connected">Connected. Service running.</string>
+    <string name="status_disconnected">Telegram disconnected. Reconnect to continue.</string>
     <string name="status_chat_connected">Chat / Group connected.</string>
     <string name="status_error">Error: %1$s</string>
     <string name="notif_channel_name">Clawsfree Handsfree</string>
@@ -64,7 +69,7 @@
     <string name="notif_title_recording">Recording to Clawsfree</string>
     <string name="notif_text_recording">Tap the app button or a media key to stop and send.</string>
     <string name="activity_idle">Ready to record</string>
-    <string name="activity_idle_hint_setup">Finish chat setup first. Then you can start from the assistant trigger, a Bluetooth media/play button, or the dashboard button.</string>
+    <string name="activity_idle_hint_setup">Finish Telegram setup first. Then you can start from the assistant trigger, a Bluetooth media/play button, or the dashboard button.</string>
     <string name="activity_idle_hint_no_assistant">Use the dashboard button now. For hands-free start, enable the assistant trigger or try your Bluetooth media/play button.</string>
     <string name="activity_idle_hint_ready">Start with your assistant trigger, a Bluetooth media/play button, or the dashboard button.</string>
     <string name="activity_recording">Recording…</string>
@@ -80,7 +85,7 @@
     <string name="record_button_title_recording">Stop &amp; send</string>
     <string name="record_button_title_sending">Sending…</string>
     <string name="record_button_hint_idle">Assistant, media button, or touch.</string>
-    <string name="record_button_hint_disabled">Connect Telegram and the target chat first.</string>
+    <string name="record_button_hint_disabled">Complete Telegram authentication and connect the target chat first.</string>
     <string name="record_button_hint_recording">Tap again or use your media button to send.</string>
     <string name="record_button_hint_sending">Keep the phone connected until the upload finishes.</string>
 </resources>

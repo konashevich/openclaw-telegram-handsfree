@@ -39,6 +39,7 @@ obj/
 keystore.properties
 secret.properties
 .env
+/clawsfree-settings.local.json
 
 # Firebase / Google services (contains credentials)
 google-services.json

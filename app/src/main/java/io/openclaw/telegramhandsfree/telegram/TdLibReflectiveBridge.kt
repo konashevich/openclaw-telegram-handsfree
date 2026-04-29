@@ -72,6 +72,35 @@ class TdLibReflectiveBridge(
         }
     }
 
+    fun close() {
+        val client = clientInstance
+        if (client != null) {
+            runCatching {
+                val closeRequest = newTdApiObject("Close")
+                sendFunction(client, closeRequest) { response ->
+                    if (response.javaClass.simpleName == "Error") {
+                        Log.w(TAG, "TDLib close request failed: ${getFieldValue(response, "message")}")
+                    }
+                }
+            }.onFailure {
+                Log.w(TAG, "Failed to send TDLib close request: ${it.message}")
+                runCatching {
+                    val closeMethod = client.javaClass.methods.firstOrNull {
+                        it.name == "close" && it.parameterCount == 0
+                    }
+                    closeMethod?.invoke(client)
+                }.onFailure { fallbackError ->
+                    Log.w(TAG, "Fallback TDLib client close failed: ${fallbackError.message}")
+                }
+            }
+        }
+
+        pendingVoiceDownloads.clear()
+        clientInstance = null
+        tdApiClass = null
+        clientClass = null
+    }
+
     fun sendVoiceMessage(chatId: Long, file: File): Boolean {
         val client = clientInstance ?: return false
         return runCatching {

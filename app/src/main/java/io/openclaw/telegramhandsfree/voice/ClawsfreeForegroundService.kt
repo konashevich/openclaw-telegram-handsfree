@@ -177,6 +177,9 @@ class ClawsfreeForegroundService : Service() {
         mediaSession = null
         if (::recorder.isInitialized) recorder.release()
         if (::playbackManager.isInitialized) playbackManager.stop()
+        if (::repository.isInitialized) repository.shutdown()
+        broadcastStatus("idle")
+        broadcastActivity("idle")
         serviceScope.cancel()
         coreReady = false
         super.onDestroy()
@@ -185,6 +188,11 @@ class ClawsfreeForegroundService : Service() {
     private fun startRecording() {
         if (!coreReady) return
         if (recorder.isRecording) return
+        if (!ClawsfreeConfig.canStartRecording(this)) {
+            Log.i(TAG, "Ignoring startRecording because setup is not completed")
+            broadcastActivity("idle")
+            return
+        }
 
         try {
             startInForeground(isRecording = true)

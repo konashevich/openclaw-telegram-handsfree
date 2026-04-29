@@ -4,6 +4,7 @@ import android.app.Activity
 import android.os.Bundle
 import android.util.Log
 import androidx.core.content.ContextCompat
+import io.openclaw.telegramhandsfree.config.ClawsfreeConfig
 import io.openclaw.telegramhandsfree.voice.ClawsfreeForegroundService
 
 /**
@@ -18,6 +19,12 @@ class AssistActivity : Activity() {
         super.onCreate(savedInstanceState)
 
         Log.i(TAG, "AssistActivity launched with action=${intent?.action}")
+
+        if (!ClawsfreeConfig.canStartRecording(this)) {
+            Log.i(TAG, "Ignoring assist trigger because setup is not completed")
+            finish()
+            return
+        }
 
         // Fire-and-forget: tell the foreground service to start recording.
         // The VoiceInteractionSession.onShow() does the same thing so this is

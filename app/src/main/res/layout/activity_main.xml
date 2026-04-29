@@ -181,6 +181,23 @@
                                 android:textColor="@color/clawsfree_text_muted"
                                 android:textSize="14sp" />
 
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/import_settings_button"
+                                style="@style/Widget.Material3.Button.TonalButton"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:text="@string/btn_import_settings_json"
+                                app:cornerRadius="18dp" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:text="@string/import_settings_hint"
+                                android:textColor="@color/clawsfree_text_muted"
+                                android:textSize="13sp" />
+
                             <com.google.android.material.textfield.TextInputLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"

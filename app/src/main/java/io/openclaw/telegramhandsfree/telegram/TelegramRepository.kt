@@ -30,6 +30,10 @@ class TelegramRepository(
         tdLibClient.refreshTargetChatBinding()
     }
 
+    fun shutdown() {
+        tdLibClient.shutdown()
+    }
+
     suspend fun sendVoiceMessage(file: File) {
         tdLibClient.sendGroupVoiceMessage(
             groupId = ClawsfreeConfig.TELEGRAM_GROUP_ID,

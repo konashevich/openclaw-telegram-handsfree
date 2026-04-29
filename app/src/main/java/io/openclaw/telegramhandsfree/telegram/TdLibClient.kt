@@ -126,6 +126,13 @@ class TdLibClient(
         Log.i(TAG, "Requested TDLib target chat refresh for groupId=${ClawsfreeConfig.TELEGRAM_GROUP_ID}")
     }
 
+    fun shutdown() {
+        incomingHandler = null
+        bridge?.close()
+        bridge = null
+        _status.value = TelegramStatus.Idle
+    }
+
     suspend fun sendGroupVoiceMessage(groupId: Long, file: File) {
         if (_status.value != TelegramStatus.Ready) {
             outbox.enqueue(file)

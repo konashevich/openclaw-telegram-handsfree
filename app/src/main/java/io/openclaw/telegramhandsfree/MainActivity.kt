@@ -39,9 +39,22 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import io.openclaw.telegramhandsfree.config.ClawsfreeConfig
 import io.openclaw.telegramhandsfree.voice.ClawsfreeForegroundService
+import org.json.JSONObject
 import kotlin.math.min
 
 class MainActivity : AppCompatActivity() {
+
+    private data class ImportedSettings(
+        val apiId: Int,
+        val apiHash: String,
+        val phoneNumber: String,
+        val authCode: String,
+        val twoFaPassword: String,
+        val groupId: Long,
+        val topicId: Long,
+        val useBluetoothMic: Boolean,
+        val themeMode: String
+    )
 
     private data class AssistantState(
         val roleHeld: Boolean,
@@ -59,6 +72,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var inputTopicId: TextInputEditText
     private lateinit var connectButton: Button
     private lateinit var connectChatButton: Button
+    private lateinit var importSettingsButton: Button
     private lateinit var switchBluetoothMic: SwitchMaterial
     private lateinit var themeModeGroup: RadioGroup
     private lateinit var mainRoot: View
@@ -137,6 +151,31 @@ class MainActivity : AppCompatActivity() {
             openManualAssistantSettings(manualAssistantSetupMessage(includeFailurePrefix = true))
         }
 
+    private val importSettingsLauncher =
+        registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
+            if (uri == null) return@registerForActivityResult
+
+            runCatching {
+                contentResolver.takePersistableUriPermission(
+                    uri,
+                    Intent.FLAG_GRANT_READ_URI_PERMISSION
+                )
+            }
+
+            runCatching { importSettingsFromUri(uri) }
+                .onSuccess {
+                    showTransientMessage(getString(R.string.settings_import_success))
+                }
+                .onFailure { error ->
+                    showTransientMessage(
+                        getString(
+                            R.string.settings_import_error,
+                            error.message ?: "Unknown error"
+                        )
+                    )
+                }
+        }
+
     private val statusReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
             when (intent.action) {
@@ -170,6 +209,7 @@ class MainActivity : AppCompatActivity() {
         inputTopicId = findViewById(R.id.input_topic_id)
         connectButton = findViewById(R.id.connect_button)
         connectChatButton = findViewById(R.id.connect_chat_button)
+        importSettingsButton = findViewById(R.id.import_settings_button)
         switchBluetoothMic = findViewById(R.id.switch_bluetooth_mic)
         themeModeGroup = findViewById(R.id.theme_mode_group)
 
@@ -237,6 +277,7 @@ class MainActivity : AppCompatActivity() {
 
         connectButton.setOnClickListener { onAuthConnectTapped() }
         connectChatButton.setOnClickListener { onChatConnectTapped() }
+        importSettingsButton.setOnClickListener { onImportSettingsTapped() }
         submitCodeButton.setOnClickListener { onSubmitCodeTapped() }
         btnSetAssistant.setOnClickListener { openAssistantSettings() }
         btnFinishSetup.setOnClickListener { onFinishSetupTapped() }
@@ -353,9 +394,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun bindThemeSelection() {
-        isBindingThemeSelection = true
-        themeModeGroup.check(themeModeButtonId(ClawsfreeConfig.THEME_MODE))
-        isBindingThemeSelection = false
+        syncThemeSelection()
 
         themeModeGroup.setOnCheckedChangeListener { _, checkedId ->
             if (isBindingThemeSelection || checkedId == View.NO_ID) return@setOnCheckedChangeListener
@@ -371,6 +410,12 @@ class MainActivity : AppCompatActivity() {
             ClawsfreeConfig.setThemeMode(themeMode)
             AppCompatDelegate.setDefaultNightMode(ClawsfreeConfig.resolveNightMode(themeMode))
         }
+    }
+
+    private fun syncThemeSelection() {
+        isBindingThemeSelection = true
+        themeModeGroup.check(themeModeButtonId(ClawsfreeConfig.THEME_MODE))
+        isBindingThemeSelection = false
     }
 
     private fun themeModeButtonId(themeMode: String): Int {
@@ -419,7 +464,7 @@ class MainActivity : AppCompatActivity() {
         btnFinishSetup.text = getString(
             if (isSetupCompleted()) R.string.btn_back_dashboard else R.string.btn_open_dashboard
         )
-        val canLeaveSetup = isSetupCompleted() || isChatConnected
+        val canLeaveSetup = isSetupCompleted() || (isChatConnected && isAuthConnected)
         btnFinishSetup.isEnabled = canLeaveSetup
         btnFinishSetup.alpha = if (canLeaveSetup) 1f else 0.5f
 
@@ -482,37 +527,172 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateRecordButtonAppearance(state: String) {
+        val recordingReady = ClawsfreeConfig.canStartRecording(this)
         val backgroundColor = when {
-            !isChatConnected -> R.color.clawsfree_warning_text
+            !recordingReady -> R.color.clawsfree_warning_text
             state == "recording" -> R.color.clawsfree_record_recording
             state == "sending" -> R.color.clawsfree_record_sending
             else -> R.color.clawsfree_record_idle
         }
         btnRecordToggle.setCardBackgroundColor(ContextCompat.getColor(this, backgroundColor))
-        btnRecordToggle.alpha = if (isChatConnected) 1f else 0.72f
-        btnRecordToggle.isEnabled = isChatConnected
+        btnRecordToggle.alpha = if (recordingReady) 1f else 0.72f
+        btnRecordToggle.isEnabled = recordingReady
     }
 
     private fun showTransientMessage(message: String) {
         Snackbar.make(mainRoot, message, Snackbar.LENGTH_SHORT).show()
     }
 
+    private fun onImportSettingsTapped() {
+        importSettingsLauncher.launch(arrayOf("*/*"))
+    }
+
     private fun loadSettingsIntoFields() {
         val apiId = ClawsfreeConfig.TELEGRAM_API_ID
-        if (apiId > 0) inputApiId.setText(apiId.toString())
+        inputApiId.setText(apiId.takeIf { it > 0 }?.toString().orEmpty())
         inputApiHash.setText(ClawsfreeConfig.TELEGRAM_API_HASH)
         inputPhone.setText(ClawsfreeConfig.TELEGRAM_PHONE_NUMBER)
         val groupId = ClawsfreeConfig.TELEGRAM_GROUP_ID
-        if (groupId != 0L) inputGroupId.setText(groupId.toString())
+        inputGroupId.setText(groupId.takeIf { it != 0L }?.toString().orEmpty())
         val topicId = ClawsfreeConfig.TELEGRAM_TOPIC_ID
-        if (topicId != 0L) inputTopicId.setText(topicId.toString())
+        inputTopicId.setText(topicId.takeIf { it != 0L }?.toString().orEmpty())
         inputAuthCode.setText(ClawsfreeConfig.TELEGRAM_AUTH_CODE)
         input2faPassword.setText(ClawsfreeConfig.TELEGRAM_2FA_PASSWORD)
+    }
+
+    private fun importSettingsFromUri(uri: Uri) {
+        val payload = contentResolver.openInputStream(uri)?.bufferedReader()?.use { reader ->
+            reader.readText()
+        } ?: error("Selected file could not be read")
+
+        val importedSettings = parseImportedSettings(JSONObject(payload))
+
+        stopService(Intent(this, ClawsfreeForegroundService::class.java))
+
+        ClawsfreeConfig.save(
+            apiId = importedSettings.apiId,
+            apiHash = importedSettings.apiHash,
+            phoneNumber = importedSettings.phoneNumber,
+            authCode = importedSettings.authCode,
+            twoFaPassword = importedSettings.twoFaPassword,
+            groupId = importedSettings.groupId,
+            topicId = importedSettings.topicId
+        )
+        ClawsfreeConfig.setBluetoothMic(importedSettings.useBluetoothMic)
+        ClawsfreeConfig.setThemeMode(importedSettings.themeMode)
+        AppCompatDelegate.setDefaultNightMode(
+            ClawsfreeConfig.resolveNightMode(importedSettings.themeMode)
+        )
+
+        loadSettingsIntoFields()
+        switchBluetoothMic.isChecked = importedSettings.useBluetoothMic
+        syncThemeSelection()
+        resetSetupStateAfterImport()
+        setAuthGroupCollapsed(collapsed = false)
+        setChatGroupCollapsed(collapsed = false)
+    }
+
+    private fun parseImportedSettings(json: JSONObject): ImportedSettings {
+        val apiId = json.firstInt("api_id", "apiId") ?: 0
+        val apiHash = json.firstString("api_hash", "apiHash").orEmpty()
+        val phoneNumber = json.firstString("phone_number", "phone", "Phone Number").orEmpty()
+        val authCode = json.firstString("auth_code", "authCode").orEmpty()
+        val twoFaPassword = json.firstString("2fa_password", "two_fa_password", "twoFaPassword")
+            .orEmpty()
+        val groupId = json.firstLong("group_id", "groupId", "Group_ID") ?: 0L
+        val topicId = json.firstLong("topic_id", "topicId", "thread_id", "threadId", "Thread_ID")
+            ?: 0L
+        val useBluetoothMic = json.firstBoolean("use_bluetooth_mic", "useBluetoothMic")
+            ?: ClawsfreeConfig.USE_BLUETOOTH_MIC
+        val themeMode = json.firstString("theme_mode", "themeMode")
+            ?.lowercase()
+            ?.takeIf { it == ClawsfreeConfig.THEME_AUTO || it == ClawsfreeConfig.THEME_LIGHT || it == ClawsfreeConfig.THEME_DARK }
+            ?: ClawsfreeConfig.THEME_MODE
+
+        if (apiId <= 0 || apiHash.isBlank() || phoneNumber.isBlank()) {
+            error("JSON must include api_id, api_hash, and phone_number")
+        }
+
+        return ImportedSettings(
+            apiId = apiId,
+            apiHash = apiHash,
+            phoneNumber = phoneNumber,
+            authCode = authCode,
+            twoFaPassword = twoFaPassword,
+            groupId = groupId,
+            topicId = topicId,
+            useBluetoothMic = useBluetoothMic,
+            themeMode = themeMode
+        )
+    }
+
+    private fun resetSetupStateAfterImport() {
+        authPhase = "idle"
+        isAuthConnected = false
+        isChatConnected = false
+        currentActivityState = "idle"
+        setChatConnectionConfirmed(false)
+        setSetupCompleted(false)
+        authSection.visibility = View.GONE
+        setOtherSettingsVisible(false)
+        setOtherSettingsCollapsed(collapsed = true)
+        isSettingsMenuVisible = true
+        statusText.text = getString(R.string.status_setup_needed)
+
+        getSharedPreferences(ClawsfreeForegroundService.PREFS_NAME, MODE_PRIVATE)
+            .edit()
+            .remove(ClawsfreeForegroundService.KEY_LAST_STATUS)
+            .remove(ClawsfreeForegroundService.KEY_LAST_ACTIVITY)
+            .apply()
+
+        handleActivityState("idle")
+        updateRecordButtonVisibility()
+        updateUiMode()
+    }
+
+    private fun JSONObject.firstString(vararg keys: String): String? {
+        for (key in keys) {
+            val value = opt(key)
+            if (value != null && value != JSONObject.NULL) {
+                val text = value.toString().trim()
+                if (text.isNotEmpty()) return text
+            }
+        }
+        return null
+    }
+
+    private fun JSONObject.firstInt(vararg keys: String): Int? {
+        return firstString(*keys)?.toIntOrNull()
+    }
+
+    private fun JSONObject.firstLong(vararg keys: String): Long? {
+        return firstString(*keys)?.toLongOrNull()
+    }
+
+    private fun JSONObject.firstBoolean(vararg keys: String): Boolean? {
+        return firstString(*keys)?.lowercase()?.let { value ->
+            when (value) {
+                "true", "1", "yes", "on" -> true
+                "false", "0", "no", "off" -> false
+                else -> null
+            }
+        }
     }
 
     private fun handleServiceStatus(status: String) {
         val previousStatusText = statusText.text?.toString()
         when {
+            status == "idle" -> {
+                authPhase = "idle"
+                isAuthConnected = false
+                isChatConnected = isChatConnectionConfirmed()
+                statusText.text = when {
+                    isSetupCompleted() -> getString(R.string.status_disconnected)
+                    isChatConnected -> getString(R.string.status_chat_connected)
+                    else -> getString(R.string.status_setup_needed)
+                }
+                setOtherSettingsVisible(isChatConnected)
+            }
             status == "connected" -> {
                 authPhase = "connected"
                 isAuthConnected = true
@@ -522,9 +702,6 @@ class MainActivity : AppCompatActivity() {
                 setAuthGroupCollapsed(collapsed = true)
                 setChatGroupCollapsed(collapsed = isChatConnected)
                 setOtherSettingsVisible(isChatConnected)
-                updateRecordButtonVisibility()
-                updateAssistantButton()
-                updateUiMode()
                 // Show idle activity when first connected
                 if (activityText.text.isNullOrBlank()) {
                     handleActivityState("idle")
@@ -532,6 +709,7 @@ class MainActivity : AppCompatActivity() {
             }
             status == "connecting" -> {
                 authPhase = "connecting"
+                isAuthConnected = false
                 statusText.text = getString(R.string.status_connecting)
             }
             status == "waiting_code" -> {
@@ -548,6 +726,7 @@ class MainActivity : AppCompatActivity() {
             }
             status.startsWith("error:") -> {
                 authPhase = "error"
+                isAuthConnected = false
                 val reason = status.removePrefix("error:")
                 statusText.text = getString(R.string.status_error, reason)
                 if (previousStatusText != statusText.text.toString()) {
@@ -556,10 +735,11 @@ class MainActivity : AppCompatActivity() {
             }
             status.startsWith("needs_config:") -> {
                 authPhase = "needs_config"
+                isAuthConnected = false
                 statusText.text = getString(R.string.status_error, status.removePrefix("needs_config:"))
             }
         }
-        updateDashboardPills()
+        updateUiMode()
     }
 
     private fun handleActivityState(state: String) {
@@ -587,12 +767,13 @@ class MainActivity : AppCompatActivity() {
                 getString(R.string.activity_sent)
             }
             else -> {
-                recordButtonTitle.text = if (isChatConnected) {
+                val recordingReady = ClawsfreeConfig.canStartRecording(this)
+                recordButtonTitle.text = if (recordingReady) {
                     getString(R.string.record_button_title_idle)
                 } else {
                     getString(R.string.record_button_title_disabled)
                 }
-                recordButtonHint.text = if (isChatConnected) {
+                recordButtonHint.text = if (recordingReady) {
                     getString(R.string.record_button_hint_idle)
                 } else {
                     getString(R.string.record_button_hint_disabled)
@@ -815,7 +996,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun onFinishSetupTapped() {
-        if (!isSetupCompleted() && !isChatConnected) {
+        if (!isSetupCompleted() && (!isChatConnected || !isAuthConnected)) {
             showTransientMessage(getString(R.string.setup_finish_requires_chat))
             return
         }
@@ -953,7 +1134,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun idleActivityHint(assistantState: AssistantState): String {
         return when {
-            !isChatConnected -> getString(R.string.activity_idle_hint_setup)
+            !ClawsfreeConfig.canStartRecording(this) -> getString(R.string.activity_idle_hint_setup)
             !assistantState.isConfigured -> getString(R.string.activity_idle_hint_no_assistant)
             else -> getString(R.string.activity_idle_hint_ready)
         }

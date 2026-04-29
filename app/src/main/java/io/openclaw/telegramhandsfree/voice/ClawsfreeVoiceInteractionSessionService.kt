@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.service.voice.VoiceInteractionSession
 import android.service.voice.VoiceInteractionSessionService
 import androidx.core.content.ContextCompat
+import io.openclaw.telegramhandsfree.config.ClawsfreeConfig
 
 class ClawsfreeVoiceInteractionSessionService : VoiceInteractionSessionService() {
     override fun onNewSession(args: Bundle?): VoiceInteractionSession {
@@ -15,6 +16,10 @@ class ClawsfreeVoiceInteractionSessionService : VoiceInteractionSessionService()
 private class ClawsfreeVoiceInteractionSession(ctx: Context) : VoiceInteractionSession(ctx) {
     override fun onShow(args: Bundle?, showFlags: Int) {
         super.onShow(args, showFlags)
+        if (!ClawsfreeConfig.canStartRecording(context)) {
+            hide()
+            return
+        }
         // Tell the foreground service to start recording (no-op if already recording).
         ContextCompat.startForegroundService(
             context,

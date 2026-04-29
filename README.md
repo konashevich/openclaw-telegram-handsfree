@@ -35,6 +35,24 @@ You can get prebuilt TDLib Android artifacts from [tdlib/td releases](https://gi
 
 Install the APK, open the app. The settings screen lets you enter all Telegram connection parameters. No code editing needed.
 
+You can also import a local JSON file from inside the app. Tap **Import settings JSON** on the setup screen and choose a file from the phone.
+
+Example JSON:
+
+```json
+{
+	"api_id": 31058922,
+	"api_hash": "your_api_hash",
+	"phone_number": "+61414739692",
+	"group_id": -1003830049605,
+	"topic_id": 1,
+	"use_bluetooth_mic": false,
+	"theme_mode": "auto"
+}
+```
+
+Accepted aliases also include `phone`, `Phone Number`, `Group_ID`, `thread_id`, and `Thread_ID`.
+
 ### Get Telegram API ID and API Hash
 
 Use **https://my.telegram.org** (this is the correct URL, not `my.telegram.com`).

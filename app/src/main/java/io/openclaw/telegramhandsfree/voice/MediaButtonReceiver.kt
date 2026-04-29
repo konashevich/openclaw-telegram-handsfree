@@ -7,6 +7,7 @@ import android.os.SystemClock
 import android.util.Log
 import android.view.KeyEvent
 import androidx.core.content.ContextCompat
+import io.openclaw.telegramhandsfree.config.ClawsfreeConfig
 
 class MediaButtonReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent?) {
@@ -16,6 +17,10 @@ class MediaButtonReceiver : BroadcastReceiver() {
         if (!event.isPlayPauseLike()) return
 
         val action = pressState.resolveAction(event) ?: return
+        if (action == ClawsfreeForegroundService.ACTION_START_RECORDING && !ClawsfreeConfig.canStartRecording(context)) {
+            Log.i(TAG, "Ignoring media-button start because setup is not completed")
+            return
+        }
         Log.i(TAG, "MediaButtonReceiver dispatching action=$action keyCode=${event.keyCode} keyAction=${event.action}")
 
         ContextCompat.startForegroundService(
